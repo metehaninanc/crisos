@@ -1,0 +1,479 @@
+version: "3.1"
+
+intents:
+  - greet
+  - report_emergency
+  - report_trapped
+  - report_safe
+  - report_flood
+  - report_wildfire
+  - report_outage
+  - inform_medical_none
+  - inform_medical_medications
+  - inform_medical_injured
+  - inform_medical_critical
+  - inform_water_below_10cm
+  - inform_water_10_30cm
+  - inform_water_30_60cm
+  - inform_water_above_60cm
+  - inform_trend_stable
+  - inform_trend_slowly
+  - inform_trend_fast
+  - inform_floor_basement
+  - inform_floor_ground
+  - inform_floor_upper
+  - inform_hazard_gas
+  - inform_hazard_electricity
+  - inform_hazard_fire
+  - inform_hazard_none
+  - inform_fire_none
+  - inform_fire_visible
+  - inform_fire_nearby
+  - inform_fire_surrounding
+  - inform_smoke_none
+  - inform_smoke_slight
+  - inform_smoke_cant
+  - inform_temp_normal
+  - inform_temp_uncomfortable
+  - inform_temp_dangerous
+  - inform_building_ground
+  - inform_building_mid
+  - inform_building_high
+  - inform_duration_short
+  - inform_duration_medium
+  - inform_duration_long
+  - affirm
+  - deny
+  - thank
+  - goodbye
+  - request_operator
+  - request_general_info
+  - request_warnings
+  - request_forecast
+  - request_supply_points
+  - request_evacuation_info
+  - request_emergency_numbers
+  - request_supply
+  - request_safe_menu
+  - out_of_scope
+  - nlu_fallback
+  - change_location
+
+
+entities:
+  - location
+  - hazard_type
+
+slots: {}
+
+forms:
+  emergency_assessment_form:
+    # Keep this minimal. The real slot list is controlled dynamically by
+    # validate_emergency_assessment_form.required_slots() in actions.py.
+    required_slots:
+      - need_medical
+      - location
+      - person_count
+
+  trapped_assessment_form:
+    # Keep this minimal. The real slot list is controlled dynamically by
+    # validate_trapped_assessment_form.required_slots() in actions.py.
+    required_slots:
+      - location
+      - need_medical
+      - person_count
+      - vulnerable_group
+      - mobility_needs
+      - crisis_type
+
+      # flood
+      - water_level
+      - water_trend
+      - floor_info
+      - power_outage
+      - hazard_type
+
+      # wildfire
+      - fire_distance
+      - smoke_inhalation
+      - vehicle_access
+
+      # outage
+      - heating_cooling_risk
+      - building_floor
+      - duration_estimate
+
+  safe_info_form:
+    required_slots:
+      - location
+
+  supply_request_form:
+    required_slots:
+      - location
+      - supply_type
+
+actions:
+  - action_set_user_status
+  - action_detect_crisis_type
+  - action_calculate_risk_score
+  - validate_emergency_assessment_form
+  - validate_trapped_assessment_form
+  - validate_safe_info_form
+  - action_handle_safe_location
+  - action_change_location
+  - action_handle_general_info
+  - action_provide_warnings
+  - action_provide_forecast
+  - action_provide_supply_points
+  - action_provide_evacuation_info
+  - action_provide_emergency_numbers
+  - action_escalate_to_operator
+  - action_default_fallback
+  - utter_greet
+  - utter_ask_user_status
+  - utter_emergency_detected
+  - utter_trapped_assessment_start
+  - utter_safe_information_options
+  - utter_safe_menu_after_location
+  - utter_ask_location
+  - utter_ask_need_medical
+  - utter_ask_person_count
+  - utter_ask_vulnerable_group
+  - utter_ask_mobility_needs
+  - utter_ask_crisis_type
+  - utter_ask_water_level
+  - utter_ask_water_trend
+  - utter_ask_floor_info
+  - utter_ask_power_outage
+  - utter_ask_hazard_type
+  - utter_ask_fire_distance
+  - utter_ask_smoke_inhalation
+  - utter_ask_vehicle_access
+  - utter_ask_heating_cooling_risk
+  - utter_ask_building_floor
+  - utter_ask_duration_estimate
+  - utter_ask_supply_type
+  - utter_ask_info_type
+  - utter_low_risk_info
+  - utter_medium_risk_info
+  - utter_high_risk_handover
+  - utter_emergency_numbers
+  - utter_thank
+  - utter_goodbye
+  - utter_default_fallback
+  - utter_fallback
+
+responses:
+  utter_greet:
+    - text: "I'm here to help with your situation. What do you need right now?"
+      buttons:
+        - title: "Emergency"
+          payload: "/report_emergency"
+        - title: "I'm Trapped"
+          payload: "/report_trapped"
+        - title: "I'm Safe - Need Info"
+          payload: "/report_safe"
+
+  utter_ask_user_status:
+    - text: "What is your current situation?"
+      buttons:
+        - title: "Emergency - Critical"
+          payload: "/report_emergency"
+        - title: "Trapped but Safe"
+          payload: "/report_trapped"
+        - title: "Safe - Just Need Info"
+          payload: "/report_safe"
+
+  utter_emergency_detected:
+    - text: "EMERGENCY DETECTED! I need to ask a few critical questions first. Stay calm."
+
+  utter_trapped_assessment_start:
+    - text: "I'll ask you a few questions to assess your situation and provide the best assistance. Let's start."
+
+  utter_safe_information_options:
+    - text: "I'm glad you're safe. First, where are you located?"
+
+  utter_safe_menu_after_location:
+    - text: "Thank you. What information do you need?"
+      buttons:
+        - title: "Need Supply"
+          payload: "/request_supply"
+        - title: "Need Information"
+          payload: "/request_general_info"
+        - title: "Emergency Numbers"
+          payload: "/request_emergency_numbers"
+
+  utter_ask_supply_type:
+    - text: "What supplies do you need?"
+      buttons:
+        - title: "Food"
+          payload: "food"
+        - title: "Water"
+          payload: "water"
+        - title: "Baby food"
+          payload: "baby_food"
+        - title: "Hygiene kit"
+          payload: "hygiene_kit"
+        - title: "Accommodation"
+          payload: "accommodation"
+
+  utter_ask_info_type:
+    - text: "What information do you need?"
+      buttons:
+        - title: "Official Warnings"
+          payload: "/request_warnings"
+        - title: "Forecast"
+          payload: "/request_forecast"
+        - title: "Contact Points"
+          payload: "/request_supply_points"
+        - title: "Evacuation Necessity"
+          payload: "/request_evacuation_info"
+
+  utter_ask_location:
+    - text: "Where are you located? (e.g., Berlin, Hamburg, or your address)"
+
+  utter_location_updated:
+    - text: "Location updated."
+
+  utter_ask_need_medical:
+    - text: "Do you or anyone with you need medical attention?"
+      buttons:
+        - title: "No medical needs"
+          payload: "/inform_medical_none"
+        - title: "Need medications"
+          payload: "/inform_medical_medications"
+        - title: "Someone is injured"
+          payload: "/inform_medical_injured"
+        - title: "Critical medical emergency"
+          payload: "/inform_medical_critical"
+
+  utter_ask_person_count:
+    - text: "How many people are with you? (including yourself)"
+      buttons:
+        - title: "1"
+          payload: "1"
+        - title: "2"
+          payload: "2"
+        - title: "3"
+          payload: "3"
+        - title: "4"
+          payload: "4"
+        - title: "5"
+          payload: "5"
+        - title: "6"
+          payload: "6"
+        - title: "7"
+          payload: "7"
+        - title: "8"
+          payload: "8"
+        - title: "9"
+          payload: "9"
+
+  utter_ask_vulnerable_group:
+    - text: "Are there any children, elderly, pregnant women, or people with disabilities?"
+      buttons:
+        - title: "Yes"
+          payload: "/affirm"
+        - title: "No"
+          payload: "/deny"
+
+  utter_ask_mobility_needs:
+    - text: "Does anyone have mobility issues or difficulty moving?"
+      buttons:
+        - title: "Yes"
+          payload: "/affirm"
+        - title: "No"
+          payload: "/deny"
+
+  utter_ask_crisis_type:
+    - text: "What type of crisis are you experiencing?"
+      buttons:
+        - title: "Flood"
+          payload: "/report_flood"
+        - title: "Wildfire"
+          payload: "/report_wildfire"
+        - title: "Power Outage"
+          payload: "/report_outage"
+
+  utter_ask_water_level:
+    - text: "What is the current water level?"
+      buttons:
+        - title: "Below 10cm (ankle)"
+          payload: "/inform_water_below_10cm"
+        - title: "10-30cm (knee)"
+          payload: "/inform_water_10_30cm"
+        - title: "30-60cm (waist)"
+          payload: "/inform_water_30_60cm"
+        - title: "Above 60cm (chest or higher)"
+          payload: "/inform_water_above_60cm"
+
+  utter_ask_water_trend:
+    - text: "Is the water level stable or rising?"
+      buttons:
+        - title: "Stable"
+          payload: "/inform_trend_stable"
+        - title: "Slowly rising"
+          payload: "/inform_trend_slowly"
+        - title: "Rising fast"
+          payload: "/inform_trend_fast"
+
+  utter_ask_floor_info:
+    - text: "Which floor are you on?"
+      buttons:
+        - title: "Basement"
+          payload: "/inform_floor_basement"
+        - title: "Ground floor"
+          payload: "/inform_floor_ground"
+        - title: "Upper floor"
+          payload: "/inform_floor_upper"
+
+  utter_ask_power_outage:
+    - text: "Is there a power outage or is water near electrical outlets?"
+      buttons:
+        - title: "Yes - Power issue"
+          payload: "/affirm"
+        - title: "No - Power is safe"
+          payload: "/deny"
+
+  utter_ask_hazard_type:
+    - text: "Are there any additional hazards?"
+      buttons:
+        - title: "Gas smell"
+          payload: "/inform_hazard_gas"
+        - title: "Electricity sparks/risk"
+          payload: "/inform_hazard_electricity"
+        - title: "Fire"
+          payload: "/inform_hazard_fire"
+        - title: "None"
+          payload: "/inform_hazard_none"
+
+  utter_ask_fire_distance:
+    - text: "How close is the fire to your location?"
+      buttons:
+        - title: "Far away - not visible"
+          payload: "/inform_fire_none"
+        - title: "Visible in distance"
+          payload: "/inform_fire_visible"
+        - title: "Nearby"
+          payload: "/inform_fire_nearby"
+        - title: "Surrounding us"
+          payload: "/inform_fire_surrounding"
+
+  utter_ask_smoke_inhalation:
+    - text: "Can you breathe normally?"
+      buttons:
+        - title: "Breathing fine"
+          payload: "/inform_smoke_none"
+        - title: "Slightly difficult"
+          payload: "/inform_smoke_slight"
+        - title: "Can't breathe"
+          payload: "/inform_smoke_cant"
+
+  utter_ask_vehicle_access:
+    - text: "Do you have access to a vehicle to evacuate?"
+      buttons:
+        - title: "Yes"
+          payload: "/affirm"
+        - title: "No"
+          payload: "/deny"
+
+  utter_ask_heating_cooling_risk:
+    - text: "How is the temperature affecting you?"
+      buttons:
+        - title: "Normal - comfortable"
+          payload: "/inform_temp_normal"
+        - title: "Uncomfortable"
+          payload: "/inform_temp_uncomfortable"
+        - title: "Dangerous - too cold/hot"
+          payload: "/inform_temp_dangerous"
+
+  utter_ask_building_floor:
+    - text: "Which floor are you on?"
+      buttons:
+        - title: "Ground or 1st floor"
+          payload: "/inform_building_ground"
+        - title: "2nd to 4th floor"
+          payload: "/inform_building_mid"
+        - title: "5th floor or higher"
+          payload: "/inform_building_high"
+
+  utter_ask_duration_estimate:
+    - text: "How long has the power been out?"
+      buttons:
+        - title: "Less than 6 hours"
+          payload: "/inform_duration_short"
+        - title: "6 to 24 hours"
+          payload: "/inform_duration_medium"
+        - title: "More than 24 hours"
+          payload: "/inform_duration_long"
+
+  utter_low_risk_info:
+    - text: "LOW RISK
+
+Based on your situation, you are at low risk. Here are some safety recommendations:
+- Continue monitoring the situation
+- Stay informed via official channels
+- Prepare emergency supplies just in case
+
+Would you like more information?"
+      buttons:
+        - title: "More Info"
+          payload: "/request_safe_menu"
+        - title: "Emergency Numbers"
+          payload: "/request_emergency_numbers"
+
+  utter_medium_risk_info:
+    - text: "MEDIUM RISK
+
+Your situation requires attention. Recommendations:
+- Prepare to evacuate if needed
+- Keep emergency bag ready
+- Monitor situation closely
+- Stay in contact with authorities"
+
+  utter_high_risk_handover:
+    - text: "HIGH RISK DETECTED
+
+Your situation is serious. Connecting you to an emergency operator now.
+
+Please stay calm. Your information has been forwarded:
+- Location: {location}
+- Crisis: {crisis_type}
+
+An operator will assist you shortly."
+
+  utter_emergency_numbers:
+    - text: "Emergency Contact Numbers
+
+Emergency Services: 112
+Police: 110
+Fire Department: 112
+Medical Emergency: 112
+
+Flood Hotline: 0800 xxx xxxx
+Power Outage: 0800 xxx xxxx
+
+NINA App: Download for official warnings"
+
+  utter_thank:
+    - text: "You're welcome! Stay safe. If you need anything else, I'm here to help."
+
+  utter_goodbye:
+    - text: "Stay safe! Don't hesitate to contact us again if the situation changes. Goodbye!"
+
+  utter_default_fallback:
+    - text: "I'm sorry, I didn't understand that. Let me show you what I can help with."
+
+  utter_fallback:
+    - text: "I'm sorry, I didn't quite understand that. Let me help you."
+      buttons:
+        - title: "Report Emergency"
+          payload: "/report_emergency"
+        - title: "Get Information"
+          payload: "/report_safe"
+        - title: "Talk to Operator"
+          payload: "/request_operator"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

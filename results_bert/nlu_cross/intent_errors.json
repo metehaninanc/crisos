@@ -1,0 +1,770 @@
+[
+  {
+    "text": "help",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.3763484060764313
+    }
+  },
+  {
+    "text": "medical emergency",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.8059712052345276
+    }
+  },
+  {
+    "text": "severe bleeding right now",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.7431638836860657
+    }
+  },
+  {
+    "text": "cardiac arrest",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.929217517375946
+    }
+  },
+  {
+    "text": "need rescue",
+    "intent": "report_trapped",
+    "intent_prediction": {
+      "name": "request_supply",
+      "confidence": 0.9334173798561096
+    }
+  },
+  {
+    "text": "want to check situation",
+    "intent": "report_safe",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.6520801186561584
+    }
+  },
+  {
+    "text": "critical condition",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "report_outage",
+      "confidence": 0.22711704671382904
+    }
+  },
+  {
+    "text": "not breathing",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.9669461846351624
+    }
+  },
+  {
+    "text": "critical injury",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.9371510744094849
+    }
+  },
+  {
+    "text": "fire is around the building",
+    "intent": "inform_fire_surrounding",
+    "intent_prediction": {
+      "name": "inform_hazard_fire",
+      "confidence": 0.217229962348938
+    }
+  },
+  {
+    "text": "incorrect",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.32716289162635803
+    }
+  },
+  {
+    "text": "negative",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.690784752368927
+    }
+  },
+  {
+    "text": "transfer to operator",
+    "intent": "request_operator",
+    "intent_prediction": {
+      "name": "change_location",
+      "confidence": 0.3414668142795563
+    }
+  },
+  {
+    "text": "get info",
+    "intent": "request_general_info",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.5291981101036072
+    }
+  },
+  {
+    "text": "give me situation updates",
+    "intent": "request_general_info",
+    "intent_prediction": {
+      "name": "change_location",
+      "confidence": 0.4683201313018799
+    }
+  },
+  {
+    "text": "who to call",
+    "intent": "request_emergency_numbers",
+    "intent_prediction": {
+      "name": "request_supply_points",
+      "confidence": 0.39084392786026
+    }
+  },
+  {
+    "text": "I need supplies",
+    "intent": "request_supply",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.6542231440544128
+    }
+  },
+  {
+    "text": "critical situation",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.7517010569572449
+    }
+  },
+  {
+    "text": "not breathing",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.903245210647583
+    }
+  },
+  {
+    "text": "critical injury here",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.6590560674667358
+    }
+  },
+  {
+    "text": "unconscious and unresponsive",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.8866223692893982
+    }
+  },
+  {
+    "text": "we are trapped",
+    "intent": "report_trapped",
+    "intent_prediction": {
+      "name": "inform_fire_surrounding",
+      "confidence": 0.15044733881950378
+    }
+  },
+  {
+    "text": "outage report",
+    "intent": "report_outage",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.2109159380197525
+    }
+  },
+  {
+    "text": "severe bleeding",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.9527261257171631
+    }
+  },
+  {
+    "text": "critical medical emergency",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.9299960136413574
+    }
+  },
+  {
+    "text": "urgent critical care needed",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.96541827917099
+    }
+  },
+  {
+    "text": "surrounding",
+    "intent": "inform_fire_surrounding",
+    "intent_prediction": {
+      "name": "request_supply",
+      "confidence": 0.21814683079719543
+    }
+  },
+  {
+    "text": "fourth floor",
+    "intent": "inform_building_mid",
+    "intent_prediction": {
+      "name": "inform_building_high",
+      "confidence": 0.5043010115623474
+    }
+  },
+  {
+    "text": "yup",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.26278072595596313
+    }
+  },
+  {
+    "text": "no",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.21654775738716125
+    }
+  },
+  {
+    "text": "any updates",
+    "intent": "request_general_info",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.7615394592285156
+    }
+  },
+  {
+    "text": "need status update",
+    "intent": "request_general_info",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.4155174791812897
+    }
+  },
+  {
+    "text": "weather forecast",
+    "intent": "request_forecast",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.14756353199481964
+    }
+  },
+  {
+    "text": "where can I get supplies",
+    "intent": "request_supply_points",
+    "intent_prediction": {
+      "name": "request_supply",
+      "confidence": 0.24969728291034698
+    }
+  },
+  {
+    "text": "evacuation routes",
+    "intent": "request_evacuation_info",
+    "intent_prediction": {
+      "name": "inform_hazard_fire",
+      "confidence": 0.3119572699069977
+    }
+  },
+  {
+    "text": "emergency hotline",
+    "intent": "request_emergency_numbers",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.8145098686218262
+    }
+  },
+  {
+    "text": "start",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.2348002791404724
+    }
+  },
+  {
+    "text": "severe injury",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.8536781072616577
+    }
+  },
+  {
+    "text": "unconscious person",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "request_operator",
+      "confidence": 0.4532472789287567
+    }
+  },
+  {
+    "text": "heavy bleeding",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.33384063839912415
+    }
+  },
+  {
+    "text": "serious accident happened",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "report_outage",
+      "confidence": 0.5134676694869995
+    }
+  },
+  {
+    "text": "need info",
+    "intent": "report_safe",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.8085470199584961
+    }
+  },
+  {
+    "text": "no pulse",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.9394174814224243
+    }
+  },
+  {
+    "text": "water reaches my waist",
+    "intent": "inform_water_30_60cm",
+    "intent_prediction": {
+      "name": "report_flood",
+      "confidence": 0.9821317195892334
+    }
+  },
+  {
+    "text": "bit hard to breathe",
+    "intent": "inform_smoke_slight",
+    "intent_prediction": {
+      "name": "request_operator",
+      "confidence": 0.19910849630832672
+    }
+  },
+  {
+    "text": "correct",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.44699981808662415
+    }
+  },
+  {
+    "text": "affirmative",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.5661650896072388
+    }
+  },
+  {
+    "text": "nope",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.8604585528373718
+    }
+  },
+  {
+    "text": "thanks",
+    "intent": "thank",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.2988884150981903
+    }
+  },
+  {
+    "text": "I need human help",
+    "intent": "request_operator",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.39211606979370117
+    }
+  },
+  {
+    "text": "information about the situation",
+    "intent": "request_general_info",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.39882969856262207
+    }
+  },
+  {
+    "text": "NINA alerts",
+    "intent": "request_warnings",
+    "intent_prediction": {
+      "name": "request_operator",
+      "confidence": 0.2019338458776474
+    }
+  },
+  {
+    "text": "do I need to leave",
+    "intent": "request_evacuation_info",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.2177249938249588
+    }
+  },
+  {
+    "text": "contact numbers",
+    "intent": "request_emergency_numbers",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.2487836331129074
+    }
+  },
+  {
+    "text": "emergency supplies",
+    "intent": "request_supply",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.1179853156208992
+    }
+  },
+  {
+    "text": "open youtube",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.20800819993019104
+    }
+  },
+  {
+    "text": "i want to update my location",
+    "intent": "change_location",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.6381695866584778
+    }
+  },
+  {
+    "text": "sos",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_water_30_60cm",
+      "confidence": 0.24752961099147797
+    }
+  },
+  {
+    "text": "life threatening emergency",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.8409384489059448
+    }
+  },
+  {
+    "text": "no pulse",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.8687158823013306
+    }
+  },
+  {
+    "text": "danger to life",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.3527936637401581
+    }
+  },
+  {
+    "text": "blocked exits",
+    "intent": "report_trapped",
+    "intent_prediction": {
+      "name": "report_flood",
+      "confidence": 0.8761773705482483
+    }
+  },
+  {
+    "text": "stranded",
+    "intent": "report_trapped",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.4453667402267456
+    }
+  },
+  {
+    "text": "ground floor is flooded",
+    "intent": "report_flood",
+    "intent_prediction": {
+      "name": "inform_fire_surrounding",
+      "confidence": 0.6223457455635071
+    }
+  },
+  {
+    "text": "blackout",
+    "intent": "report_outage",
+    "intent_prediction": {
+      "name": "inform_fire_surrounding",
+      "confidence": 0.3219510614871979
+    }
+  },
+  {
+    "text": "outage in the neighborhood",
+    "intent": "report_outage",
+    "intent_prediction": {
+      "name": "report_flood",
+      "confidence": 0.5177202224731445
+    }
+  },
+  {
+    "text": "cardiac arrest",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.9888852834701538
+    }
+  },
+  {
+    "text": "burning",
+    "intent": "inform_hazard_fire",
+    "intent_prediction": {
+      "name": "inform_temp_dangerous",
+      "confidence": 0.3859642744064331
+    }
+  },
+  {
+    "text": "not really",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.25319045782089233
+    }
+  },
+  {
+    "text": "wrong",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "inform_temp_dangerous",
+      "confidence": 0.2791534960269928
+    }
+  },
+  {
+    "text": "human assistance",
+    "intent": "request_operator",
+    "intent_prediction": {
+      "name": "request_supply",
+      "confidence": 0.1623610109090805
+    }
+  },
+  {
+    "text": "real person please",
+    "intent": "request_operator",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.46370914578437805
+    }
+  },
+  {
+    "text": "I need general information",
+    "intent": "request_general_info",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.7057570219039917
+    }
+  },
+  {
+    "text": "what's the forecast",
+    "intent": "request_forecast",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.32229962944984436
+    }
+  },
+  {
+    "text": "should I evacuate",
+    "intent": "request_evacuation_info",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.18790991604328156
+    }
+  },
+  {
+    "text": "emergency contacts",
+    "intent": "request_emergency_numbers",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.8661379814147949
+    }
+  },
+  {
+    "text": "what's the weather tomorrow",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.35120925307273865
+    }
+  },
+  {
+    "text": "what can you do",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.4969426691532135
+    }
+  },
+  {
+    "text": "random question",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.2185756415128708
+    }
+  },
+  {
+    "text": "can't breathe critically",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.35881415009498596
+    }
+  },
+  {
+    "text": "urgent medical assistance needed",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.5931079387664795
+    }
+  },
+  {
+    "text": "call emergency services",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "request_emergency_numbers",
+      "confidence": 0.37847569584846497
+    }
+  },
+  {
+    "text": "just need information",
+    "intent": "report_safe",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.5142319798469543
+    }
+  },
+  {
+    "text": "unconscious and not breathing",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.8379674553871155
+    }
+  },
+  {
+    "text": "needs CPR",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "request_supply",
+      "confidence": 0.6368269324302673
+    }
+  },
+  {
+    "text": "smoke and flames inside",
+    "intent": "inform_hazard_fire",
+    "intent_prediction": {
+      "name": "inform_smoke_slight",
+      "confidence": 0.4244545102119446
+    }
+  },
+  {
+    "text": "slightly difficult",
+    "intent": "inform_smoke_slight",
+    "intent_prediction": {
+      "name": "inform_water_30_60cm",
+      "confidence": 0.46258142590522766
+    }
+  },
+  {
+    "text": "don't think so",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.38152211904525757
+    }
+  },
+  {
+    "text": "nah",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9396538138389587
+    }
+  },
+  {
+    "text": "speak with someone",
+    "intent": "request_operator",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.6041849851608276
+    }
+  },
+  {
+    "text": "escalate",
+    "intent": "request_operator",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.3748602271080017
+    }
+  },
+  {
+    "text": "I need updates",
+    "intent": "request_general_info",
+    "intent_prediction": {
+      "name": "request_supply",
+      "confidence": 0.8406379222869873
+    }
+  },
+  {
+    "text": "evacuation",
+    "intent": "request_evacuation_info",
+    "intent_prediction": {
+      "name": "request_supply_points",
+      "confidence": 0.15788084268569946
+    }
+  },
+  {
+    "text": "need accommodation",
+    "intent": "request_supply",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.33219435811042786
+    }
+  },
+  {
+    "text": "I want pizza",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "request_supply",
+      "confidence": 0.3852846920490265
+    }
+  },
+  {
+    "text": "use this address",
+    "intent": "change_location",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.21185185015201569
+    }
+  }
+]

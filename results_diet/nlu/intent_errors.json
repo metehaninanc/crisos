@@ -1,0 +1,26 @@
+[
+  {
+    "text": "10 to 30cm",
+    "intent": "inform_water_10_30cm",
+    "intent_prediction": {
+      "name": "inform_water_30_60cm",
+      "confidence": 0.43504324555397034
+    }
+  },
+  {
+    "text": "above 60cm",
+    "intent": "inform_water_above_60cm",
+    "intent_prediction": {
+      "name": "inform_water_30_60cm",
+      "confidence": 0.47622206807136536
+    }
+  },
+  {
+    "text": "no fire nearby",
+    "intent": "inform_fire_none",
+    "intent_prediction": {
+      "name": "report_wildfire",
+      "confidence": 0.27002257108688354
+    }
+  }
+]

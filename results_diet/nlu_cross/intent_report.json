@@ -1,0 +1,283 @@
+{
+  "report_flood": {
+    "precision": 0.9375,
+    "recall": 0.967741935483871,
+    "f1-score": 0.9523809523809523,
+    "support": 31,
+    "confused_with": {
+      "request_supply_points": 1
+    }
+  },
+  "affirm": {
+    "precision": 0.5454545454545454,
+    "recall": 0.5,
+    "f1-score": 0.5217391304347826,
+    "support": 12,
+    "confused_with": {
+      "deny": 2,
+      "request_general_info": 1
+    }
+  },
+  "inform_building_high": {
+    "precision": 0.6363636363636364,
+    "recall": 1.0,
+    "f1-score": 0.7777777777777778,
+    "support": 7,
+    "confused_with": {}
+  },
+  "inform_fire_surrounding": {
+    "precision": 1.0,
+    "recall": 0.8888888888888888,
+    "f1-score": 0.9411764705882353,
+    "support": 9,
+    "confused_with": {
+      "inform_hazard_fire": 1
+    }
+  },
+  "change_location": {
+    "precision": 0.9090909090909091,
+    "recall": 0.9090909090909091,
+    "f1-score": 0.9090909090909091,
+    "support": 11,
+    "confused_with": {
+      "deny": 1
+    }
+  },
+  "request_warnings": {
+    "precision": 1.0,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.9090909090909091,
+    "support": 6,
+    "confused_with": {
+      "report_emergency": 1
+    }
+  },
+  "inform_hazard_fire": {
+    "precision": 0.7777777777777778,
+    "recall": 0.7,
+    "f1-score": 0.7368421052631577,
+    "support": 10,
+    "confused_with": {
+      "report_wildfire": 3
+    }
+  },
+  "request_forecast": {
+    "precision": 0.6666666666666666,
+    "recall": 0.4,
+    "f1-score": 0.5,
+    "support": 5,
+    "confused_with": {
+      "inform_medical_critical": 2,
+      "out_of_scope": 1
+    }
+  },
+  "request_emergency_numbers": {
+    "precision": 0.5,
+    "recall": 0.2,
+    "f1-score": 0.28571428571428575,
+    "support": 5,
+    "confused_with": {
+      "report_emergency": 3,
+      "request_operator": 1
+    }
+  },
+  "request_operator": {
+    "precision": 0.8,
+    "recall": 0.5,
+    "f1-score": 0.6153846153846154,
+    "support": 8,
+    "confused_with": {
+      "request_general_info": 2,
+      "report_emergency": 1
+    }
+  },
+  "inform_smoke_slight": {
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1-score": 0.8235294117647058,
+    "support": 10,
+    "confused_with": {
+      "report_emergency": 1,
+      "deny": 1
+    }
+  },
+  "report_wildfire": {
+    "precision": 0.8620689655172413,
+    "recall": 1.0,
+    "f1-score": 0.9259259259259259,
+    "support": 25,
+    "confused_with": {}
+  },
+  "inform_building_mid": {
+    "precision": 1.0,
+    "recall": 0.3333333333333333,
+    "f1-score": 0.5,
+    "support": 6,
+    "confused_with": {
+      "inform_building_high": 4
+    }
+  },
+  "out_of_scope": {
+    "precision": 0.5555555555555556,
+    "recall": 0.5882352941176471,
+    "f1-score": 0.5714285714285715,
+    "support": 17,
+    "confused_with": {
+      "request_general_info": 3,
+      "report_safe": 3
+    }
+  },
+  "request_evacuation_info": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1-score": 0.888888888888889,
+    "support": 5,
+    "confused_with": {
+      "out_of_scope": 1
+    }
+  },
+  "report_safe": {
+    "precision": 0.5,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.5714285714285715,
+    "support": 18,
+    "confused_with": {
+      "request_general_info": 4,
+      "report_emergency": 2
+    }
+  },
+  "report_trapped": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 9,
+    "confused_with": {
+      "report_emergency": 3,
+      "report_outage": 3,
+      "request_supply": 1
+    }
+  },
+  "report_outage": {
+    "precision": 0.8888888888888888,
+    "recall": 0.96,
+    "f1-score": 0.923076923076923,
+    "support": 25,
+    "confused_with": {
+      "report_emergency": 1
+    }
+  },
+  "thank": {
+    "precision": 0.8571428571428571,
+    "recall": 1.0,
+    "f1-score": 0.923076923076923,
+    "support": 6,
+    "confused_with": {}
+  },
+  "request_general_info": {
+    "precision": 0.3888888888888889,
+    "recall": 0.5384615384615384,
+    "f1-score": 0.45161290322580644,
+    "support": 13,
+    "confused_with": {
+      "report_safe": 3,
+      "report_emergency": 1
+    }
+  },
+  "request_supply_points": {
+    "precision": 0.875,
+    "recall": 0.7777777777777778,
+    "f1-score": 0.823529411764706,
+    "support": 9,
+    "confused_with": {
+      "out_of_scope": 1,
+      "request_general_info": 1
+    }
+  },
+  "deny": {
+    "precision": 0.2,
+    "recall": 0.1111111111111111,
+    "f1-score": 0.14285714285714285,
+    "support": 9,
+    "confused_with": {
+      "affirm": 4,
+      "report_emergency": 2
+    }
+  },
+  "inform_water_30_60cm": {
+    "precision": 0.9230769230769231,
+    "recall": 0.9230769230769231,
+    "f1-score": 0.9230769230769231,
+    "support": 13,
+    "confused_with": {
+      "out_of_scope": 1
+    }
+  },
+  "request_supply": {
+    "precision": 0.875,
+    "recall": 0.7777777777777778,
+    "f1-score": 0.823529411764706,
+    "support": 9,
+    "confused_with": {
+      "request_emergency_numbers": 1,
+      "report_flood": 1
+    }
+  },
+  "report_emergency": {
+    "precision": 0.375,
+    "recall": 0.4838709677419355,
+    "f1-score": 0.4225352112676056,
+    "support": 31,
+    "confused_with": {
+      "inform_medical_critical": 12,
+      "report_safe": 3
+    }
+  },
+  "inform_temp_dangerous": {
+    "precision": 0.75,
+    "recall": 0.6,
+    "f1-score": 0.6666666666666665,
+    "support": 5,
+    "confused_with": {
+      "report_safe": 1,
+      "report_flood": 1
+    }
+  },
+  "greet": {
+    "precision": 0.75,
+    "recall": 0.42857142857142855,
+    "f1-score": 0.5454545454545454,
+    "support": 7,
+    "confused_with": {
+      "out_of_scope": 2,
+      "report_emergency": 1
+    }
+  },
+  "inform_medical_critical": {
+    "precision": 0.3,
+    "recall": 0.4,
+    "f1-score": 0.34285714285714286,
+    "support": 15,
+    "confused_with": {
+      "report_emergency": 9
+    }
+  },
+  "accuracy": 0.6875,
+  "macro avg": {
+    "precision": 0.7097669862294247,
+    "recall": 0.6424263530511836,
+    "f1-score": 0.657809704651835,
+    "support": 336
+  },
+  "weighted avg": {
+    "precision": 0.6939446863515522,
+    "recall": 0.6875,
+    "f1-score": 0.6791392060604098,
+    "support": 336
+  },
+  "micro avg": {
+    "precision": 0.6875,
+    "recall": 0.6875,
+    "f1-score": 0.6875,
+    "support": 336
+  }
+}

@@ -1,0 +1,375 @@
+version: "3.1"
+
+slots:
+  # System Slots
+  user_status:
+    type: categorical
+    values:
+      - emergency
+      - trapped_safe
+      - safe
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+  crisis_type:
+    type: categorical
+    values:
+      - flood
+      - wildfire
+      - power_outage
+    influence_conversation: true
+    mappings:
+      - type: custom
+      - type: from_intent
+        intent: report_flood
+        value: flood
+      - type: from_intent
+        intent: report_wildfire
+        value: wildfire
+      - type: from_intent
+        intent: report_outage
+        value: power_outage
+
+  risk_score:
+    type: float
+    initial_value: 0
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+  risk_level:
+    type: categorical
+    values:
+      - low
+      - medium
+      - high
+      - critical
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+  # Universal Assessment Slots
+  location:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: trapped_assessment_form
+            requested_slot: location
+      - type: from_text
+        conditions:
+          - active_loop: emergency_assessment_form
+            requested_slot: location
+      - type: from_text
+        conditions:
+          - active_loop: safe_info_form
+            requested_slot: location
+      - type: from_text
+        conditions:
+          - active_loop: supply_request_form
+            requested_slot: location
+
+  need_medical:
+    type: categorical
+    values:
+      - none
+      - medications
+      - injured
+      - critical
+    influence_conversation: true
+    mappings:
+      - type: from_intent
+        intent: inform_medical_none
+        value: none
+      - type: from_intent
+        intent: inform_medical_medications
+        value: medications
+      - type: from_intent
+        intent: inform_medical_injured
+        value: injured
+      - type: from_intent
+        intent: inform_medical_critical
+        value: critical
+
+  person_count:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: trapped_assessment_form
+            requested_slot: person_count
+      - type: from_text
+        conditions:
+          - active_loop: emergency_assessment_form
+            requested_slot: person_count
+
+  vulnerable_group:
+    type: categorical
+    values:
+      - none
+      - "yes"
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        intent: affirm
+        value: "yes"
+        conditions:
+          - active_loop: trapped_assessment_form
+            requested_slot: vulnerable_group
+      - type: from_intent
+        intent: deny
+        value: none
+        conditions:
+          - active_loop: trapped_assessment_form
+            requested_slot: vulnerable_group
+
+  mobility_needs:
+    type: categorical
+    values:
+      - none
+      - "yes"
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        intent: affirm
+        value: "yes"
+        conditions:
+          - active_loop: trapped_assessment_form
+            requested_slot: mobility_needs
+      - type: from_intent
+        intent: deny
+        value: none
+        conditions:
+          - active_loop: trapped_assessment_form
+            requested_slot: mobility_needs
+
+  # Flood-Specific Slots
+  water_level:
+    type: categorical
+    values:
+      - below_10cm
+      - 10cm_30cm
+      - 30cm_60cm
+      - above_60cm
+    influence_conversation: true
+    mappings:
+      - type: from_intent
+        intent: inform_water_below_10cm
+        value: below_10cm
+      - type: from_intent
+        intent: inform_water_10_30cm
+        value: 10cm_30cm
+      - type: from_intent
+        intent: inform_water_30_60cm
+        value: 30cm_60cm
+      - type: from_intent
+        intent: inform_water_above_60cm
+        value: above_60cm
+
+  water_trend:
+    type: categorical
+    values:
+      - none
+      - stable
+      - slowly_rising
+      - rising_fast
+    influence_conversation: true
+    mappings:
+      - type: from_intent
+        intent: inform_trend_stable
+        value: stable
+      - type: from_intent
+        intent: inform_trend_slowly
+        value: slowly_rising
+      - type: from_intent
+        intent: inform_trend_fast
+        value: rising_fast
+
+  floor_info:
+    type: categorical
+    values:
+      - basement
+      - ground
+      - upper_floor
+    influence_conversation: true
+    mappings:
+      - type: from_intent
+        intent: inform_floor_basement
+        value: basement
+      - type: from_intent
+        intent: inform_floor_ground
+        value: ground
+      - type: from_intent
+        intent: inform_floor_upper
+        value: upper_floor
+
+  power_outage:
+    type: categorical
+    values:
+      - none
+      - "yes"
+    influence_conversation: true
+    mappings:
+      - type: from_intent
+        intent: affirm
+        value: "yes"
+        conditions:
+          - active_loop: trapped_assessment_form
+            requested_slot: power_outage
+      - type: from_intent
+        intent: deny
+        value: none
+        conditions:
+          - active_loop: trapped_assessment_form
+            requested_slot: power_outage
+
+  hazard_type:
+    type: categorical
+    values:
+      - none
+      - gas_smell
+      - electricity_risk
+      - fire
+    influence_conversation: true
+    mappings:
+      - type: from_intent
+        intent: inform_hazard_gas
+        value: gas_smell
+      - type: from_intent
+        intent: inform_hazard_electricity
+        value: electricity_risk
+      - type: from_intent
+        intent: inform_hazard_fire
+        value: fire
+      - type: from_intent
+        intent: inform_hazard_none
+        value: none
+
+  # Wildfire-Specific Slots
+  fire_distance:
+    type: categorical
+    values:
+      - none
+      - visible
+      - nearby
+      - surrounding
+    influence_conversation: true
+    mappings:
+      - type: from_intent
+        intent: inform_fire_none
+        value: none
+      - type: from_intent
+        intent: inform_fire_visible
+        value: visible
+      - type: from_intent
+        intent: inform_fire_nearby
+        value: nearby
+      - type: from_intent
+        intent: inform_fire_surrounding
+        value: surrounding
+
+  smoke_inhalation:
+    type: categorical
+    values:
+      - none
+      - slightly_difficult
+      - cant_breathe
+    influence_conversation: true
+    mappings:
+      - type: from_intent
+        intent: inform_smoke_none
+        value: none
+      - type: from_intent
+        intent: inform_smoke_slight
+        value: slightly_difficult
+      - type: from_intent
+        intent: inform_smoke_cant
+        value: cant_breathe
+
+  vehicle_access:
+    type: categorical
+    values:
+      - no_vehicle
+      - "yes"
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        intent: affirm
+        value: "yes"
+        conditions:
+          - active_loop: trapped_assessment_form
+            requested_slot: vehicle_access
+      - type: from_intent
+        intent: deny
+        value: no_vehicle
+        conditions:
+          - active_loop: trapped_assessment_form
+            requested_slot: vehicle_access
+
+  # Power Outage-Specific Slots
+  heating_cooling_risk:
+    type: categorical
+    values:
+      - normal
+      - uncomfortable
+      - dangerous
+    influence_conversation: true
+    mappings:
+      - type: from_intent
+        intent: inform_temp_normal
+        value: normal
+      - type: from_intent
+        intent: inform_temp_uncomfortable
+        value: uncomfortable
+      - type: from_intent
+        intent: inform_temp_dangerous
+        value: dangerous
+
+  building_floor:
+    type: categorical
+    values:
+      - ground_1st
+      - 2_4
+      - 5_plus
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        intent: inform_building_ground
+        value: ground_1st
+      - type: from_intent
+        intent: inform_building_mid
+        value: 2_4
+      - type: from_intent
+        intent: inform_building_high
+        value: 5_plus
+
+  duration_estimate:
+    type: categorical
+    values:
+      - below_6hours
+      - 6h_24h
+      - above_24h
+    influence_conversation: true
+    mappings:
+      - type: from_intent
+        intent: inform_duration_short
+        value: below_6hours
+      - type: from_intent
+        intent: inform_duration_medium
+        value: 6h_24h
+      - type: from_intent
+        intent: inform_duration_long
+        value: above_24h
+
+  # Supply Request Slots
+  supply_type:
+    type: list
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: supply_request_form
+            requested_slot: supply_type

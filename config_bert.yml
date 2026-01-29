@@ -1,0 +1,44 @@
+recipe: default.v1
+language: en
+assistant_id: crysos
+
+pipeline:
+  # Keep spaCy in the pipeline (per your "nltk+spacy" requirement)
+  - name: SpacyNLP
+    model: "en_core_web_md"
+
+  - name: WhitespaceTokenizer
+
+  - name: RegexFeaturizer
+  - name: LexicalSyntacticFeaturizer
+
+  - name: LanguageModelFeaturizer
+    model_name: "bert"
+    model_weights: "bert-base-uncased"
+  # Classifier/Extractor (uses the transformer features above)
+  - name: DIETClassifier
+    epochs: 100
+    constrain_similarities: true
+
+  - name: EntitySynonymMapper
+
+  - name: ResponseSelector
+    epochs: 60
+
+  - name: FallbackClassifier
+    threshold: 0.35
+    ambiguity_threshold: 0.1
+
+policies:
+  - name: RulePolicy
+    core_fallback_threshold: 0.3
+    core_fallback_action_name: "utter_fallback"
+    enable_fallback_prediction: true
+
+  - name: MemoizationPolicy
+    max_history: 5
+
+  - name: TEDPolicy
+    max_history: 7
+    epochs: 60
+    constrain_similarities: true

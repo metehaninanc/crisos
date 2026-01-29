@@ -1,0 +1,628 @@
+version: "3.1"
+
+nlu:
+  # Greetings
+  - intent: greet
+    examples: |
+      - hi
+      - hello
+      - hey
+      - good morning
+      - good evening
+      - help
+      - start
+
+  # Emergency - Critical Medical
+  - intent: report_emergency
+    examples: |
+      - emergency
+      - help immediately
+      - critical situation
+      - someone is dying
+      - urgent help needed
+      - 911
+      - call ambulance
+      - medical emergency
+      - heart attack
+      - severe injury
+      - can't breathe critically
+      - unconscious person
+      - heavy bleeding
+      - sos 
+      - someone is drowning
+      - need an ambulance now
+      - life threatening emergency
+      - serious accident happened
+      - urgent medical assistance needed
+      - person collapsed
+      - not breathing
+      - no pulse
+      - critical injury here
+      - emergency services needed
+      - immediate rescue required
+      - severe bleeding right now
+      - unconscious and unresponsive
+      - cardiac arrest
+      - emergency situation here
+      - danger to life
+      - call emergency services
+
+  # Trapped Status
+  - intent: report_trapped
+    examples: |
+      - I'm trapped
+      - we are trapped
+      - stuck inside
+      - cannot escape
+      - trapped in building
+      - can't get out
+      - blocked exits
+      - need rescue
+      - stranded
+
+  # Safe Status
+  - intent: report_safe
+    examples: |
+      - I'm safe
+      - we are safe
+      - not in danger
+      - safe for now
+      - just need information
+      - want to check situation
+      - looking for updates
+      - need info
+      - I'm ok
+      - I am safe but need updates
+      - safe and looking for guidance
+      - no danger but need info
+      - we are ok but need information
+      - safe status only
+      - I am safe and need advice
+      - safe here, need general info
+      - not in immediate danger
+      - safe but uncertain about situation
+
+  # Crisis Type - Flood
+  - intent: report_flood
+    examples: |
+      - flooding
+      - water rising
+      - flood alert
+      - flood in my flat
+      - basement flooded
+      - water everywhere
+      - heavy rain flooding
+      - river overflow
+      - flood emergency
+      - water damage
+      - rising water level
+      - street is flooded
+      - water entered the house
+      - flood water is coming in
+      - flash flood here
+      - flood warning in my area
+      - the river overflowed
+      - water coming from drains
+      - sewage is backing up
+      - ground floor is flooded
+      - water is above the curb
+      - flooded road outside
+      - flood in the neighborhood
+      - heavy rain caused flooding
+      - flood in the basement
+      - water is rising fast
+      - we are surrounded by flood water
+      - flood water in the street
+      - water level keeps rising
+      - flood in my building
+      - storm water entering the house
+
+  # Crisis Type - Wildfire
+  - intent: report_wildfire
+    examples: |
+      - wildfire alert
+      - wild fire
+      - forest fire
+      - trees are burning
+      - flames in forest
+      - wildfire smoke nearby
+      - fire in the woods
+      - brush fire near town
+      - grass fire spreading
+      - forest is burning
+      - wildfire alert in my area
+      - wildfire approaching
+      - wildfire close to the city
+      - smoke from forest fire
+      - wildfire emergency
+      - the woods are on fire
+      - fire spreading in the forest
+      - wildfire near my village
+      - wildfire at the edge of town
+      - bush fire nearby
+      - flames in the woods
+      - wildfire out of control
+      - forest fire moving fast
+      - smoke and ash from wildfire
+      - wildfire behind our house
+
+  # Crisis Type - Power Outage
+  - intent: report_outage
+    examples: |
+      - power outage alert
+      - outage report
+      - no electricity
+      - power cut
+      - blackout
+      - electricity gone
+      - no power
+      - power failure
+      - grid down
+      - stuck in elevator no power
+      - power went out
+      - lights are off
+      - electricity is down
+      - total power loss
+      - no power in the area
+      - the power is off
+      - no electricity in the building
+      - our power is down
+      - power is out in my street
+      - power is gone since morning
+      - outage in the neighborhood
+      - power line is down
+      - power is cut here
+      - we lost electricity
+      - power outage in my block
+
+  # Medical Status Intents
+  - intent: inform_medical_none
+    examples: |
+      - no medical needs
+      - everyone is healthy
+      - no injuries
+      - we're all fine
+
+  - intent: inform_medical_medications
+    examples: |
+      - need medications
+      - need medicine
+      - regular medications needed
+
+  - intent: inform_medical_injured
+    examples: |
+      - someone is injured
+      - injured person
+      - minor injury
+      - hurt
+
+  - intent: inform_medical_critical
+    examples: |
+      - critical condition
+      - life threatening
+      - critical medical
+      - severe emergency
+      - not breathing
+      - no pulse
+      - critical injury
+      - life threatening injury
+      - severe bleeding
+      - unconscious and not breathing
+      - cardiac arrest
+      - needs CPR
+      - critical medical emergency
+      - severe trauma
+      - urgent critical care needed
+
+  # Water Level Intents
+  - intent: inform_water_below_10cm
+    examples: |
+      - below 10cm
+      - ankle deep
+      - very shallow
+
+  - intent: inform_water_10_30cm
+    examples: |
+      - 10 to 30cm
+      - knee deep
+      - knee high
+
+  - intent: inform_water_30_60cm
+    examples: |
+      - 30 to 60cm
+      - waist deep
+      - waist high
+      - between 30 and 60 centimeters
+      - approximately half a meter
+      - water reaches my waist
+      - up to my waist
+      - about 40 centimeters
+      - roughly 50cm
+      - waist level water
+      - 30-60 cm deep
+      - around 45 centimeters
+      - water at waist height
+
+  - intent: inform_water_above_60cm
+    examples: |
+      - above 60cm
+      - chest deep
+      - very deep
+
+  - synonym: "waist_level"
+    examples: |
+      - 30 to 60cm
+      - 30-60cm
+      - waist deep
+      - waist high
+      - half meter
+      - 0.5m
+
+  - regex: water_level_30_60
+    examples: |
+      - (3[0-9]|[4-5][0-9]|60)\\s?(cm|centimeter)
+
+  # Water Trend Intents
+  - intent: inform_trend_stable
+    examples: |
+      - stable
+      - not changing
+      - same level
+
+  - intent: inform_trend_slowly
+    examples: |
+      - slowly rising
+      - rising slow
+      - gradually increasing
+
+  - intent: inform_trend_fast
+    examples: |
+      - rising fast
+      - rapidly rising
+      - rising quickly
+
+  # Floor Intents
+  - intent: inform_floor_basement
+    examples: |
+      - basement
+      - cellar
+      - underground
+
+  - intent: inform_floor_ground
+    examples: |
+      - ground floor
+      - street level
+
+  - intent: inform_floor_upper
+    examples: |
+      - upper floor
+      - upstairs
+
+  # Hazard Intents
+  - intent: inform_hazard_gas
+    examples: |
+      - gas smell
+      - smell gas
+      - gas leak
+
+  - intent: inform_hazard_electricity
+    examples: |
+      - electricity risk
+      - sparks
+      - electrical danger
+
+  - intent: inform_hazard_fire
+    examples: |
+      - fire
+      - flames
+      - burning
+      - fire in the room
+      - flames inside
+      - building on fire
+      - indoor fire
+      - kitchen on fire
+      - smoke and flames inside
+      - fire in the hallway
+
+  - intent: inform_hazard_none
+    examples: |
+      - no hazards
+      - none
+      - no additional risks
+
+  # Fire Distance Intents
+  - intent: inform_fire_none
+    examples: |
+      - far away
+      - not visible
+      - no fire nearby
+
+  - intent: inform_fire_visible
+    examples: |
+      - visible
+      - can see it
+      - in distance
+
+  - intent: inform_fire_nearby
+    examples: |
+      - nearby
+      - close
+      - very close
+
+  - intent: inform_fire_surrounding
+    examples: |
+      - surrounding
+      - all around
+      - surrounded
+      - fire all around us
+      - surrounded by fire
+      - fire is around the building
+      - fire on all sides
+      - encircled by fire
+      - flames around us
+
+  # Smoke Intents
+  - intent: inform_smoke_none
+    examples: |
+      - breathing fine
+      - no smoke
+      - clear air
+
+  - intent: inform_smoke_slight
+    examples: |
+      - slightly difficult
+      - bit hard to breathe
+      - some smoke
+      - light smoke
+      - smoke in the air
+      - smoke is light
+      - minor smoke
+      - smoke is a bit thick
+      - light haze
+      - slight smoke
+
+  - intent: inform_smoke_cant
+    examples: |
+      - can't breathe
+      - cannot breathe
+      - heavy smoke
+
+  # Temperature Risk Intents
+  - intent: inform_temp_normal
+    examples: |
+      - normal
+      - comfortable
+      - fine temperature
+
+  - intent: inform_temp_uncomfortable
+    examples: |
+      - uncomfortable
+      - bit cold
+      - bit hot
+
+  - intent: inform_temp_dangerous
+    examples: |
+      - dangerous
+      - too cold
+      - too hot
+      - freezing
+      - boiling
+
+  # Building Floor Intents
+  - intent: inform_building_ground
+    examples: |
+      - first floor
+      - level one
+
+  - intent: inform_building_mid
+    examples: |
+      - second floor
+      - third floor
+      - fourth floor
+      - 2nd floor
+      - 3rd floor
+      - 4th floor
+
+  - intent: inform_building_high
+    examples: |
+      - fifth floor
+      - sixth floor
+      - 6th floor
+      - seventh floor
+      - 7th floor
+      - eighth floor
+      - 8th floor
+
+  # Duration Intents
+  - intent: inform_duration_short
+    examples: |
+      - less than 6 hours
+      - few hours
+      - short time
+
+  - intent: inform_duration_medium
+    examples: |
+      - 6 to 24 hours
+      - half day
+      - one day
+
+  - intent: inform_duration_long
+    examples: |
+      - more than 24 hours
+      - days
+      - long time
+
+  # Affirmative
+  - intent: affirm
+    examples: |
+      - yes
+      - yeah
+      - correct
+      - right
+      - that's right
+      - exactly
+      - sure
+      - of course
+      - definitely
+      - affirmative
+      - yep
+      - yup
+
+  # Negative
+  - intent: deny
+    examples: |
+      - no
+      - nope
+      - not really
+      - don't think so
+      - no way
+      - incorrect
+      - wrong
+      - negative
+      - nah
+
+  # Thank you
+  - intent: thank
+    examples: |
+      - thanks
+      - thank you
+      - thank you very much
+      - thanks for your help
+      - much appreciated
+      - appreciate your help
+
+  # Goodbye
+  - intent: goodbye
+    examples: |
+      - bye
+      - goodbye
+      - bye bye
+
+  # Request Human Operator
+  - intent: request_operator
+    examples: |
+      - I need human help
+      - talk to operator
+      - human assistance
+      - connect me to person
+      - speak with someone
+      - real person please
+      - escalate
+      - transfer to operator
+
+  # Information Requests
+  - intent: request_general_info
+    examples: |
+      - need information
+      - get info
+      - information please
+      - I need updates
+      - any updates
+      - give me situation updates
+      - what is happening now
+      - information about the situation
+      - I need general information
+      - show current situation
+      - need status update
+      - what is the situation now
+      - general guidance please
+
+  - intent: request_warnings
+    examples: |
+      - official warnings
+      - check warnings
+      - are there warnings
+      - warning alerts
+      - NINA alerts
+      - emergency warnings
+
+  - intent: request_forecast
+    examples: |
+      - forecast
+      - weather forecast
+      - what's the forecast
+      - prediction
+      - future conditions
+
+  - intent: request_supply_points
+    examples: |
+      - where can I get supplies
+      - shelter locations
+      - supply locations
+      - food distribution
+      - food distribution points
+      - water distribution
+      - water distribution points
+      - where to get food
+      - where to get water
+
+  - intent: request_evacuation_info
+    examples: |
+      - evacuation
+      - should I evacuate
+      - evacuation routes
+      - evacuation necessity
+      - do I need to leave
+
+  - intent: request_emergency_numbers
+    examples: |
+      - emergency numbers
+      - emergency contacts
+      - who to call
+      - emergency hotline
+      - contact numbers
+
+  # Need Supply
+  - intent: request_supply
+    examples: |
+      - I need supplies
+      - need emergency supplies
+      - need food
+      - need water
+      - need baby food
+      - need hygiene kit
+      - need accommodation
+      - supplies needed
+      - emergency supplies
+
+  - intent: request_safe_menu
+    examples: |
+      - more info
+      - show options
+      - show the menu
+      - I need more information
+
+  # Out of Scope
+  - intent: out_of_scope
+    examples: |
+      - what's the weather tomorrow
+      - tell me a joke
+      - who are you
+      - what can you do
+      - I want pizza
+      - play music
+      - random question
+      - open youtube
+      - show me the news
+      - play a game
+      - order a taxi
+      - how old are you
+      - sing a song
+      - tell me a story
+      - I want to chat
+      - can you do my homework
+      - show me a movie
+
+  - intent: change_location
+    examples: |
+      - change my location
+      - update my address
+      - my location changed
+      - i want to update my location
+      - use this address
+      - address update
+      - konumu degistir
+      - adresimi degistir
+      - konumumu guncelle
+      - standort andern
+      - adresse andern

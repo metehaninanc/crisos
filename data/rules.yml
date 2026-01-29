@@ -1,0 +1,398 @@
+version: "3.1"
+
+rules:
+  # Greeting Rule
+  - rule: Greet user
+    condition:
+      - slot_was_set:
+          - user_status: null
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: Greet user with status (safe)
+    condition:
+      - slot_was_set:
+          - user_status: safe
+    steps:
+      - intent: greet
+      - action: safe_info_form
+      - active_loop: safe_info_form
+
+  - rule: Greet user with status (trapped_safe)
+    condition:
+      - slot_was_set:
+          - user_status: trapped_safe
+    steps:
+      - intent: greet
+      - action: safe_info_form
+      - active_loop: safe_info_form
+
+  # Thank you Rule
+  - rule: Say you're welcome
+    steps:
+      - intent: thank
+      - action: utter_thank
+
+  # Goodbye Rule
+  - rule: Say goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  # Emergency Numbers Rule
+  - rule: Provide emergency numbers (safe)
+    condition:
+      - slot_was_set:
+          - user_status: safe
+    steps:
+      - intent: request_emergency_numbers
+      - action: action_provide_emergency_numbers
+
+  - rule: Provide emergency numbers (trapped_safe)
+    condition:
+      - slot_was_set:
+          - user_status: trapped_safe
+    steps:
+      - intent: request_emergency_numbers
+      - action: action_provide_emergency_numbers
+
+  - rule: Provide emergency numbers (emergency)
+    condition:
+      - slot_was_set:
+          - user_status: emergency
+    steps:
+      - intent: request_emergency_numbers
+      - action: action_provide_emergency_numbers
+
+  # Emergency Status - Start Assessment with Form Activation
+  - rule: Handle emergency status
+    steps:
+      - intent: report_emergency
+      - action: action_set_user_status
+      - slot_was_set:
+          - user_status: emergency
+      - action: utter_emergency_detected
+      - action: emergency_assessment_form
+      - active_loop: emergency_assessment_form
+
+  # Safe Status - Ask Location First
+  - rule: Handle safe status
+    steps:
+      - intent: report_safe
+      - action: action_set_user_status
+      - slot_was_set:
+          - user_status: safe
+      - action: safe_info_form
+      - active_loop: safe_info_form
+
+  # Submit Safe Info Form (location collected)
+  - rule: Submit safe info form
+    condition:
+      - active_loop: safe_info_form
+    steps:
+      - action: safe_info_form
+      - active_loop: null
+      - action: utter_safe_menu_after_location
+
+  # Trapped Status - Start Assessment with Form Activation
+  - rule: Handle trapped status
+    steps:
+      - intent: report_trapped
+      - action: action_set_user_status
+      - slot_was_set:
+          - user_status: trapped_safe
+      - action: utter_trapped_assessment_start
+      - action: trapped_assessment_form
+      - active_loop: trapped_assessment_form
+
+  # Fallback Rule with User Status Check
+  - rule: Handle fallback with status check
+    steps:
+      - intent: nlu_fallback
+      - action: action_default_fallback
+
+  # Out of Scope Rule
+  - rule: Handle out of scope
+    steps:
+      - intent: out_of_scope
+      - action: action_default_fallback
+
+  # Request Operator Rule
+  - rule: Escalate to operator on request
+    steps:
+      - intent: request_operator
+      - action: action_escalate_to_operator
+
+  # Submit Trapped Assessment Form
+  - rule: Submit trapped assessment form
+    condition:
+      - active_loop: trapped_assessment_form
+    steps:
+      - action: trapped_assessment_form
+      - active_loop: null
+      - action: action_calculate_risk_score
+
+  # Submit Emergency Assessment Form
+  - rule: Submit emergency assessment form
+    condition:
+      - active_loop: emergency_assessment_form
+    steps:
+      - action: emergency_assessment_form
+      - active_loop: null
+      - action: action_escalate_to_operator
+
+  # If user starts by describing a crisis type before choosing a status,
+  # detect crisis_type then ask for their status (Emergency / Trapped / Safe).
+  - rule: Crisis type first, then ask user status
+    condition:
+      - slot_was_set:
+          - user_status: null
+    steps:
+      - intent: report_flood
+      - action: action_detect_crisis_type
+      - action: utter_ask_user_status
+
+  - rule: Safe user asks about flood context
+    condition:
+      - slot_was_set:
+          - user_status: safe
+    steps:
+      - intent: report_flood
+      - action: action_handle_general_info
+
+  - rule: Trapped user asks about flood context
+    condition:
+      - slot_was_set:
+          - user_status: trapped_safe
+    steps:
+      - intent: report_flood
+      - action: action_handle_general_info
+
+  - rule: Crisis type first, then ask user status (wildfire)
+    condition:
+      - slot_was_set:
+          - user_status: null
+    steps:
+      - intent: report_wildfire
+      - action: action_detect_crisis_type
+      - action: utter_ask_user_status
+
+  - rule: Safe user asks about wildfire context
+    condition:
+      - slot_was_set:
+          - user_status: safe
+    steps:
+      - intent: report_wildfire
+      - action: action_handle_general_info
+
+  - rule: Trapped user asks about wildfire context
+    condition:
+      - slot_was_set:
+          - user_status: trapped_safe
+    steps:
+      - intent: report_wildfire
+      - action: action_handle_general_info
+
+  - rule: Crisis type first, then ask user status (outage)
+    condition:
+      - slot_was_set:
+          - user_status: null
+    steps:
+      - intent: report_outage
+      - action: action_detect_crisis_type
+      - action: utter_ask_user_status
+
+  - rule: Safe user asks about outage context
+    condition:
+      - slot_was_set:
+          - user_status: safe
+    steps:
+      - intent: report_outage
+      - action: action_handle_general_info
+
+  - rule: Trapped user asks about outage context
+    condition:
+      - slot_was_set:
+          - user_status: trapped_safe
+    steps:
+      - intent: report_outage
+      - action: action_handle_general_info
+
+  # Info requests require user status first
+  - rule: Ask status before warnings
+    condition:
+      - slot_was_set:
+          - user_status: null
+    steps:
+      - intent: request_warnings
+      - action: utter_ask_user_status
+
+  - rule: Ask status before forecast
+    condition:
+      - slot_was_set:
+          - user_status: null
+    steps:
+      - intent: request_forecast
+      - action: utter_ask_user_status
+
+  - rule: Ask status before supply points
+    condition:
+      - slot_was_set:
+          - user_status: null
+    steps:
+      - intent: request_supply_points
+      - action: utter_ask_user_status
+
+  - rule: Ask status before evacuation info
+    condition:
+      - slot_was_set:
+          - user_status: null
+    steps:
+      - intent: request_evacuation_info
+      - action: utter_ask_user_status
+
+  - rule: Ask status before emergency numbers
+    condition:
+      - slot_was_set:
+          - user_status: null
+    steps:
+      - intent: request_emergency_numbers
+      - action: utter_ask_user_status
+
+  - rule: Ask status before supplies
+    condition:
+      - slot_was_set:
+          - user_status: null
+    steps:
+      - intent: request_supply
+      - action: utter_ask_user_status
+
+  - rule: Ask status before safe menu
+    condition:
+      - slot_was_set:
+          - user_status: null
+    steps:
+      - intent: request_safe_menu
+      - action: utter_ask_user_status
+
+  # Safe menu entry
+  - rule: Show safe menu from more info (safe)
+    condition:
+      - slot_was_set:
+          - user_status: safe
+    steps:
+      - intent: request_safe_menu
+      - action: safe_info_form
+      - active_loop: safe_info_form
+
+  - rule: Show safe menu from more info (trapped_safe)
+    condition:
+      - slot_was_set:
+          - user_status: trapped_safe
+    steps:
+      - intent: request_safe_menu
+      - action: safe_info_form
+      - active_loop: safe_info_form
+
+  # Safe user information requests
+  - rule: Handle general info requests
+    steps:
+      - intent: request_general_info
+      - action: action_handle_general_info
+
+  - rule: Safe user requests warnings
+    condition:
+      - slot_was_set:
+          - user_status: safe
+    steps:
+      - intent: request_warnings
+      - action: action_provide_warnings
+
+  - rule: Safe user requests forecast
+    condition:
+      - slot_was_set:
+          - user_status: safe
+    steps:
+      - intent: request_forecast
+      - action: action_provide_forecast
+
+  - rule: Safe user requests supply points
+    condition:
+      - slot_was_set:
+          - user_status: safe
+    steps:
+      - intent: request_supply_points
+      - action: action_provide_supply_points
+
+  - rule: Safe user requests evacuation info
+    condition:
+      - slot_was_set:
+          - user_status: safe
+    steps:
+      - intent: request_evacuation_info
+      - action: action_provide_evacuation_info
+
+  - rule: Safe user requests supplies
+    condition:
+      - slot_was_set:
+          - user_status: safe
+    steps:
+      - intent: request_supply
+      - action: supply_request_form
+      - active_loop: supply_request_form
+
+  - rule: Submit supply request form
+    condition:
+      - active_loop: supply_request_form
+    steps:
+      - action: supply_request_form
+      - active_loop: null
+      - action: action_provide_supply_points
+
+  - rule: Change location
+    steps:
+      - intent: change_location
+      - action: action_change_location
+
+  # Trapped user information requests (reuse safe menu)
+  - rule: Trapped user requests warnings
+    condition:
+      - slot_was_set:
+          - user_status: trapped_safe
+    steps:
+      - intent: request_warnings
+      - action: action_provide_warnings
+
+  - rule: Trapped user requests forecast
+    condition:
+      - slot_was_set:
+          - user_status: trapped_safe
+    steps:
+      - intent: request_forecast
+      - action: action_provide_forecast
+
+  - rule: Trapped user requests supply points
+    condition:
+      - slot_was_set:
+          - user_status: trapped_safe
+    steps:
+      - intent: request_supply_points
+      - action: action_provide_supply_points
+
+  - rule: Trapped user requests evacuation info
+    condition:
+      - slot_was_set:
+          - user_status: trapped_safe
+    steps:
+      - intent: request_evacuation_info
+      - action: action_provide_evacuation_info
+
+  - rule: Trapped user requests supplies
+    condition:
+      - slot_was_set:
+          - user_status: trapped_safe
+    steps:
+      - intent: request_supply
+      - action: supply_request_form
+      - active_loop: supply_request_form

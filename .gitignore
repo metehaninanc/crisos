@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -205,3 +206,34 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+=======
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Logs
+*.log
+logs/
+.rasa/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+
+# Env
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+>>>>>>> 940590c (Initial commit)

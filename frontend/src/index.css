@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "SIFONN_PRO";
+  src: url("./assets/fonts/SIFONN_PRO.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color: #131717;
+  background-color: #ffffff;
+  font-family: "Space Grotesk", ui-sans-serif, system-ui;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.grain {
+  background: #ffffff;
+}
+
+.brand-wordmark {
+  font-family: "SIFONN_PRO", "Space Grotesk", ui-sans-serif, system-ui;
+  letter-spacing: 0.02em;
+}

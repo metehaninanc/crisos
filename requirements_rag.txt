@@ -1,0 +1,4 @@
+dspy-ai==2.2.0
+faiss-cpu==1.8.0
+sentence-transformers==2.7.0
+pypdf==4.2.0

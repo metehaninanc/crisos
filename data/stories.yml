@@ -1,0 +1,180 @@
+version: "3.1"
+
+stories:
+  # ========================================
+  # TRAPPED USER STORIES
+  # ========================================
+
+  # Story 1: Flood Emergency with High Risk
+  - story: Flood emergency high risk
+    steps:
+      - intent: report_flood
+      - action: action_detect_crisis_type
+      - slot_was_set:
+          - crisis_type: flood
+      - action: utter_ask_user_status
+      - intent: report_trapped
+      - action: action_set_user_status
+      - slot_was_set:
+          - user_status: trapped_safe
+      - action: utter_trapped_assessment_start
+      - action: trapped_assessment_form
+      - active_loop: trapped_assessment_form
+      - slot_was_set:
+          - location: "Berlin"
+      - slot_was_set:
+          - need_medical: injured
+      - slot_was_set:
+          - person_count: "3"
+      - slot_was_set:
+          - vulnerable_group: "yes"
+      - slot_was_set:
+          - mobility_needs: "yes"
+      - slot_was_set:
+          - water_level: above_60cm
+      - slot_was_set:
+          - water_trend: rising_fast
+      - slot_was_set:
+          - floor_info: basement
+      - slot_was_set:
+          - power_outage: "yes"
+      - slot_was_set:
+          - hazard_type: none
+      - active_loop: null
+      - action: action_calculate_risk_score
+      - slot_was_set:
+          - risk_level: high
+
+  # Story 2: Wildfire with Medium Risk
+  - story: Wildfire medium risk
+    steps:
+      - intent: report_wildfire
+      - action: action_detect_crisis_type
+      - slot_was_set:
+          - crisis_type: wildfire
+      - action: utter_ask_user_status
+      - intent: report_trapped
+      - action: action_set_user_status
+      - slot_was_set:
+          - user_status: trapped_safe
+      - action: utter_trapped_assessment_start
+      - action: trapped_assessment_form
+      - active_loop: trapped_assessment_form
+      - slot_was_set:
+          - location: "Hamburg"
+      - slot_was_set:
+          - need_medical: none
+      - slot_was_set:
+          - person_count: "2"
+      - slot_was_set:
+          - vulnerable_group: none
+      - slot_was_set:
+          - fire_distance: nearby
+      - slot_was_set:
+          - smoke_inhalation: slightly_difficult
+      - slot_was_set:
+          - vehicle_access: "yes"
+      - active_loop: null
+      - action: action_calculate_risk_score
+      - slot_was_set:
+          - risk_level: medium
+
+  # Story 3: Power Outage Low Risk
+  - story: Power outage low risk
+    steps:
+      - intent: report_outage
+      - action: action_detect_crisis_type
+      - slot_was_set:
+          - crisis_type: power_outage
+      - action: utter_ask_user_status
+      - intent: report_trapped
+      - action: action_set_user_status
+      - slot_was_set:
+          - user_status: trapped_safe
+      - action: utter_trapped_assessment_start
+      - action: trapped_assessment_form
+      - active_loop: trapped_assessment_form
+      - slot_was_set:
+          - location: "Munich"
+      - slot_was_set:
+          - need_medical: none
+      - slot_was_set:
+          - person_count: "1"
+      - slot_was_set:
+          - heating_cooling_risk: normal
+      - slot_was_set:
+          - building_floor: ground_1st
+      - slot_was_set:
+          - duration_estimate: below_6hours
+      - active_loop: null
+      - action: action_calculate_risk_score
+      - slot_was_set:
+          - risk_level: low
+
+  # Story 4: Trapped without crisis type specified initially
+  - story: Trapped user crisis type asked during form
+    steps:
+      - intent: report_trapped
+      - action: action_set_user_status
+      - slot_was_set:
+          - user_status: trapped_safe
+      - action: utter_trapped_assessment_start
+      - action: trapped_assessment_form
+      - active_loop: trapped_assessment_form
+      - slot_was_set:
+          - location: "Dresden"
+      - slot_was_set:
+          - need_medical: none
+      - slot_was_set:
+          - person_count: "1"
+      - slot_was_set:
+          - vulnerable_group: none
+      - slot_was_set:
+          - crisis_type: flood
+      - slot_was_set:
+          - water_level: 10cm_30cm
+      - active_loop: null
+      - action: action_calculate_risk_score
+
+  # Story 5: Emergency Status (Critical Medical)
+  - story: Emergency medical detected
+    steps:
+      - intent: report_emergency
+      - action: action_set_user_status
+      - slot_was_set:
+          - user_status: emergency
+      - action: utter_emergency_detected
+      - action: emergency_assessment_form
+      - active_loop: emergency_assessment_form
+      - slot_was_set:
+          - need_medical: critical
+      - active_loop: null
+      - action: action_escalate_to_operator
+
+  # Story 6: Emergency Status (Non-critical)
+  - story: Emergency medical non critical
+    steps:
+      - intent: report_emergency
+      - action: action_set_user_status
+      - slot_was_set:
+          - user_status: emergency
+      - action: utter_emergency_detected
+      - action: emergency_assessment_form
+      - active_loop: emergency_assessment_form
+      - slot_was_set:
+          - need_medical: none
+      - slot_was_set:
+          - location: "Frankfurt"
+      - slot_was_set:
+          - person_count: "2"
+      - active_loop: null
+      - action: action_escalate_to_operator
+
+  # Story 6: Medium risk user requests operator
+  - story: Medium risk escalation
+    steps:
+      - action: action_calculate_risk_score
+      - slot_was_set:
+          - risk_level: medium
+      - intent: request_operator
+      - action: action_escalate_to_operator
