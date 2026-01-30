@@ -1,21 +1,21 @@
 {
-  "action_set_user_status": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 6
-  },
   "emergency_assessment_form": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 2
   },
-  "utter_emergency_detected": {
+  "action_set_user_status": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 2
+    "support": 6
+  },
+  "action_calculate_risk_score": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4
   },
   "action_listen": {
     "precision": 1.0,
@@ -29,13 +29,25 @@
     "f1-score": 1.0,
     "support": 4
   },
-  "action_escalate_to_operator": {
+  "utter_emergency_detected": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2
+  },
+  "trapped_assessment_form": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4
+  },
+  "utter_ask_user_status": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 3
   },
-  "utter_ask_user_status": {
+  "action_escalate_to_operator": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -46,18 +58,6 @@
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 3
-  },
-  "trapped_assessment_form": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4
-  },
-  "action_calculate_risk_score": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4
   },
   "accuracy": 1.0,
   "macro avg": {

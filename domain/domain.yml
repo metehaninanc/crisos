@@ -444,17 +444,18 @@ responses:
         An operator will assist you shortly.
 
   utter_emergency_numbers:
-    - text: "Emergency Contact Numbers
+    - text: |
+        Emergency Contact Numbers
 
-Emergency Services: 112
-Police: 110
-Fire Department: 112
-Medical Emergency: 112
+        Emergency Services: 112
+        Police: 110
+        Fire Department: 112
+        Medical Emergency: 112
 
-Flood Hotline: 0800 xxx xxxx
-Power Outage: 0800 xxx xxxx
+        Flood Hotline: 0800 xxx xxxx
+        Power Outage: 0800 xxx xxxx
 
-NINA App: Download for official warnings"
+        NINA App: Download for official warnings
 
   utter_thank:
     - text: "You're welcome! Stay safe. If you need anything else, I'm here to help."

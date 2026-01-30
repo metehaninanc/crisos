@@ -1,0 +1,73 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: crisos-postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  actions:
+    build:
+      context: .
+      dockerfile: docker/actions.Dockerfile
+    container_name: crisos-actions
+    env_file: .env
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      RAG_WARMUP: "true"
+    ports:
+      - "5055:5055"
+    depends_on:
+      - postgres
+
+  rasa:
+    build:
+      context: .
+      dockerfile: docker/rasa.Dockerfile
+    container_name: crisos-rasa
+    environment:
+      RASA_MODEL: ${RASA_MODEL:-crisos_diet_model.tar.gz}
+    ports:
+      - "5005:5005"
+    depends_on:
+      - actions
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    container_name: crisos-backend
+    env_file: .env
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      RASA_URL: http://rasa:5005/webhooks/rest/webhook
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:5173}
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - rasa
+
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000}
+    container_name: crisos-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

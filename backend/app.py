@@ -2,6 +2,7 @@ import hashlib
 import os
 import re
 import secrets
+import time
 import sys
 from pathlib import Path
 from typing import Optional
@@ -76,6 +77,19 @@ def init_db_on_startup() -> None:
 def warmup_translators() -> None:
     for model_name in TRANSLATION_MODELS.values():
         _get_translator(model_name)
+
+
+# Sends a dummy message to warm up the Rasa model and reduce first-request delay.
+@app.on_event("startup")
+def warmup_rasa() -> None:
+    try:
+        requests.post(
+            RASA_URL,
+            json={"sender": "warmup", "message": "hello"},
+            timeout=10,
+        )
+    except Exception as exc:
+        print(f"[Rasa] Warm-up skipped: {exc}")
 
 
 # Normalizes a locale string and returns the short code.
@@ -464,6 +478,7 @@ def health():
 # Sends a message to Rasa and returns the translated reply list.
 @app.post("/api/message")
 def send_message(payload: ChatRequest):
+    request_start = time.perf_counter()
     metadata = {}
     locale = _normalize_locale(payload.locale)
     if payload.locale:
@@ -475,10 +490,14 @@ def send_message(payload: ChatRequest):
             metadata["lon"] = payload.location.lon
 
     message_text = payload.message
+    translate_in_time = 0.0
     if locale in {"tr", "de"} and _should_translate_inbound(message_text):
+        t0 = time.perf_counter()
         message_text = _translate_text(message_text, locale, "en")
+        translate_in_time = time.perf_counter() - t0
 
     try:
+        t1 = time.perf_counter()
         response = requests.post(
             RASA_URL,
             json={
@@ -489,11 +508,21 @@ def send_message(payload: ChatRequest):
             timeout=30,
         )
         response.raise_for_status()
+        rasa_time = time.perf_counter() - t1
     except requests.RequestException as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
 
     messages = response.json()
-    return {"messages": _translate_messages(messages, locale)}
+    t2 = time.perf_counter()
+    translated_messages = _translate_messages(messages, locale)
+    translate_out_time = time.perf_counter() - t2
+    total_time = time.perf_counter() - request_start
+    print(
+        "[Timing] total={:.3f}s translate_in={:.3f}s rasa={:.3f}s translate_out={:.3f}s locale={}".format(
+            total_time, translate_in_time, rasa_time, translate_out_time, locale
+        )
+    )
+    return {"messages": translated_messages}
 
 
 # Accepts audio, transcribes it, and returns the text.

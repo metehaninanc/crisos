@@ -13,7 +13,7 @@ services, and a RAG fallback that answers from official PDF sources.
 - Location handling with geocoding and city/address normalization.
 - Weather, warnings, and evacuation checks via public APIs.
 - RAG fallback from PDF sources with OpenAI or DSPy (optional).
-- Voice input via OpenAI Whisper or local Whisper.
+- Voice input via OpenAI Whisper API.
 - Optional translation layer (Marian OPUS models).
 
 ## Architecture
@@ -29,7 +29,6 @@ services, and a RAG fallback that answers from official PDF sources.
 - Python 3.10
 - Node.js 18+
 - Postgres 14+
-- Optional: ffmpeg for local Whisper transcription
 
 ## Setup
 
@@ -40,6 +39,7 @@ python -m venv venv
 .\venv\Scripts\activate
 pip install -r requirements_rasa.txt
 pip install -r requirements_rag.txt
+pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl
 ```
 
 ### Frontend dependencies
@@ -73,7 +73,6 @@ python db/init_db.py
 - `HF_TOKEN` (optional, for Marian model downloads)
 - `OPENAI_API_KEY` (optional, for Whisper and other OpenAI calls)
 - `OPENAI_WHISPER_MODEL` (default: `whisper-1`)
-- `WHISPER_MODEL` (default: `base`, used by local Whisper)
 
 ### Action server
 
@@ -110,6 +109,20 @@ python backend/app.py
 cd frontend
 npm run dev
 ```
+
+## Docker Compose (VPS)
+
+This brings up Postgres, Rasa, actions, backend, and frontend in one command.
+
+```bash
+docker compose up --build
+```
+
+Useful optional overrides:
+
+- `RASA_MODEL` (default: `crisos_diet_model.tar.gz`)
+- `VITE_API_BASE_URL` (default: `http://localhost:8000`)
+- `FRONTEND_ORIGIN` (default: `http://localhost:5173`)
 
 ## Training
 
