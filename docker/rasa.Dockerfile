@@ -7,7 +7,7 @@ WORKDIR /app
 
 COPY requirements_rasa.txt /app/requirements_rasa.txt
 RUN pip install --no-cache-dir -r /app/requirements_rasa.txt
-RUN python -m spacy download en_core_web_md
+RUN pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl
 
 COPY config_diet.yml /app/config_diet.yml
 COPY data /app/data
