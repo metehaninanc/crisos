@@ -191,7 +191,12 @@ class _OpenAIChatLLM:
     def __init__(self, api_key: str, model: str, temperature: float = 0.1, max_tokens: int = 250):
         self.api_key = api_key
         self.model = model
-        self.kwargs = {"temperature": temperature, "max_tokens": max_tokens}
+        self.kwargs = {
+            "temperature": temperature,
+            "max_tokens": max_tokens,
+            "n": 1,
+            "num_generations": 1,
+        }
 
     # Sends a prompt to OpenAI and returns the response text.
     def basic_request(self, prompt: str, temperature: Optional[float] = None, max_tokens: Optional[int] = None) -> str:
