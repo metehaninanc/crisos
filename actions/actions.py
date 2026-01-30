@@ -482,11 +482,13 @@ def _normalize_supply_category(value: Any) -> Optional[str]:
         "water": "water",
         "baby_food": "baby_food",
         "baby food": "baby_food",
+        "babyfood": "baby_food",
         "hygiene_kit": "hygiene_kit",
         "hygiene kit": "hygiene_kit",
         "accommodation": "accommodation",
     }
-    return mapping.get(text, text.replace(" ", "_"))
+    normalized = mapping.get(text)
+    return normalized
 
 
 def _parse_float(value: Any) -> Optional[float]:
@@ -1360,6 +1362,28 @@ class ValidateSafeInfoForm(FormValidationAction):
             return {"location": existing_location}
         return {"location": None}
 
+
+class ValidateSupplyRequestForm(FormValidationAction):
+
+    def name(self) -> Text:
+        return "validate_supply_request_form"
+
+    # Accepts only supported supply categories and keeps the form active if invalid.
+    async def validate_supply_type(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        normalized = _normalize_supply_category(slot_value)
+        if normalized:
+            return {"supply_type": [normalized]}
+        dispatcher.utter_message(
+            text="Please select a supply category from the options."
+        )
+        return {"supply_type": None}
+
 class ActionProvideWarnings(Action):
     """Provide official warnings"""
 
@@ -1601,7 +1625,11 @@ class ActionProvideSupplyPoints(Action):
         intent = tracker.latest_message.get("intent", {}).get("name")
         if intent == "request_supply_points":
             category = None
-
+        if supply_type and not category and intent != "request_supply_points":
+            dispatcher.utter_message(
+                text="Please select a supply category from the options."
+            )
+            return [SlotSet("supply_type", None)]
 
         if not location:
             dispatcher.utter_message(text="Please provide your city to continue.")

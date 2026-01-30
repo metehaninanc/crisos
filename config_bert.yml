@@ -3,25 +3,34 @@ language: en
 assistant_id: crysos
 
 pipeline:
-  - name: SpacyNLP
-    model: "en_core_web_md"
-
   - name: WhitespaceTokenizer
-  - name: LexicalSyntacticFeaturizer
 
   - name: LanguageModelFeaturizer
     model_name: "bert"
     model_weights: "bert-base-uncased"
 
+  - name: LexicalSyntacticFeaturizer
+
+  - name: CountVectorsFeaturizer
+    analyzer: word
+    min_ngram: 1
+    max_ngram: 2
+  
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 3
+    max_ngram: 5
+
   - name: DIETClassifier
-    transformer_size: 64
-    number_of_transformer_layers: 1
-    number_of_attention_heads: 2
-    embedding_dimension: 64
-    epochs: 150
+    transformer_size: 128
+    number_of_transformer_layers: 2
+    number_of_attention_heads: 4
+    embedding_dimension: 128
+    epochs: 100
     batch_size: [64, 256]
     learning_rate: 0.001
     constrain_similarities: true
+    entity_recognition: true
 
   - name: EntitySynonymMapper
 

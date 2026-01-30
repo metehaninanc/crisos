@@ -117,6 +117,7 @@ actions:
   - validate_emergency_assessment_form
   - validate_trapped_assessment_form
   - validate_safe_info_form
+  - validate_supply_request_form
   - action_handle_safe_location
   - action_change_location
   - action_handle_general_info
