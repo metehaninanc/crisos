@@ -11,10 +11,6 @@ pipeline:
   - name: SpacyFeaturizer
     pooling: mean  # ADD THIS
   
-  - name: LanguageModelFeaturizer
-    model_name: "bert"
-    model_weights: "bert-base-multilingual-cased"
-
   - name: RegexFeaturizer
   
   - name: LexicalSyntacticFeaturizer
@@ -30,10 +26,10 @@ pipeline:
     max_ngram: 5
   
   - name: DIETClassifier
-    epochs: 100
+    epochs: 150
+    batch_size: [64, 256]
+    learning_rate: 0.001
     constrain_similarities: true
-    entity_recognition: false
-    use_masked_language_model: true
   
   - name: EntitySynonymMapper
   

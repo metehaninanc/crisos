@@ -1,10 +1,10 @@
 [
   {
     "text": "first floor",
-    "intent": "inform_building_ground",
+    "intent": "inform_floor_ground",
     "intent_prediction": {
-      "name": "inform_building_mid",
-      "confidence": 0.3247734308242798
+      "name": "inform_building_ground",
+      "confidence": 0.4520406126976013
     }
   }
 ]

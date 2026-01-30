@@ -1,26 +1,82 @@
 {
-  "inform_medical_medications": {
+  "report_wildfire": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6,
+    "confused_with": {}
+  },
+  "inform_water_above_60cm": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "thank": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6,
+    "confused_with": {}
+  },
+  "inform_building_mid": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 4,
     "confused_with": {}
   },
-  "inform_duration_short": {
+  "request_supply": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
+    "support": 5,
     "confused_with": {}
   },
-  "inform_fire_visible": {
+  "inform_water_30_60cm": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
+    "support": 5,
     "confused_with": {}
   },
-  "inform_floor_upper": {
+  "inform_duration_medium": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "inform_medical_injured": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6,
+    "confused_with": {}
+  },
+  "inform_trend_slowly": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "request_operator": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6,
+    "confused_with": {}
+  },
+  "request_evacuation_info": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "inform_fire_surrounding": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -31,10 +87,24 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 11,
+    "support": 4,
     "confused_with": {}
   },
-  "inform_medical_critical": {
+  "inform_floor_ground": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "inform_floor_upper": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "inform_hazard_none": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -45,68 +115,38 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "report_flood": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 13,
+    "support": 4,
     "confused_with": {}
   },
   "request_forecast": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 11,
+    "support": 4,
     "confused_with": {}
   },
-  "request_operator": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 11,
-    "confused_with": {}
-  },
-  "affirm": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5,
-    "confused_with": {}
-  },
-  "inform_water_above_60cm": {
-    "precision": 1.0,
-    "recall": 0.6666666666666666,
-    "f1-score": 0.8,
-    "support": 3,
-    "confused_with": {
-      "inform_water_30_60cm": 1
-    }
-  },
-  "inform_building_high": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "inform_medical_none": {
+  "inform_hazard_electricity": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 4,
     "confused_with": {}
   },
-  "inform_smoke_none": {
+  "inform_building_high": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
+    "support": 5,
     "confused_with": {}
   },
-  "deny": {
+  "out_of_scope": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 10,
+    "confused_with": {}
+  },
+  "inform_trend_fast": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -117,31 +157,36 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
+    "support": 4,
     "confused_with": {}
   },
-  "inform_floor_ground": {
+  "request_general_info": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 4,
+    "support": 5,
+    "confused_with": {}
+  },
+  "request_safe_menu": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
     "confused_with": {}
   },
   "report_safe": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 11,
+    "support": 6,
     "confused_with": {}
   },
-  "inform_water_10_30cm": {
+  "inform_duration_short": {
     "precision": 1.0,
-    "recall": 0.6666666666666666,
-    "f1-score": 0.8,
-    "support": 3,
-    "confused_with": {
-      "inform_water_30_60cm": 1
-    }
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
   },
   "goodbye": {
     "precision": 1.0,
@@ -150,56 +195,56 @@
     "support": 7,
     "confused_with": {}
   },
+  "request_warnings": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
   "inform_water_below_10cm": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
+    "support": 5,
     "confused_with": {}
   },
-  "request_supply_points": {
+  "change_location": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 11,
+    "support": 6,
     "confused_with": {}
   },
-  "inform_hazard_none": {
+  "report_trapped": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
+    "support": 9,
     "confused_with": {}
   },
-  "inform_hazard_electricity": {
+  "greet": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
+    "support": 6,
     "confused_with": {}
   },
-  "inform_temp_uncomfortable": {
+  "inform_trend_stable": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
+    "support": 4,
     "confused_with": {}
   },
-  "inform_fire_nearby": {
+  "inform_smoke_cant": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
+    "support": 4,
     "confused_with": {}
   },
-  "inform_temp_dangerous": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "thank": {
+  "inform_fire_visible": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -210,203 +255,159 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "inform_temp_normal": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "report_emergency": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 14,
-    "confused_with": {}
-  },
-  "inform_hazard_gas": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "inform_trend_slowly": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "inform_smoke_cant": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "request_warnings": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 11,
-    "confused_with": {}
-  },
-  "inform_water_30_60cm": {
-    "precision": 0.6,
-    "recall": 1.0,
-    "f1-score": 0.7499999999999999,
-    "support": 3,
-    "confused_with": {}
-  },
-  "inform_trend_stable": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "report_wildfire": {
-    "precision": 0.9285714285714286,
-    "recall": 1.0,
-    "f1-score": 0.962962962962963,
-    "support": 13,
-    "confused_with": {}
-  },
-  "inform_trend_fast": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "inform_building_ground": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "inform_fire_none": {
-    "precision": 1.0,
-    "recall": 0.6666666666666666,
-    "f1-score": 0.8,
-    "support": 3,
-    "confused_with": {
-      "report_wildfire": 1
-    }
-  },
-  "request_general_info": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 11,
+    "support": 5,
     "confused_with": {}
   },
   "report_outage": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 13,
-    "confused_with": {}
-  },
-  "report_trapped": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 11,
-    "confused_with": {}
-  },
-  "greet": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
     "support": 6,
     "confused_with": {}
   },
-  "request_supply": {
+  "inform_temp_normal": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 11,
+    "support": 4,
     "confused_with": {}
   },
-  "change_location": {
+  "report_emergency": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 8,
+    "support": 13,
     "confused_with": {}
   },
-  "inform_fire_surrounding": {
+  "inform_temp_dangerous": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
+    "support": 4,
     "confused_with": {}
   },
-  "inform_building_mid": {
+  "deny": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
+    "support": 12,
     "confused_with": {}
   },
-  "inform_duration_medium": {
+  "request_supply_points": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "request_safe_menu": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5,
+    "support": 4,
     "confused_with": {}
   },
   "inform_floor_basement": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "inform_hazard_gas": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
     "support": 4,
     "confused_with": {}
   },
-  "out_of_scope": {
+  "inform_fire_none": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "inform_water_10_30cm": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "inform_medical_critical": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 8,
     "confused_with": {}
   },
-  "inform_medical_injured": {
+  "inform_fire_nearby": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 4,
     "confused_with": {}
   },
-  "accuracy": 0.9902912621359223,
+  "inform_smoke_none": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "inform_medical_medications": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "affirm": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 13,
+    "confused_with": {}
+  },
+  "inform_temp_uncomfortable": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "inform_building_ground": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "report_flood": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 9,
+    "confused_with": {}
+  },
+  "inform_medical_none": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "accuracy": 1.0,
   "macro avg": {
-    "precision": 0.9914285714285713,
-    "recall": 0.9818181818181818,
-    "f1-score": 0.9838720538720538,
-    "support": 309
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 306
   },
   "weighted avg": {
-    "precision": 0.9931114193250116,
-    "recall": 0.9902912621359223,
-    "f1-score": 0.9901893803188302,
-    "support": 309
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 306
   },
   "micro avg": {
-    "precision": 0.9902912621359223,
-    "recall": 0.9902912621359223,
-    "f1-score": 0.9902912621359223,
-    "support": 309
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 306
   }
 }

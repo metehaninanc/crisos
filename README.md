@@ -63,7 +63,7 @@ python db/init_db.py
 - `DB_PORT` (default: `5432`)
 - `DB_NAME` (default: `crisos_db`)
 - `DB_USER` (default: `crisos_admin`)
-- `DB_PASSWORD` (default: `k8Pz!9mQ_Lw2#XvR7nE`)
+- `DB_PASSWORD` (no default; set in your environment)
 
 ### Backend gateway
 
@@ -122,13 +122,6 @@ Notes:
 - Changes in `actions/actions.py` do not require retraining, only restart the action server.
 - Changes in `domain/`, `data/`, or config files do require retraining.
 
-## NLU testing
-
-```powershell
-rasa test nlu --model .\models\crisos_diet_model.tar.gz --nlu .\data\test_nlu.yml --domain .\domain\ --out .\results_diet\nlu
-rasa test nlu --model .\models\crisos_bert_model.tar.gz --nlu .\data\test_nlu.yml --domain .\domain\ --out .\results_bert\nlu
-```
-
 ## RAG setup
 
 - Put PDF sources in `rag_sources/`.
@@ -170,3 +163,8 @@ Weak areas observed:
 
 These can be improved with more targeted examples in `data/nlu.yml` and
 `data/test_nlu.yml`.
+
+Cross-model comparison (BERT vs DIET):
+- Accuracy: +0.0065
+- Weighted F1: +0.0065
+- Macro F1: +0.0099

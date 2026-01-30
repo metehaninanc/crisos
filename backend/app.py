@@ -2,9 +2,7 @@ import hashlib
 import os
 import re
 import secrets
-import shutil
 import sys
-import tempfile
 from pathlib import Path
 from typing import Optional
 
@@ -15,13 +13,9 @@ from pydantic import BaseModel
 
 try:
     from transformers import MarianMTModel, MarianTokenizer
-except Exception:  # pragma: no cover - optional dependency
+except Exception:  
     MarianMTModel = None
     MarianTokenizer = None
-try:
-    import whisper
-except Exception:  # pragma: no cover - optional dependency
-    whisper = None
 from psycopg2 import sql
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -29,6 +23,7 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.append(str(ROOT_DIR))
 
 from db.connection import get_connection
+from db import init_db as db_init
 
 RASA_URL = os.getenv("RASA_URL", "http://localhost:5005/webhooks/rest/webhook")
 FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")
@@ -44,8 +39,6 @@ TRANSLATION_MODELS = {
 TRANSLATION_CACHE = {}
 TRANSLATOR_CACHE = {}
 TRANSLATION_CACHE_LIMIT = 1000
-WHISPER_MODEL_NAME = os.getenv("WHISPER_MODEL", "base")
-WHISPER_MODEL = None
 BUND_ALERT_SOURCES = {
     "dwd": "https://warnung.bund.de/api31/dwd/mapData.json",
     "mowas": "https://warnung.bund.de/api31/mowas/mapData.json",
@@ -68,24 +61,38 @@ OPERATOR_TABLES = {
 app = FastAPI(title="CRISOS Local Gateway", version="0.1.0")
 
 
+# Runs the DB initializer during app startup.
+@app.on_event("startup")
+def init_db_on_startup() -> None:
+    try:
+        db_init.main()
+    except Exception as exc:
+        print(f"[DB] Init failed: {exc}")
+        raise
+
+
+# Loads translation models into cache on startup.
 @app.on_event("startup")
 def warmup_translators() -> None:
     for model_name in TRANSLATION_MODELS.values():
         _get_translator(model_name)
 
 
+# Normalizes a locale string and returns the short code.
 def _normalize_locale(locale: Optional[str]) -> str:
     if not locale:
         return "en"
     return locale.split("-")[0].lower()
 
 
+# Checks if text looks like coordinates and returns True/False.
 def _looks_like_coords(text: str) -> bool:
     return bool(
         re.match(r"^\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*$", text)
     )
 
 
+# Checks if text looks like an address and returns True/False.
 def _looks_like_address(text: str) -> bool:
     lowered = text.lower()
     if re.search(r"\d{2,}", text) and "," in text:
@@ -104,6 +111,7 @@ def _looks_like_address(text: str) -> bool:
     return any(token in lowered for token in address_tokens)
 
 
+# Decides if inbound text should be translated and returns True/False.
 def _should_translate_inbound(text: str) -> bool:
     if not text:
         return False
@@ -117,6 +125,7 @@ def _should_translate_inbound(text: str) -> bool:
     return True
 
 
+# Decides if outbound text should be translated and returns True/False.
 def _should_translate_outbound(text: str) -> bool:
     if not text:
         return False
@@ -130,6 +139,7 @@ def _should_translate_outbound(text: str) -> bool:
     return True
 
 
+# Loads or returns a cached Marian translator and returns it or None.
 def _get_translator(model_name: str):
     if MarianTokenizer is None or MarianMTModel is None:
         return None
@@ -148,12 +158,14 @@ def _get_translator(model_name: str):
         return None
 
 
+# Stores a translation result in the in-memory cache.
 def _cache_translation(key, value):
     if len(TRANSLATION_CACHE) >= TRANSLATION_CACHE_LIMIT:
         TRANSLATION_CACHE.clear()
     TRANSLATION_CACHE[key] = value
 
 
+# Translates a single text and returns the translated string.
 def _translate_text(text: str, source_lang: str, target_lang: str) -> str:
     if not text or source_lang == target_lang:
         return text
@@ -179,21 +191,7 @@ def _translate_text(text: str, source_lang: str, target_lang: str) -> str:
         return text
 
 
-def _get_whisper_model():
-    global WHISPER_MODEL
-    if WHISPER_MODEL is not None:
-        return WHISPER_MODEL
-    if whisper is None:
-        return None
-    try:
-        WHISPER_MODEL = whisper.load_model(WHISPER_MODEL_NAME)
-        return WHISPER_MODEL
-    except Exception as exc:
-        print(f"[Whisper] Failed to load model {WHISPER_MODEL_NAME}: {exc}")
-        WHISPER_MODEL = None
-        return None
-
-
+# Calls OpenAI Whisper and returns the transcript text.
 def _transcribe_with_openai(audio_bytes: bytes, filename: str, language: Optional[str]) -> str:
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
@@ -224,6 +222,7 @@ def _transcribe_with_openai(audio_bytes: bytes, filename: str, language: Optiona
     return text
 
 
+# Translates outgoing messages and returns the updated list.
 def _translate_messages(messages, target_lang: str):
     if target_lang == "en":
         return messages
@@ -304,11 +303,13 @@ class ChangePasswordRequest(BaseModel):
     new_password: str
 
 
+# Hashes a password with salt and returns the hex digest.
 def _hash_password(password: str) -> str:
     salted = f"{ADMIN_PASSWORD_SALT}:{password}".encode("utf-8")
     return hashlib.sha256(salted).hexdigest()
 
 
+# Extracts the bearer token and returns it.
 def _get_token(authorization: Optional[str]) -> Optional[str]:
     if not authorization:
         return None
@@ -318,6 +319,7 @@ def _get_token(authorization: Optional[str]) -> Optional[str]:
     return parts[1].strip()
 
 
+# Validates auth and returns the token info dict.
 def _require_auth(authorization: Optional[str], roles: Optional[set] = None) -> dict:
     token = _get_token(authorization)
     if not token or token not in TOKEN_STORE:
@@ -328,6 +330,7 @@ def _require_auth(authorization: Optional[str], roles: Optional[set] = None) -> 
     return info
 
 
+# Fetches severe alerts and returns a list.
 def _fetch_bund_alerts() -> list:
     alerts = []
     for source, url in BUND_ALERT_SOURCES.items():
@@ -366,6 +369,7 @@ def _fetch_bund_alerts() -> list:
     return alerts
 
 
+# Converts a DB row to a dict and returns it.
 def _serialize_row(columns, row):
     payload = {}
     for key, value in zip(columns, row):
@@ -376,6 +380,7 @@ def _serialize_row(columns, row):
     return payload
 
 
+# Builds a short address label and returns it.
 def _format_address(address):
     if not address:
         return None
@@ -403,6 +408,7 @@ def _format_address(address):
     return ", ".join(parts) if parts else None
 
 
+# Converts a model to dict and returns it.
 def _model_to_dict(model):
     if model is None:
         return None
@@ -411,6 +417,7 @@ def _model_to_dict(model):
     return model.dict()
 
 
+# Reads table metadata and returns columns and primary key.
 def _fetch_table_meta(cur, table: str):
     cur.execute(
         """
@@ -448,11 +455,13 @@ def _fetch_table_meta(cur, table: str):
     return columns, primary_key
 
 
+# Simple health check endpoint that returns ok.
 @app.get("/api/health")
 def health():
     return {"status": "ok"}
 
 
+# Sends a message to Rasa and returns the translated reply list.
 @app.post("/api/message")
 def send_message(payload: ChatRequest):
     metadata = {}
@@ -487,6 +496,7 @@ def send_message(payload: ChatRequest):
     return {"messages": _translate_messages(messages, locale)}
 
 
+# Accepts audio, transcribes it, and returns the text.
 @app.post("/api/transcribe")
 async def transcribe_audio(
     audio: UploadFile = File(...),
@@ -496,53 +506,21 @@ async def transcribe_audio(
         raise HTTPException(status_code=400, detail="Missing audio file.")
 
     suffix = Path(audio.filename or "").suffix or ".webm"
-    tmp_path = None
-    try:
-        options = {"task": "transcribe"}
-        lang = _normalize_locale(locale)
-        if lang in {"en", "de", "tr"}:
-            options["language"] = lang
-        content = await audio.read()
-        if not content:
-            raise HTTPException(status_code=400, detail="Empty audio file.")
+    lang = _normalize_locale(locale)
+    content = await audio.read()
+    if not content:
+        raise HTTPException(status_code=400, detail="Empty audio file.")
 
-        if os.getenv("OPENAI_API_KEY"):
-            text = _transcribe_with_openai(content, audio.filename or f"audio{suffix}", lang)
-            return {"text": text}
-
-        model = _get_whisper_model()
-        if model is None:
-            raise HTTPException(
-                status_code=500,
-                detail="Whisper is not available. Install openai-whisper and ffmpeg.",
-            )
-        if shutil.which("ffmpeg") is None:
-            raise HTTPException(
-                status_code=500,
-                detail="ffmpeg is not available. Install ffmpeg and add it to PATH.",
-            )
-
-        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp_file:
-            tmp_path = tmp_file.name
-            tmp_file.write(content)
-
-        try:
-            result = model.transcribe(tmp_path, **options)
-        except FileNotFoundError as exc:
-            raise HTTPException(
-                status_code=500,
-                detail="ffmpeg is not available. Install ffmpeg and add it to PATH.",
-            ) from exc
-        text = (result.get("text") or "").strip()
-        return {"text": text}
-    finally:
-        if tmp_path and os.path.exists(tmp_path):
-            try:
-                os.remove(tmp_path)
-            except OSError:
-                pass
+    if not os.getenv("OPENAI_API_KEY"):
+        raise HTTPException(
+            status_code=500,
+            detail="OPENAI_API_KEY is not set. Transcription uses the OpenAI API.",
+        )
+    text = _transcribe_with_openai(content, audio.filename or f"audio{suffix}", lang)
+    return {"text": text}
 
 
+# Validates login and returns a token and user type.
 @app.post("/api/admin/login")
 def admin_login(payload: AdminLoginRequest):
     with get_connection() as conn:
@@ -574,6 +552,7 @@ def admin_login(payload: AdminLoginRequest):
     return {"token": token, "user_type": user_type}
 
 
+# Updates the user password and returns ok.
 @app.post("/api/admin/change-password")
 def admin_change_password(
     payload: ChangePasswordRequest,
@@ -602,18 +581,21 @@ def admin_change_password(
     return {"ok": True}
 
 
+# Returns the current admin user info.
 @app.get("/api/admin/me")
 def admin_me(authorization: Optional[str] = Header(default=None)):
     info = _require_auth(authorization)
     return {"user_type": info.get("user_type"), "username": info.get("username")}
 
 
+# Returns the current severe alert list.
 @app.get("/api/admin/alerts")
 def admin_list_alerts(authorization: Optional[str] = Header(default=None)):
     _require_auth(authorization, roles={"admin"})
     return {"alerts": _fetch_bund_alerts()}
 
 
+# Geocodes a query and returns matching locations.
 @app.get("/api/geocode")
 def geocode(query: str):
     if not query or len(query.strip()) < 3:
@@ -678,6 +660,7 @@ def geocode(query: str):
     return {"results": results}
 
 
+# Reverse geocodes coordinates and returns a label.
 @app.get("/api/reverse")
 def reverse_geocode(lat: float, lon: float):
     params = {
@@ -709,6 +692,7 @@ def reverse_geocode(lat: float, lon: float):
     }
 
 
+# Returns handoff requests for the queue.
 @app.get("/api/handoff/requests")
 def list_handoff_requests(status: Optional[str] = Query(default=None)):
     with get_connection() as conn:
@@ -750,24 +734,7 @@ def list_handoff_requests(status: Optional[str] = Query(default=None)):
                         ORDER BY id DESC
                         LIMIT 1
                     ) hm ON true
-                    ORDER BY
-                        CASE hr.status
-                            WHEN 'assigned' THEN 1
-                            WHEN 'open' THEN 2
-                            ELSE 3
-                        END,
-                        CASE
-                            WHEN hr.status = 'open' THEN
-                                CASE
-                                    WHEN hr.user_status = 'emergency'
-                                         AND (hr.risk_score IS NULL OR hr.risk_score = 0)
-                                    THEN 90
-                                    WHEN hr.risk_score IS NULL THEN 0
-                                    ELSE hr.risk_score
-                                END
-                            ELSE NULL
-                        END DESC,
-                        hr.created_at DESC
+                    ORDER BY hr.created_at DESC
                     """
                 )
             rows = cur.fetchall()
@@ -793,6 +760,7 @@ def list_handoff_requests(status: Optional[str] = Query(default=None)):
     return {"requests": items}
 
 
+# Returns handoff requests filtered by role.
 @app.get("/api/admin/handoff/requests")
 def admin_list_handoff_requests(
     status: Optional[str] = Query(default=None),
@@ -819,24 +787,7 @@ def admin_list_handoff_requests(
                     ) hm ON true
                     WHERE hr.status IN ('open', 'assigned')
                       AND (hr.status = 'open' OR hr.assigned_to = %s)
-                    ORDER BY
-                        CASE hr.status
-                            WHEN 'assigned' THEN 1
-                            WHEN 'open' THEN 2
-                            ELSE 3
-                        END,
-                        CASE
-                            WHEN hr.status = 'open' THEN
-                                CASE
-                                    WHEN hr.user_status = 'emergency'
-                                         AND (hr.risk_score IS NULL OR hr.risk_score = 0)
-                                    THEN 90
-                                    WHEN hr.risk_score IS NULL THEN 0
-                                    ELSE hr.risk_score
-                                END
-                            ELSE NULL
-                        END DESC,
-                        hr.created_at DESC
+                    ORDER BY hr.created_at DESC
                     """,
                     (info.get("username"),),
                 )
@@ -864,6 +815,7 @@ def admin_list_handoff_requests(
     return list_handoff_requests(status=status)
 
 
+# Returns the active handoff request for a conversation.
 @app.get("/api/handoff/requests/active")
 def get_active_request(conversation_id: str):
     with get_connection() as conn:
@@ -884,6 +836,7 @@ def get_active_request(conversation_id: str):
     return {"request": {"id": row[0], "status": row[1]}}
 
 
+# Returns handoff messages after the given id.
 @app.get("/api/handoff/messages")
 def list_handoff_messages(request_id: int, after_id: int = 0):
     with get_connection() as conn:
@@ -911,6 +864,7 @@ def list_handoff_messages(request_id: int, after_id: int = 0):
     return {"messages": items}
 
 
+# Admin wrapper that returns handoff messages.
 @app.get("/api/admin/handoff/messages")
 def admin_list_handoff_messages(
     request_id: int,
@@ -921,6 +875,7 @@ def admin_list_handoff_messages(
     return list_handoff_messages(request_id=request_id, after_id=after_id)
 
 
+# Creates a handoff message and returns its id.
 @app.post("/api/handoff/messages")
 def create_handoff_message(payload: HandoffMessageRequest):
     if payload.sender not in {"user", "agent", "system"}:
@@ -951,6 +906,7 @@ def create_handoff_message(payload: HandoffMessageRequest):
     return {"id": message_id}
 
 
+# Creates a message with admin checks and returns its id.
 @app.post("/api/admin/handoff/messages")
 def admin_create_handoff_message(
     payload: HandoffMessageRequest,
@@ -1001,6 +957,7 @@ def admin_create_handoff_message(
     return create_handoff_message(payload)
 
 
+# Updates handoff status and returns ok.
 @app.post("/api/handoff/requests/{request_id}/status")
 def update_handoff_status(request_id: int, payload: HandoffStatusRequest):
     if payload.status not in {"open", "assigned", "closed"}:
@@ -1024,6 +981,7 @@ def update_handoff_status(request_id: int, payload: HandoffStatusRequest):
     return {"ok": True}
 
 
+# Updates handoff status with auth and returns ok.
 @app.post("/api/admin/handoff/requests/{request_id}/status")
 def admin_update_handoff_status(
     request_id: int,
@@ -1073,6 +1031,7 @@ def admin_update_handoff_status(
     return {"ok": True}
 
 
+# Returns the tables the user is allowed to manage.
 @app.get("/api/admin/tables")
 def list_admin_tables(authorization: Optional[str] = Header(default=None)):
     info = _require_auth(authorization, roles={"admin", "operator"})
@@ -1081,6 +1040,7 @@ def list_admin_tables(authorization: Optional[str] = Header(default=None)):
     return {"tables": sorted(ADMIN_TABLES)}
 
 
+# Returns table metadata and rows for admin.
 @app.get("/api/admin/table/{table_name}")
 def get_admin_table(
     table_name: str,
@@ -1111,6 +1071,7 @@ def get_admin_table(
     }
 
 
+# Creates a row in the selected table and returns ok.
 @app.post("/api/admin/table/{table_name}")
 def create_admin_row(
     table_name: str,
@@ -1146,6 +1107,7 @@ def create_admin_row(
     return {"ok": True}
 
 
+# Updates a table row and returns ok.
 @app.put("/api/admin/table/{table_name}/{row_id}")
 def update_admin_row(
     table_name: str,
@@ -1201,6 +1163,7 @@ def update_admin_row(
     return {"ok": True}
 
 
+# Deletes a table row and returns ok.
 @app.delete("/api/admin/table/{table_name}/{row_id}")
 def delete_admin_row(
     table_name: str,

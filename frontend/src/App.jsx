@@ -488,9 +488,14 @@ function App() {
                 <aside className="flex flex-col gap-6 lg:min-h-[70vh]">
                   {handoffActive && (
                     <AlertBanner
-                      title={t("status.handoff")}
+                      title={
+                        <span className="inline-flex items-center gap-2">
+                          <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
+                          {t("status.handoff")}
+                        </span>
+                      }
                       message={t("status.waiting")}
-                      tone="warning"
+                      tone="success"
                     />
                   )}
 

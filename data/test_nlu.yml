@@ -17,7 +17,7 @@ nlu:
     - see you soon
     - goodbye
     - catch you later
-    - tschüss
+    - see you later
     - bye bye
 
 - intent: affirm
@@ -298,13 +298,15 @@ nlu:
     - cellar level
     - underground floor
     - below ground
+    - -1 floor
 
 - intent: inform_floor_ground
   examples: |
     - ground floor
     - street level
-    - first level
+    - first floor
     - ground level
+    - 0 floor
 
 - intent: inform_floor_upper
   examples: |
@@ -315,13 +317,13 @@ nlu:
 
 - intent: inform_water_below_10cm
   examples: |
-    - below 10cm
+    - below 7cm
     - ankle deep
     - very shallow water
 
 - intent: inform_water_10_30cm
   examples: |
-    - 10 to 30cm
+    - 20cm
     - knee deep
     - about knee high
 
@@ -333,7 +335,7 @@ nlu:
 
 - intent: inform_water_above_60cm
   examples: |
-    - above 60cm
+    - above 80cm
     - chest deep
     - very deep water
 
@@ -459,15 +461,17 @@ nlu:
 
 - intent: inform_duration_short
   examples: |
-    - less than 6 hours
+    - 2 hours
     - a few hours
     - short time
 
 - intent: inform_duration_medium
   examples: |
-    - 6 to 24 hours
+    - 8 hours
+    - 11 hours
     - half a day
     - about one day
+    - a few days
 
 - intent: inform_duration_long
   examples: |

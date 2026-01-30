@@ -23,27 +23,27 @@ dspy = None
 
 try:
     import faiss
-except Exception:  # pragma: no cover - optional dependency
+except Exception:
     faiss = None
 
 try:
     from sentence_transformers import SentenceTransformer
-except Exception:  # pragma: no cover - optional dependency
+except Exception:  
     SentenceTransformer = None
 
 try:
     from pypdf import PdfReader
-except Exception:  # pragma: no cover - optional dependency
+except Exception:  
     PdfReader = None
 
 RAG_SOURCES_DIR = Path(__file__).resolve().parents[1] / "rag_sources"
 RAG_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-RAG_RETRIEVE_K = 15
-RAG_CHUNK_TOKENS = 450
-RAG_CHUNK_OVERLAP_TOKENS = 80
-RAG_MIN_SCORE = 0.25
-RAG_REFUSE_IF_NO_EVIDENCE = True
-RAG_ANSWER_FORMAT = "checklist"
+RAG_RETRIEVE_K = 15             # Wider candidate pool to avoid generic/preface chunks dominating
+RAG_CHUNK_TOKENS = 450          # Chunk size tuned for instruction-style content
+RAG_CHUNK_OVERLAP_TOKENS = 80   # Overlap prevents losing sentences at chunk boundaries
+RAG_MIN_SCORE = 0.25            # Filter low-relevance matches to reduce vague answers
+RAG_REFUSE_IF_NO_EVIDENCE = True # Avoid hallucinations; require document support
+RAG_ANSWER_FORMAT = "checklist" # Stress-friendly, actionable output format
 RAG_INDEX = None
 RAG_CHUNKS: List[str] = []
 RAG_META: List[Dict[str, Any]] = []
@@ -52,6 +52,7 @@ DSPY_CONFIGURED = False
 RAG_WARMUP_DONE = False
 
 
+# Loads DSPy when enabled and returns the module or None.
 def _try_import_dspy():
     global dspy
     if dspy is not None:
@@ -68,6 +69,7 @@ def _try_import_dspy():
     return dspy
 
 
+# Splits long text into overlapping chunks and returns the list.
 def _split_text(
     text: str,
     chunk_tokens: int = RAG_CHUNK_TOKENS,
@@ -95,6 +97,7 @@ def _split_text(
     return chunks
 
 
+# Builds the RAG index from PDFs and returns True when ready.
 def _load_rag_sources() -> bool:
     global RAG_INDEX, RAG_CHUNKS, RAG_META, RAG_MODEL
     if RAG_INDEX is not None:
@@ -142,6 +145,7 @@ def _load_rag_sources() -> bool:
     return True
 
 
+# Warms up the RAG index once at startup.
 def _warmup_rag() -> None:
     global RAG_WARMUP_DONE
     if RAG_WARMUP_DONE:
@@ -150,16 +154,17 @@ def _warmup_rag() -> None:
     if not enable:
         return
     try:
-        print("[RAG] Warmup started.")
+        print("[RAG] started.")
         _load_rag_sources()
     finally:
         RAG_WARMUP_DONE = True
-        print("[RAG] Warmup finished.")
+        print("[RAG] finished.")
 
 
 _warmup_rag()
 
 
+# Finds relevant chunks for a question and returns chunks with metadata.
 def _retrieve_rag_context(question: str) -> Tuple[List[str], List[Dict[str, Any]]]:
     if not question:
         return [], []
@@ -182,10 +187,12 @@ def _retrieve_rag_context(question: str) -> Tuple[List[str], List[Dict[str, Any]
 
 
 class _OpenAIChatLLM:
+    # Stores the API key and model name for later calls.
     def __init__(self, api_key: str, model: str):
         self.api_key = api_key
         self.model = model
 
+    # Sends a prompt to OpenAI and returns the response text.
     def basic_request(self, prompt: str) -> str:
         payload = {
             "model": self.model,
@@ -222,6 +229,7 @@ class _OpenAIChatLLM:
         return self.basic_request(prompt)
 
 
+# Creates the OpenAI client if configured and returns it.
 def _get_openai_llm() -> Optional[_OpenAIChatLLM]:
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
@@ -230,6 +238,7 @@ def _get_openai_llm() -> Optional[_OpenAIChatLLM]:
     return _OpenAIChatLLM(api_key=api_key, model=model)
 
 
+# Configures DSPy with the OpenAI client and returns the client.
 def _configure_dspy() -> Optional[_OpenAIChatLLM]:
     global DSPY_CONFIGURED
     dspy_module = _try_import_dspy()
@@ -245,6 +254,7 @@ def _configure_dspy() -> Optional[_OpenAIChatLLM]:
     return lm
 
 
+# Answers with RAG (and DSPy when available) and returns the text or None.
 def _rag_dspy_answer(question: str) -> Optional[str]:
     contexts, sources = _retrieve_rag_context(question)
     if not contexts:
@@ -278,10 +288,12 @@ def _rag_dspy_answer(question: str) -> Optional[str]:
             answer: str
 
         class RagModule(dspy_module.Module):
+            # Sets up the DSPy predictor for this module.
             def __init__(self):
                 super().__init__()
                 self.generate = dspy_module.Predict(RagAnswer)
 
+            # Runs the predictor and returns its output.
             def forward(self, question: str, context: str):
                 return self.generate(question=question, context=context)
 
@@ -306,6 +318,7 @@ def _rag_dspy_answer(question: str) -> Optional[str]:
         )
     return answer
 
+# Normalizes a city name and returns the cleaned value.
 def _normalize_city_name(city: Optional[str]) -> Optional[str]:
     if not city:
         return None
@@ -325,6 +338,7 @@ def _normalize_city_name(city: Optional[str]) -> Optional[str]:
     return clean
 
 
+# Pulls possible city names from a location string and returns a list.
 def _extract_city_candidates(location_text: str) -> List[str]:
     if not location_text:
         return []
@@ -363,6 +377,7 @@ def _extract_city_candidates(location_text: str) -> List[str]:
     return candidates
 
 
+# Checks if the text looks like a location and returns True or False.
 def _looks_like_location_text(text: str) -> bool:
     if not text:
         return False
@@ -373,24 +388,43 @@ def _looks_like_location_text(text: str) -> bool:
         return False
     if cleaned.endswith("?"):
         return False
+    lowered = cleaned.lower()
+    stopwords = {
+        "hi",
+        "hey",
+        "hello",
+        "hallo",
+        "thanks",
+        "thank you",
+        "ok",
+        "okay",
+        "yes",
+        "no"
+    }
+    if lowered in stopwords:
+        return False
     lat, lon = _extract_lat_lon(cleaned, None)
     if lat is not None and lon is not None:
         return True
-    lowered = cleaned.lower()
     address_tokens = (
         "strasse", "street", "road", "rd", "avenue", "ave", "platz",
         "allee", "ring", "gasse", "weg", "str.", "plz",
     )
-    if any(token in lowered for token in address_tokens):
+    has_address_token = any(token in lowered for token in address_tokens)
+    if has_address_token:
         return True
     if re.search(r"\d{4,5}", cleaned):
         return True
     candidates = _extract_city_candidates(cleaned)
     if candidates and len(cleaned.split()) <= 4:
+        is_single_token = len(cleaned.split()) == 1 and "," not in cleaned
+        if is_single_token and len(cleaned) < 4 and not cleaned[0].isupper():
+            return False
         return True
     return False
 
 
+# Builds normalized city variants and returns the list.
 def _build_city_variants(city: Optional[str]) -> List[str]:
     if not city:
         return []
@@ -422,6 +456,7 @@ def _build_city_variants(city: Optional[str]) -> List[str]:
     return variants
 
 
+# Picks a display-friendly city label and returns it.
 def _pick_display_city(candidates: List[str]) -> Optional[str]:
     if not candidates:
         return None
@@ -430,6 +465,7 @@ def _pick_display_city(candidates: List[str]) -> Optional[str]:
 
 
 
+# Normalizes supply categories and returns the mapped value.
 def _normalize_supply_category(value: Any) -> Optional[str]:
     if value is None:
         return None
@@ -459,12 +495,14 @@ def _parse_float(value: Any) -> Optional[float]:
         return None
 
 
+# Validates coordinate ranges and returns True or False.
 def _is_valid_lat_lon(lat: Optional[float], lon: Optional[float]) -> bool:
     if lat is None or lon is None:
         return False
     return -90.0 <= lat <= 90.0 and -180.0 <= lon <= 180.0
 
 
+# Reads lat/lon from a dict and returns a tuple.
 def _get_lat_lon_from_dict(data: Optional[Dict[str, Any]]) -> Tuple[Optional[float], Optional[float]]:
     if not isinstance(data, dict):
         return None, None
@@ -490,6 +528,7 @@ def _get_lat_lon_from_dict(data: Optional[Dict[str, Any]]) -> Tuple[Optional[flo
     return None, None
 
 
+# Resolves coordinates and returns a (lat, lon) tuple.
 def _extract_lat_lon(location_value: Any, metadata: Optional[Dict[str, Any]]) -> Tuple[Optional[float], Optional[float]]:
     lat, lon = _get_lat_lon_from_dict(metadata or {})
     if lat is not None and lon is not None:
@@ -532,6 +571,7 @@ def _fetch_json(url: str, headers: Optional[Dict[str, str]] = None,
         return None
 
 
+# Normalizes spacing and returns the cleaned text.
 def _clean_text(value: Optional[str]) -> Optional[str]:
     if not value:
         return None
@@ -539,6 +579,7 @@ def _clean_text(value: Optional[str]) -> Optional[str]:
     return re.sub(r"\s+", " ", text).strip() or None
 
 
+# Strips HTML and returns clean text.
 def _clean_html_text(value: Optional[str]) -> Optional[str]:
     if not value:
         return None
@@ -552,6 +593,7 @@ def _clean_html_text(value: Optional[str]) -> Optional[str]:
     return text.strip() or None
 
 
+# Extracts a city name from an address and returns it.
 def extract_city(address: str) -> Optional[str]:
     if not address:
         return None
@@ -559,6 +601,7 @@ def extract_city(address: str) -> Optional[str]:
     return match.group(1).strip() if match else None
 
 
+# Looks up an ARS code for an address and returns it.
 def _get_ars_code(address: str) -> Optional[str]:
     if not address:
         return None
@@ -583,6 +626,7 @@ def _get_ars_code(address: str) -> Optional[str]:
     extratags = first.get("extratags") or {}
     return extratags.get("de:regionalschluessel")
 
+# Pulls a warning id from a payload and returns it.
 def _extract_warning_id(payload: Any) -> Optional[str]:
     items = None
     if isinstance(payload, list):
@@ -595,6 +639,7 @@ def _extract_warning_id(payload: Any) -> Optional[str]:
     return first.get("id") or first.get("identifier")
 
 
+# Selects the best warning info and returns it.
 def _select_warning_info(payload: Any) -> Optional[Dict[str, Any]]:
     info_list = None
     if isinstance(payload, dict):
@@ -610,6 +655,7 @@ def _select_warning_info(payload: Any) -> Optional[Dict[str, Any]]:
     return None
 
 
+# Converts a city text to coordinates and returns them.
 def _geocode_city(location_text: str) -> Tuple[Optional[float], Optional[float], Optional[str]]:
     if not location_text:
         return None, None, None
@@ -633,6 +679,7 @@ def _geocode_city(location_text: str) -> Tuple[Optional[float], Optional[float],
     return lat, lon, name
 
 
+# Formats a timestamp for display and returns the string.
 def _format_timestamp(value: Any) -> Optional[str]:
     if not value:
         return None
@@ -646,6 +693,7 @@ def _format_timestamp(value: Any) -> Optional[str]:
     return None
 
 
+# Gets nearby Pegelonline stations and returns a list.
 def _fetch_pegel_stations(lat: float, lon: float, radius_km: int = 5) -> List[Dict[str, Any]]:
     params = {
         "latitude": lat,
@@ -665,6 +713,7 @@ def _fetch_pegel_stations(lat: float, lon: float, radius_km: int = 5) -> List[Di
     return []
 
 
+# Gets elevation for coordinates and returns the value or None.
 def _fetch_elevation(lat: float, lon: float) -> Optional[float]:
     params = {"latitude": lat, "longitude": lon}
     url = "https://api.open-meteo.com/v1/elevation?" + urllib.parse.urlencode(params)
@@ -675,6 +724,7 @@ def _fetch_elevation(lat: float, lon: float) -> Optional[float]:
     return _parse_float(value)
 
 
+# Finds the current measurement and returns series and measurement.
 def _extract_current_measurement(station: Dict[str, Any]) -> Tuple[Optional[Dict[str, Any]], Optional[Dict[str, Any]]]:
     timeseries = station.get("timeseries") or []
     for series in timeseries:
@@ -684,6 +734,7 @@ def _extract_current_measurement(station: Dict[str, Any]) -> Tuple[Optional[Dict
     return None, None
 
 
+# Builds a JSON summary of slots and recent messages and returns it.
 def _build_handoff_summary(tracker: Tracker, max_messages: int = 10) -> str:
     slots = tracker.current_slot_values() or {}
     metadata = tracker.latest_message.get("metadata") or {}
@@ -709,6 +760,7 @@ def _build_handoff_summary(tracker: Tracker, max_messages: int = 10) -> str:
     return json.dumps(summary, default=str)
 
 
+# Finds an open or assigned handoff request and returns its id.
 def _get_active_handoff_request(cur, conversation_id: str) -> Optional[int]:
     cur.execute(
         """
@@ -724,6 +776,7 @@ def _get_active_handoff_request(cur, conversation_id: str) -> Optional[int]:
     return row[0] if row else None
 
 
+# Inserts a handoff message and returns the new id.
 def _insert_handoff_message(cur, request_id: int, sender: str, text: str) -> Optional[int]:
     cur.execute(
         """
@@ -739,9 +792,11 @@ def _insert_handoff_message(cur, request_id: int, sender: str, text: str) -> Opt
 class ActionSetUserStatus(Action):
     """Detect and set user status based on intent"""
     
+    # Returns the action name string for Rasa.
     def name(self) -> Text:
         return "action_set_user_status"
     
+    # Sets user_status and clears related slots, then returns events.
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -757,7 +812,33 @@ class ActionSetUserStatus(Action):
         user_status = status_map.get(intent, None)
         
         if user_status:
-            return [SlotSet("user_status", user_status)]
+            reset_slots = [
+                "location",
+                "need_medical",
+                "person_count",
+                "vulnerable_group",
+                "mobility_needs",
+                "crisis_type",
+                "water_level",
+                "water_trend",
+                "floor_info",
+                "power_outage",
+                "hazard_type",
+                "fire_distance",
+                "smoke_inhalation",
+                "vehicle_access",
+                "heating_cooling_risk",
+                "building_floor",
+                "duration_estimate",
+                "supply_type",
+                "risk_score",
+                "risk_level",
+            ]
+            events = [SlotSet(slot_name, None) for slot_name in reset_slots]
+            events.append(SlotSet("requested_slot", None))
+            events.append(ActiveLoop(None))
+            events.append(SlotSet("user_status", user_status))
+            return events
         
         return []
 
@@ -768,6 +849,7 @@ class ActionDetectCrisisType(Action):
     def name(self) -> Text:
         return "action_detect_crisis_type"
     
+    # Detects crisis type from intent and returns slot events.
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -793,6 +875,7 @@ class ActionCalculateRiskScore(Action):
     def name(self) -> Text:
         return "action_calculate_risk_score"
     
+    # Calculates risk and returns the events to continue the flow.
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -877,6 +960,7 @@ class ActionCalculateRiskScore(Action):
                 SlotSet("risk_level", risk_level)
             ]
     
+    # Calculates flood risk and returns the score.
     def _calculate_flood_risk(self, tracker: Tracker) -> int:
         """Calculate flood-specific risk"""
         score = 0
@@ -927,6 +1011,7 @@ class ActionCalculateRiskScore(Action):
         
         return score
     
+    # Calculates wildfire risk and returns the score.
     def _calculate_wildfire_risk(self, tracker: Tracker) -> int:
         """Calculate wildfire-specific risk"""
         score = 0
@@ -957,6 +1042,7 @@ class ActionCalculateRiskScore(Action):
         
         return score
     
+    # Calculates outage risk and returns the score.
     def _calculate_outage_risk(self, tracker: Tracker) -> int:
         """Calculate power outage-specific risk"""
         score = 0
@@ -997,6 +1083,7 @@ class ValidateEmergencyAssessmentForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_emergency_assessment_form"
 
+    # Chooses required slots for the emergency form and returns them.
     async def required_slots(
         self,
         domain_slots: List[Text],
@@ -1029,11 +1116,12 @@ class ValidateEmergencyAssessmentForm(FormValidationAction):
         return required
 
 class ValidateTrappedAssessmentForm(FormValidationAction):
-    """Dynamic form validation with conditional slot requirements"""
+    """Dynamic form validation with conditional slot requirements."""
     
     def name(self) -> Text:
         return "validate_trapped_assessment_form"
     
+    # Chooses required slots for the trapped form and returns them.
     async def required_slots(
         self,
         domain_slots: List[Text],
@@ -1041,57 +1129,57 @@ class ValidateTrappedAssessmentForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> List[Text]:
-        
         required = ["location", "need_medical", "person_count"]
         current_risk = self._calculate_current_risk(tracker)
         if current_risk >= 70:
             return []
+
         person_count = tracker.get_slot("person_count")
         if person_count:
             try:
                 if int(person_count) > 1:
                     required.append("vulnerable_group")
-                    
+
                     vulnerable = tracker.get_slot("vulnerable_group")
                     if vulnerable == "yes":
                         required.append("mobility_needs")
-            except:
+            except Exception:
                 pass
-        
+
         crisis_type = tracker.get_slot("crisis_type")
         if not crisis_type:
             required.append("crisis_type")
-            return required  # Stop here until crisis type is known
+            return required
         if crisis_type == "flood":
             required.append("water_level")
-            
+
             water_level = tracker.get_slot("water_level")
             if water_level and water_level != "below_10cm":
                 required.extend(["water_trend", "floor_info", "power_outage"])
-            
+
             required.append("hazard_type")
-        
+
         elif crisis_type == "wildfire":
-            required.extend([
-                "fire_distance",
-                "smoke_inhalation",
-                "vehicle_access"
-            ])
-        
+            required.extend(
+                [
+                    "fire_distance",
+                    "smoke_inhalation",
+                    "vehicle_access",
+                ]
+            )
+
         elif crisis_type == "power_outage":
-            required.extend([
-                "heating_cooling_risk",
-                "building_floor",
-                "duration_estimate"
-            ])
-        
+            required.extend(
+                [
+                    "heating_cooling_risk",
+                    "building_floor",
+                    "duration_estimate",
+                ]
+            )
+
         return required
 
-
-class ValidateSafeInfoForm(FormValidationAction):
-    def name(self) -> Text:
-        return "validate_safe_info_form"
-
+    # Validates location input and returns the slot value.
     async def validate_location(
         self,
         slot_value: Any,
@@ -1100,114 +1188,16 @@ class ValidateSafeInfoForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         user_text = (tracker.latest_message.get("text") or "").strip()
-        if not user_text:
-            return {"location": None}
+        existing_location = tracker.get_slot("location")
+        if not user_text or user_text.startswith("/"):
+            return {"location": existing_location}
         if _looks_like_location_text(user_text):
             return {"location": user_text}
-        rag_answer = _rag_dspy_answer(user_text)
-        if rag_answer:
-            dispatcher.utter_message(text=rag_answer)
+        if existing_location:
+            return {"location": existing_location}
         return {"location": None}
 
-    def _has_recent_high_risk_message(self, tracker: Tracker) -> bool:
-        for event in reversed(tracker.events or []):
-            if event.get("event") == "bot":
-                text = event.get("text") or ""
-                return "HIGH RISK DETECTED" in text
-        return False
-
-    def _calculate_current_risk(self, tracker: Tracker) -> int:
-        """Calculate a partial risk score from whatever slots are already filled.
-
-        Used for early termination of the form (e.g., critical medical need).
-        """
-        risk_score = 0
-
-        need_medical = tracker.get_slot("need_medical")
-        medical_scores = {
-            "none": 0,
-            "medications": 25,
-            "injured": 45,
-            "critical": 70,
-        }
-        risk_score += medical_scores.get(need_medical, 0)
-
-        person_count = tracker.get_slot("person_count")
-        if person_count:
-            try:
-                count = int(person_count)
-                if count == 1:
-                    risk_score += 0
-                elif count in [2, 3]:
-                    risk_score += 10
-                elif count in [4, 5, 6]:
-                    risk_score += 15
-                else:
-                    risk_score += 20
-            except Exception:
-                pass
-
-        if tracker.get_slot("vulnerable_group") == "yes":
-            risk_score += 20
-
-        if tracker.get_slot("mobility_needs") == "yes":
-            risk_score += 10
-
-        crisis_type = tracker.get_slot("crisis_type")
-        if crisis_type == "flood":
-            water_scores = {
-                "below_10cm": 5,
-                "10cm_30cm": 15,
-                "30cm_60cm": 30,
-                "above_60cm": 45,
-            }
-            risk_score += water_scores.get(tracker.get_slot("water_level"), 0)
-
-            trend_scores = {
-                "none": 0,
-                "stable": 0,
-                "slowly_rising": 15,
-                "rising_fast": 25,
-            }
-            risk_score += trend_scores.get(tracker.get_slot("water_trend"), 0)
-
-            floor_scores = {"basement": 25, "ground": 15, "upper_floor": 0}
-            risk_score += floor_scores.get(tracker.get_slot("floor_info"), 0)
-
-            if tracker.get_slot("power_outage") == "yes":
-                risk_score += 20
-
-            hazard_scores = {
-                "none": 0,
-                "gas_smell": 25,
-                "electricity_risk": 25,
-                "fire": 30,
-            }
-            risk_score += hazard_scores.get(tracker.get_slot("hazard_type"), 0)
-
-        elif crisis_type == "wildfire":
-            distance_scores = {"none": 0, "visible": 10, "nearby": 20, "surrounding": 45}
-            risk_score += distance_scores.get(tracker.get_slot("fire_distance"), 0)
-
-            smoke_scores = {"none": 0, "slightly_difficult": 15, "cant_breathe": 45}
-            risk_score += smoke_scores.get(tracker.get_slot("smoke_inhalation"), 0)
-
-            if tracker.get_slot("vehicle_access") == "no_vehicle":
-                risk_score += 20
-
-        elif crisis_type == "power_outage":
-            temp_scores = {"normal": 0, "uncomfortable": 25, "dangerous": 35}
-            risk_score += temp_scores.get(tracker.get_slot("heating_cooling_risk"), 0)
-
-            floor_scores = {"ground_1st": 0, "2_4": 10, "5_plus": 15}
-            risk_score += floor_scores.get(tracker.get_slot("building_floor"), 0)
-
-            duration_scores = {"below_6hours": 5, "6h_24h": 15, "above_24h": 30}
-            risk_score += duration_scores.get(tracker.get_slot("duration_estimate"), 0)
-
-        return risk_score
-    
-    
+    # Validates or infers crisis_type and returns the slot value.
     async def validate_crisis_type(
         self,
         slot_value: Any,
@@ -1215,32 +1205,24 @@ class ValidateSafeInfoForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
-        
         current_crisis = tracker.get_slot("crisis_type")
         if current_crisis:
             return {"crisis_type": current_crisis}
-        intent = tracker.latest_message.get('intent', {}).get('name')
-        
+
+        intent = tracker.latest_message.get("intent", {}).get("name")
         crisis_mapping = {
-            'report_flood': 'flood',
-            'report_wildfire': 'wildfire',
-            'report_outage': 'power_outage'
+            "report_flood": "flood",
+            "report_wildfire": "wildfire",
+            "report_outage": "power_outage",
         }
-        
         crisis = crisis_mapping.get(intent)
-        
         if crisis:
             return {"crisis_type": crisis}
-        
-        dispatcher.utter_message(response="utter_ask_crisis_type")
         return {"crisis_type": None}
 
+    # Estimates risk from current slots and returns the score.
     def _calculate_current_risk(self, tracker: Tracker) -> int:
-        """Best-effort risk calculation using currently filled slots.
-
-        This is used for early stop (>=70) while the form is still collecting data.
-        Missing slots contribute 0.
-        """
+        """Best-effort risk calculation using currently filled slots."""
         risk_score = 0
 
         need_medical = tracker.get_slot("need_medical")
@@ -1351,12 +1333,37 @@ class ValidateSafeInfoForm(FormValidationAction):
 
         return int(risk_score)
 
+
+class ValidateSafeInfoForm(FormValidationAction):
+    
+    def name(self) -> Text:
+        return "validate_safe_info_form"
+
+    # Keeps or updates location and returns the slot value.
+    async def validate_location(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        user_text = (tracker.latest_message.get("text") or "").strip()
+        existing_location = tracker.get_slot("location")
+        if not user_text:
+            return {"location": existing_location}
+        if _looks_like_location_text(user_text):
+            return {"location": user_text}
+        if existing_location:
+            return {"location": existing_location}
+        return {"location": None}
+
 class ActionProvideWarnings(Action):
     """Provide official warnings"""
 
     def name(self) -> Text:
         return "action_provide_warnings"
 
+    # Fetches official warnings and returns events.
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -1427,6 +1434,7 @@ class ActionProvideEmergencyNumbers(Action):
     def name(self) -> Text:
         return "action_provide_emergency_numbers"
 
+    # Fetches emergency numbers and returns events.
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -1488,6 +1496,7 @@ class ActionProvideForecast(Action):
     def name(self) -> Text:
         return "action_provide_forecast"
 
+    # Fetches the weather forecast and returns events.
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -1579,6 +1588,7 @@ class ActionProvideSupplyPoints(Action):
     def name(self) -> Text:
         return "action_provide_supply_points"
 
+    # Fetches supply or contact points and returns events.
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -1689,6 +1699,7 @@ class ActionProvideEvacuationInfo(Action):
     def name(self) -> Text:
         return "action_provide_evacuation_info"
 
+    # Estimates evacuation necessity and returns events.
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -1787,6 +1798,7 @@ class ActionEscalateToOperator(Action):
     def name(self) -> Text:
         return "action_escalate_to_operator"
 
+    # Creates or updates a handoff request and returns events.
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -1850,6 +1862,7 @@ class ActionDefaultFallback(Action):
     def name(self) -> Text:
         return "action_default_fallback"
     
+    # Handles fallback with RAG and routing, then returns events.
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -1906,6 +1919,7 @@ class ActionHandleSafeLocation(Action):
     def name(self) -> Text:
         return "action_handle_safe_location"
     
+    # Stores a safe location if present and returns events.
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -1917,7 +1931,7 @@ class ActionHandleSafeLocation(Action):
             dispatcher.utter_message(response="utter_safe_menu_after_location")
             return []
 
-        if user_text and len(user_text) > 2:
+        if user_text and not user_text.startswith("/") and _looks_like_location_text(user_text):
             dispatcher.utter_message(response="utter_safe_menu_after_location")
             return [SlotSet("location", user_text)]
         dispatcher.utter_message(response="utter_ask_location")
@@ -1930,6 +1944,7 @@ class ActionChangeLocation(Action):
     def name(self) -> Text:
         return "action_change_location"
 
+    # Updates the stored location and returns events.
     def run(
         self,
         dispatcher: CollectingDispatcher,
@@ -1965,9 +1980,11 @@ class ActionChangeLocation(Action):
 
 
 class ActionHandleGeneralInfo(Action):
+    
     def name(self) -> Text:
         return "action_handle_general_info"
 
+    # Routes general info questions and returns events.
     def run(
         self,
         dispatcher: CollectingDispatcher,

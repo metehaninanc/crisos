@@ -2,6 +2,7 @@ export default function AlertBanner({ title, message, tone = "warning" }) {
   const toneStyles = {
     warning: "border-amber-300 bg-amber-100 text-amber-900",
     info: "border-sky/40 bg-sky/20 text-slate",
+    success: "border-emerald-300 bg-emerald-50 text-emerald-900",
   };
 
   const renderContent = (content, className) => {

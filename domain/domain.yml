@@ -68,16 +68,14 @@ slots: {}
 
 forms:
   emergency_assessment_form:
-    # Keep this minimal. The real slot list is controlled dynamically by
-    # validate_emergency_assessment_form.required_slots() in actions.py.
+    # The real slot list is controlled dynamically by validate_emergency_assessment_form.required_slots() in actions.py.
     required_slots:
       - need_medical
       - location
       - person_count
 
   trapped_assessment_form:
-    # Keep this minimal. The real slot list is controlled dynamically by
-    # validate_trapped_assessment_form.required_slots() in actions.py.
+    # The real slot list is controlled dynamically by validate_trapped_assessment_form.required_slots() in actions.py.
     required_slots:
       - location
       - need_medical
@@ -408,14 +406,15 @@ responses:
           payload: "/inform_duration_long"
 
   utter_low_risk_info:
-    - text: "LOW RISK
+    - text: |
+        LOW RISK
 
-Based on your situation, you are at low risk. Here are some safety recommendations:
-- Continue monitoring the situation
-- Stay informed via official channels
-- Prepare emergency supplies just in case
+        Based on your situation, you are at low risk. Here are some safety recommendations:
+        - Continue monitoring the situation
+        - Stay informed via official channels
+        - Prepare emergency supplies just in case
 
-Would you like more information?"
+        Would you like more information?
       buttons:
         - title: "More Info"
           payload: "/request_safe_menu"
@@ -423,24 +422,26 @@ Would you like more information?"
           payload: "/request_emergency_numbers"
 
   utter_medium_risk_info:
-    - text: "MEDIUM RISK
+    - text: |
+        MEDIUM RISK
 
-Your situation requires attention. Recommendations:
-- Prepare to evacuate if needed
-- Keep emergency bag ready
-- Monitor situation closely
-- Stay in contact with authorities"
+        Your situation requires attention. Recommendations:
+        - Prepare to evacuate if needed
+        - Keep emergency bag ready
+        - Monitor situation closely
+        - Stay in contact with authorities
 
   utter_high_risk_handover:
-    - text: "HIGH RISK DETECTED
+    - text: |
+        HIGH RISK DETECTED
 
-Your situation is serious. Connecting you to an emergency operator now.
+        Your situation is serious. Connecting you to an emergency operator now.
 
-Please stay calm. Your information has been forwarded:
-- Location: {location}
-- Crisis: {crisis_type}
+        Please stay calm. Your information has been forwarded:
+        - Location: {location}
+        - Crisis: {crisis_type}
 
-An operator will assist you shortly."
+        An operator will assist you shortly.
 
   utter_emergency_numbers:
     - text: "Emergency Contact Numbers

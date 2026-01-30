@@ -1,7 +1,6 @@
 version: "3.1"
 
 rules:
-  # Greeting Rule
   - rule: Greet user
     condition:
       - slot_was_set:
@@ -16,8 +15,7 @@ rules:
           - user_status: safe
     steps:
       - intent: greet
-      - action: safe_info_form
-      - active_loop: safe_info_form
+      - action: action_handle_safe_location
 
   - rule: Greet user with status (trapped_safe)
     condition:
@@ -25,22 +23,18 @@ rules:
           - user_status: trapped_safe
     steps:
       - intent: greet
-      - action: safe_info_form
-      - active_loop: safe_info_form
+      - action: action_handle_safe_location
 
-  # Thank you Rule
   - rule: Say you're welcome
     steps:
       - intent: thank
       - action: utter_thank
 
-  # Goodbye Rule
   - rule: Say goodbye
     steps:
       - intent: goodbye
       - action: utter_goodbye
 
-  # Emergency Numbers Rule
   - rule: Provide emergency numbers (safe)
     condition:
       - slot_was_set:
@@ -86,7 +80,7 @@ rules:
       - action: safe_info_form
       - active_loop: safe_info_form
 
-  # Submit Safe Info Form (location collected)
+  # Submit Safe Info Form (location obtained)
   - rule: Submit safe info form
     condition:
       - active_loop: safe_info_form
@@ -106,13 +100,11 @@ rules:
       - action: trapped_assessment_form
       - active_loop: trapped_assessment_form
 
-  # Fallback Rule with User Status Check
   - rule: Handle fallback with status check
     steps:
       - intent: nlu_fallback
       - action: action_default_fallback
 
-  # Out of Scope Rule
   - rule: Handle out of scope
     steps:
       - intent: out_of_scope
@@ -142,8 +134,6 @@ rules:
       - active_loop: null
       - action: action_escalate_to_operator
 
-  # If user starts by describing a crisis type before choosing a status,
-  # detect crisis_type then ask for their status (Emergency / Trapped / Safe).
   - rule: Crisis type first, then ask user status
     condition:
       - slot_was_set:
@@ -219,7 +209,6 @@ rules:
       - intent: report_outage
       - action: action_handle_general_info
 
-  # Info requests require user status first
   - rule: Ask status before warnings
     condition:
       - slot_was_set:
@@ -276,15 +265,13 @@ rules:
       - intent: request_safe_menu
       - action: utter_ask_user_status
 
-  # Safe menu entry
   - rule: Show safe menu from more info (safe)
     condition:
       - slot_was_set:
           - user_status: safe
     steps:
       - intent: request_safe_menu
-      - action: safe_info_form
-      - active_loop: safe_info_form
+      - action: action_handle_safe_location
 
   - rule: Show safe menu from more info (trapped_safe)
     condition:
@@ -292,10 +279,8 @@ rules:
           - user_status: trapped_safe
     steps:
       - intent: request_safe_menu
-      - action: safe_info_form
-      - active_loop: safe_info_form
+      - action: action_handle_safe_location
 
-  # Safe user information requests
   - rule: Handle general info requests
     steps:
       - intent: request_general_info
@@ -355,7 +340,6 @@ rules:
       - intent: change_location
       - action: action_change_location
 
-  # Trapped user information requests (reuse safe menu)
   - rule: Trapped user requests warnings
     condition:
       - slot_was_set:

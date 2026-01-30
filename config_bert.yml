@@ -17,7 +17,9 @@ pipeline:
     model_weights: "bert-base-uncased"
   # Classifier/Extractor (uses the transformer features above)
   - name: DIETClassifier
-    epochs: 100
+    epochs: 150
+    batch_size: [64, 256]
+    learning_rate: 0.001
     constrain_similarities: true
 
   - name: EntitySynonymMapper
