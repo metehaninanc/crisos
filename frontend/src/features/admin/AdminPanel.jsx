@@ -520,12 +520,11 @@ export default function AdminPanel() {
     return (
       <div className="mx-auto max-w-md rounded-3xl border border-clay/70 bg-white/80 p-6 shadow-card">
         <div className="flex flex-col items-center text-center">
-          <img
-            src="/crisos_logo.png"
-            alt="CRISOS logo"
-            className="h-24 w-24 rounded-full object-contain"
-          />
-          <p className="mt-1 text-xs text-ash">Sign in to continue.</p>
+          <p className="brand-wordmark text-3xl text-ink">
+            <span>CRI</span>
+            <span className="text-rose-500">SOS</span>
+          </p>
+          <p className="mt-2 text-xs text-ash">Sign in to continue.</p>
         </div>
         <form
           className="mt-4 grid gap-3"

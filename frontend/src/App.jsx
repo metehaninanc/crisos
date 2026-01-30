@@ -402,13 +402,8 @@ function App() {
         {!adminView && (
           <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
-              <img
-                src="/crisos_logo.png"
-                alt="CRISOS logo"
-                className="h-10 w-10 rounded-full object-contain"
-              />
               <div>
-                <p className="brand-wordmark text-2xl text-ink">
+                <p className="brand-wordmark text-3xl text-ink">
                   <span>{t("app.title").slice(0, 3)}</span>
                   <span className="text-rose-500">{t("app.title").slice(3)}</span>
                 </p>

@@ -188,16 +188,19 @@ def _retrieve_rag_context(question: str) -> Tuple[List[str], List[Dict[str, Any]
 
 class _OpenAIChatLLM:
     # Stores the API key and model name for later calls.
-    def __init__(self, api_key: str, model: str):
+    def __init__(self, api_key: str, model: str, temperature: float = 0.1, max_tokens: int = 250):
         self.api_key = api_key
         self.model = model
+        self.kwargs = {"temperature": temperature, "max_tokens": max_tokens}
 
     # Sends a prompt to OpenAI and returns the response text.
-    def basic_request(self, prompt: str) -> str:
+    def basic_request(self, prompt: str, temperature: Optional[float] = None, max_tokens: Optional[int] = None) -> str:
+        temp = self.kwargs["temperature"] if temperature is None else temperature
+        tokens = self.kwargs["max_tokens"] if max_tokens is None else max_tokens
         payload = {
             "model": self.model,
-            "temperature": 0.1,
-            "max_tokens": 250,
+            "temperature": temp,
+            "max_tokens": tokens,
             "messages": [
                 {
                     "role": "system",
@@ -226,7 +229,7 @@ class _OpenAIChatLLM:
         return data["choices"][0]["message"]["content"].strip()
 
     def __call__(self, prompt: str, **kwargs) -> str:
-        return self.basic_request(prompt)
+        return self.basic_request(prompt, **kwargs)
 
 
 # Creates the OpenAI client if configured and returns it.
