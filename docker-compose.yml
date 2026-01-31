@@ -34,7 +34,7 @@ services:
       dockerfile: docker/rasa.Dockerfile
     container_name: crisos-rasa
     environment:
-      RASA_MODEL: ${RASA_MODEL:-crisos_diet_model.tar.gz}
+      RASA_MODEL: ${RASA_MODEL:-crisos_bert_model.tar.gz}
     ports:
       - "5005:5005"
     depends_on:
