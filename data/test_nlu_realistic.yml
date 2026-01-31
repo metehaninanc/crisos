@@ -1,0 +1,550 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - Hello, I need assistance.
+    - Good morning, can you help me?
+    - Hey there—are you online?
+    - Hi, I have an emergency question.
+    - Is anyone there to help?
+    - Hello support, I need guidance.
+    - Hey, I’m here.
+    - Good evening, I need help right now.
+
+- intent: report_emergency
+  examples: |
+    - This is an emergency, I need help now!
+    - Please send urgent help, it's critical.
+    - I’m in immediate danger right now.
+    - Emergency situation—respond quickly.
+    - I need emergency assistance.
+    - Call emergency services for me.
+    - Someone’s life may be at risk here.
+    - We are in serious danger, urgent.
+
+- intent: report_trapped
+  examples: |
+    - I'm stuck inside and can't get out.
+    - The door is blocked and I'm trapped.
+    - I cannot leave the building.
+    - I'm locked in and there is no exit.
+    - I'm trapped in a room with no way out.
+    - Debris is blocking the staircase, I'm stuck.
+    - I'm unable to evacuate.
+    - I’m confined here and can't escape.
+
+- intent: report_safe
+  examples: |
+    - I'm safe at the moment.
+    - No immediate danger here, I'm okay.
+    - I'm in a secure place right now.
+    - We are safe and sheltered.
+    - I'm not in danger currently.
+    - Everyone here is okay and safe.
+    - I'm fine, no emergency right now.
+    - I'm safe indoors.
+
+- intent: report_flood
+  examples: |
+    - There is flooding in my area.
+    - Water is entering the building due to flooding.
+    - The street is flooded and rising.
+    - Floodwater has reached our house.
+    - We are dealing with a flood right now.
+    - Heavy flooding outside, water everywhere.
+    - A flood is happening here.
+    - Flooding has started near me.
+
+- intent: report_wildfire
+  examples: |
+    - There is a wildfire nearby.
+    - I think there is a forest fire close to us.
+    - Wildfire smoke is coming from the woods.
+    - A wildfire is spreading in the area.
+    - There's an active wildfire near my location.
+    - Forest fire situation here.
+    - Wildfire approaching our neighborhood.
+    - We have a wildfire emergency.
+
+- intent: report_outage
+  examples: |
+    - The power went out suddenly.
+    - We have no electricity right now.
+    - All lights and power are down here.
+    - The mains electricity has failed.
+    - Electricity cut in my building.
+    - Power is off across my street.
+    - We lost power and it's dark.
+    - There's a large-scale power failure.
+
+- intent: inform_medical_none
+  examples: |
+    - No one is injured here.
+    - We have no medical issues currently.
+    - Nobody needs medical help right now.
+    - No injuries or medical problems.
+    - Everyone is healthy at the moment.
+    - No medical assistance needed.
+
+- intent: inform_medical_medications
+  examples: |
+    - I need access to my prescription medication.
+    - We ran out of necessary medicines.
+    - I need insulin / essential meds.
+    - Medication is required for a chronic condition.
+    - Someone needs asthma inhaler medication.
+    - We need painkillers and basic meds.
+
+- intent: inform_medical_injured
+  examples: |
+    - Someone has a cut and is bleeding.
+    - There are minor injuries, but they are conscious.
+    - I have an injured leg and pain.
+    - One person is hurt, not life-threatening.
+    - Bruises and a sprained ankle here.
+    - Some injuries, but stable.
+
+- intent: inform_medical_critical
+  examples: |
+    - Someone is unconscious and not responding.
+    - Person is having trouble breathing.
+    - Severe bleeding and needs urgent help.
+    - Possible heart attack symptoms here.
+    - A person collapsed and needs an ambulance.
+    - Critical medical emergency happening.
+
+- intent: inform_water_below_10cm
+  examples: |
+    - There's a thin layer of water on the floor.
+    - Water is just covering the ground slightly.
+    - Only a small amount of water, a few centimeters.
+    - Shallow water, barely above the floor.
+    - Just a little water pooled on the ground.
+    - Water level is very low, just puddles.
+
+- intent: inform_water_10_30cm
+  examples: |
+    - Water reaches around my ankles now.
+    - Water is up to the lower part of my legs.
+    - It's around 15–25 cm of water.
+    - Water is covering my shoes and lower legs.
+    - About ankle-to-shin level water.
+    - Water is around shin height.
+
+- intent: inform_water_30_60cm
+  examples: |
+    - Water is up to my knees.
+    - It's around knee height water level.
+    - Water reaches mid-thigh area.
+    - Roughly half a meter of water here.
+    - Water is between knee and thigh level.
+    - Water is around 40–60 cm.
+
+- intent: inform_water_above_60cm
+  examples: |
+    - Water is around my waist.
+    - It's above waist level and rising.
+    - Water is very high, near my chest.
+    - Deep water, more than 60 cm.
+    - Water is up to my torso.
+    - Water level is extremely high here.
+
+- intent: inform_trend_stable
+  examples: |
+    - The situation seems stable right now.
+    - Not changing much at the moment.
+    - Conditions are holding steady.
+    - Water level is not rising anymore.
+    - Things are stable for now.
+    - No big changes currently.
+
+- intent: inform_trend_slowly
+  examples: |
+    - The situation is getting worse slowly.
+    - Water seems to rise gradually.
+    - Smoke is increasing bit by bit.
+    - The fire is spreading slowly.
+    - Conditions are changing slowly.
+    - It’s worsening, but not quickly.
+
+- intent: inform_trend_fast
+  examples: |
+    - The situation is getting worse quickly.
+    - Water level is rising rapidly.
+    - Smoke is increasing fast.
+    - The fire is spreading very fast.
+    - Conditions are deteriorating rapidly.
+    - Things are changing quickly for the worse.
+
+- intent: inform_floor_basement
+  examples: |
+    - I'm below street level in the basement.
+    - I'm on the lowest level underground.
+    - Basement level, under the ground floor.
+    - I'm downstairs in the cellar area.
+    - I'm in an underground floor.
+    - I'm in the basement area.
+
+- intent: inform_floor_ground
+  examples: |
+    - I'm at street level on the ground floor.
+    - I'm on the first level near the entrance.
+    - Ground level, not upstairs.
+    - I'm on the main floor.
+    - I'm at the lobby level.
+    - I'm on the ground floor.
+
+- intent: inform_floor_upper
+  examples: |
+    - I'm on an upper floor upstairs.
+    - I'm above ground level, higher up.
+    - I'm on a higher level of the building.
+    - I'm several floors up.
+    - I'm on an upper storey.
+    - I'm upstairs, not ground level.
+
+- intent: inform_hazard_gas
+  examples: |
+    - I smell gas in the building.
+    - There may be a gas leak here.
+    - Strong gas odor near the kitchen.
+    - I suspect gas is leaking.
+    - Gas smell is very noticeable.
+    - Possible gas leak—danger.
+
+- intent: inform_hazard_electricity
+  examples: |
+    - Live wires are down on the ground.
+    - I see sparking cables near the road.
+    - Electrical hazard: exposed wiring.
+    - Power lines are damaged and dangerous.
+    - There are sparks from an electrical box.
+    - Risk of electric shock here.
+
+- intent: inform_hazard_fire
+  examples: |
+    - There is active fire inside the building.
+    - Something is burning indoors.
+    - Fire hazard present—burning materials.
+    - I see flames inside the room.
+    - A fire has started in the building.
+    - Fire is present here.
+
+- intent: inform_hazard_none
+  examples: |
+    - I don't notice any immediate hazards.
+    - No obvious dangers like gas or electricity.
+    - Seems safe, no hazards detected.
+    - I don't see fire, gas, or electrical risks.
+    - No hazards present right now.
+    - Nothing hazardous that I can tell.
+
+- intent: inform_fire_none
+  examples: |
+    - I don't see any fire at all.
+    - No flames visible from here.
+    - Fire doesn't appear to be nearby.
+    - I cannot spot any fire around.
+    - There is no sign of fire.
+    - I see no fire in the area.
+
+- intent: inform_fire_visible
+  examples: |
+    - I can see flames from here.
+    - The fire is visible from my window.
+    - I have direct sight of the fire.
+    - Flames are clearly visible nearby.
+    - I can see the fire outside.
+    - I see burning flames in the distance.
+
+- intent: inform_fire_nearby
+  examples: |
+    - The fire is close to our building.
+    - It's very near, just a few streets away.
+    - The flames seem nearby.
+    - Fire is close enough to worry.
+    - It’s near us, not far.
+    - Fire is in the immediate area.
+
+- intent: inform_fire_surrounding
+  examples: |
+    - Fire seems to be around us on multiple sides.
+    - We are surrounded by fire.
+    - Flames are coming from different directions.
+    - Fire is all around the area.
+    - The fire is encircling the neighborhood.
+    - It feels like the fire is surrounding us.
+
+- intent: inform_smoke_none
+  examples: |
+    - The air is clear, no smoke.
+    - I don't notice any smoke here.
+    - No haze or smoke around us.
+    - Clear air indoors and outside.
+    - Smoke is not present at my location.
+    - I see no smoke.
+
+- intent: inform_smoke_slight
+  examples: |
+    - There's a light smoky smell in the air.
+    - Thin haze present, but not too bad.
+    - A small amount of smoke is noticeable.
+    - Some smoke drifting in, mild.
+    - Slight haze in the room.
+    - Only a little smoke around.
+
+- intent: inform_smoke_cant
+  examples: |
+    - I can barely breathe because of the smoke.
+    - Smoke is so thick I am choking.
+    - I'm struggling to breathe, heavy smoke.
+    - Breathing is extremely difficult due to smoke.
+    - The smoke is suffocating.
+    - Air is unbreathable here because of smoke.
+
+- intent: inform_temp_normal
+  examples: |
+    - Temperature feels normal.
+    - It's comfortable temperature-wise.
+    - No temperature issues here.
+    - It feels fine, not too hot or cold.
+    - Normal room temperature.
+    - Temperature is okay.
+
+- intent: inform_temp_uncomfortable
+  examples: |
+    - It's quite cold inside.
+    - Temperature is uncomfortable here.
+    - Too hot in the room right now.
+    - We are freezing, it's chilly.
+    - It's getting uncomfortably warm.
+    - Not comfortable, too cold.
+
+- intent: inform_temp_dangerous
+  examples: |
+    - It's dangerously cold, risk of hypothermia.
+    - Extreme heat, feels unsafe.
+    - Temperature is dangerously low.
+    - Unsafe temperature conditions here.
+    - Severe cold, we might be at risk.
+    - Heat is extreme and dangerous.
+
+- intent: inform_building_ground
+  examples: |
+    - I'm in a one-story building.
+    - This is a small house, not tall.
+    - Low building, just ground level.
+    - It's basically ground-floor level housing.
+    - I'm in a single-floor place.
+    - Short building, like a bungalow.
+
+- intent: inform_building_mid
+  examples: |
+    - I'm in a mid-rise building (a few floors).
+    - This is an apartment block with several floors.
+    - Medium-height building, not very tall.
+    - A building with around 4–6 floors.
+    - Regular apartment building height.
+    - Not a high-rise, but more than a house.
+
+- intent: inform_building_high
+  examples: |
+    - I'm in a high-rise tower.
+    - Very tall building with many floors.
+    - Skyscraper-style apartment building.
+    - High building, lots of levels.
+    - I'm in a tall multi-storey building.
+    - This building is really high.
+
+- intent: inform_duration_short
+  examples: |
+    - It started a few minutes ago.
+    - This began just recently.
+    - Only for a short time so far.
+    - It happened within the last 10 minutes.
+    - Very recent, less than half an hour.
+    - Just started moments ago.
+
+- intent: inform_duration_medium
+  examples: |
+    - It's been going on for about an hour.
+    - This has been happening since earlier today.
+    - Ongoing for a couple of hours.
+    - Started roughly 1–3 hours ago.
+    - It’s been a while, not just now.
+    - Has lasted for several hours.
+
+- intent: inform_duration_long
+  examples: |
+    - This has been happening all day.
+    - Ongoing since yesterday.
+    - It’s been going on for more than a day.
+    - Started a long time ago, many hours.
+    - Has continued through the night.
+    - This issue has lasted for days.
+
+- intent: affirm
+  examples: |
+    - Yep, that's right.
+    - Yes—continue.
+    - Please continue with that.
+    - That sounds correct.
+    - Go on, please.
+    - Alright, do it.
+    - Confirmed on my side.
+    - Yes, that is accurate.
+
+- intent: deny
+  examples: |
+    - No, please stop.
+    - I don't want that.
+    - That's not correct.
+    - Please don't proceed.
+    - Negative, cancel it.
+    - I'd rather not.
+    - Not like that.
+    - Hold on—don't do that.
+
+- intent: thank
+  examples: |
+    - Cheers, that helps.
+    - I really appreciate your help.
+    - Thank you so much for the guidance.
+    - Much appreciated.
+    - Thanks, you’re helpful.
+    - Great, thanks a lot.
+    - Thanks for assisting me.
+    - I’m grateful, thank you.
+
+- intent: goodbye
+  examples: |
+    - Alright, I’m leaving the chat now.
+    - That’s all for now, bye.
+    - I have to go, talk later.
+    - Ending this conversation now.
+    - Ok, I’m done—goodbye.
+    - I’ll disconnect now.
+    - See you later.
+    - I’m signing off.
+
+- intent: request_operator
+  examples: |
+    - I need to talk to a human.
+    - Can you connect me to an operator?
+    - Please hand me over to a person.
+    - I want human support now.
+    - Is there a live agent available?
+    - Put me in contact with an emergency operator.
+    - Let me speak with someone.
+    - Can a real person respond?
+
+- intent: request_general_info
+  examples: |
+    - Can you explain what I should do in this situation?
+    - Give me general guidance for emergencies.
+    - Any official advice I should follow?
+    - What are the recommended safety steps?
+    - How should I prepare right now?
+    - Please give overall instructions.
+    - What should people do in my case?
+    - Any general information for this crisis?
+
+- intent: request_warnings
+  examples: |
+    - Are there any official alerts right now?
+    - Do we have an active warning for this area?
+    - Any current emergency alerts I should know?
+    - Is there a warning issued for my region?
+    - Please check if an alert is in effect.
+    - Are authorities issuing any warnings?
+    - Do we have a severe weather warning?
+    - Show current warnings.
+
+- intent: request_forecast
+  examples: |
+    - Do you have an update on the weather risk?
+    - Is more rain expected soon?
+    - Any forecast for the next few hours?
+    - Will the situation worsen later today?
+    - What’s the predicted development of the storm?
+    - Is the wind expected to increase?
+    - Any outlook for the next day?
+    - Can you share the expected conditions?
+
+- intent: request_supply_points
+  examples: |
+    - Where are the nearest distribution points?
+    - Find me the closest supply pickup location.
+    - Where can I collect emergency supplies?
+    - Are there any aid stations nearby?
+    - Tell me the nearest shelter or supply point.
+    - Where is the closest food and water station?
+    - Locate supply points near my area.
+    - Which place distributes essentials nearby?
+
+- intent: request_evacuation_info
+  examples: |
+    - How do I evacuate safely from here?
+    - Where should we go if we need to evacuate?
+    - Tell me the evacuation instructions.
+    - What are the evacuation routes?
+    - How do we leave the area safely?
+    - Any guidance on evacuation steps?
+    - Should we evacuate now, and how?
+    - Provide evacuation advice.
+
+- intent: request_emergency_numbers
+  examples: |
+    - What is the emergency phone number here?
+    - Which number do I call for police or ambulance?
+    - Give me the emergency hotline numbers.
+    - How can I reach emergency services by phone?
+    - I need the local emergency contact numbers.
+    - What's the number for fire brigade?
+    - Share emergency phone contacts.
+    - Which number should I dial for urgent help?
+
+- intent: request_supply
+  examples: |
+    - I need food and water supplies.
+    - Where can I get drinking water?
+    - We need essentials like food and blankets.
+    - How can I find supplies nearby?
+    - I’m looking for emergency supplies.
+    - Where can I obtain basic necessities?
+    - Do you know where to get bottled water?
+    - I need a place to pick up supplies.
+
+- intent: request_safe_menu
+  examples: |
+    - What options do you have?
+    - Show me what you can help with.
+    - List the available commands.
+    - What can I do next?
+    - Display the main options.
+    - Can you show the available actions?
+    - Open the options list.
+    - Tell me the choices I have.
+
+- intent: out_of_scope
+  examples: |
+    - Can you recommend a movie to watch?
+    - Tell me the latest football scores.
+    - Help me write a love poem.
+    - What's the best way to learn guitar?
+    - Order me a burger.
+    - Can you check my crypto portfolio?
+    - Play a relaxing song.
+    - Translate this sentence to Spanish.
+
+- intent: change_location
+  examples: |
+    - I'm not at the previous address anymore.
+    - I moved to a different place—update my location.
+    - My current position has changed.
+    - Use my new address instead.
+    - I'm in another area now, please update it.
+    - Set my location to a new place.
+    - The address I gave earlier is wrong—change it.
+    - I need to update where I am.

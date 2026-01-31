@@ -24,10 +24,6 @@ pipeline:
     max_ngram: 5
   
   - name: DIETClassifier
-    transformer_size: 64
-    number_of_transformer_layers: 1
-    number_of_attention_heads: 2
-    embedding_dimension: 64
     epochs: 150
     batch_size: [64, 256]
     learning_rate: 0.001

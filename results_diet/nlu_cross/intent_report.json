@@ -1,59 +1,12 @@
 {
-  "report_wildfire": {
-    "precision": 0.8461538461538461,
-    "recall": 0.88,
-    "f1-score": 0.8627450980392156,
-    "support": 25,
-    "confused_with": {
-      "inform_fire_nearby": 2,
-      "inform_hazard_fire": 1
-    }
-  },
-  "inform_temp_dangerous": {
-    "precision": 0.47368421052631576,
-    "recall": 0.6,
-    "f1-score": 0.5294117647058824,
+  "inform_water_below_10cm": {
+    "precision": 0.6153846153846154,
+    "recall": 0.5333333333333333,
+    "f1-score": 0.5714285714285715,
     "support": 15,
     "confused_with": {
-      "inform_temp_uncomfortable": 2,
-      "inform_smoke_none": 1
-    }
-  },
-  "inform_hazard_gas": {
-    "precision": 0.9375,
-    "recall": 1.0,
-    "f1-score": 0.967741935483871,
-    "support": 15,
-    "confused_with": {}
-  },
-  "request_general_info": {
-    "precision": 0.7647058823529411,
-    "recall": 0.7222222222222222,
-    "f1-score": 0.7428571428571428,
-    "support": 18,
-    "confused_with": {
-      "report_emergency": 3,
-      "request_warnings": 1
-    }
-  },
-  "request_emergency_numbers": {
-    "precision": 0.8666666666666667,
-    "recall": 0.8666666666666667,
-    "f1-score": 0.8666666666666667,
-    "support": 15,
-    "confused_with": {
-      "report_emergency": 1,
-      "out_of_scope": 1
-    }
-  },
-  "inform_medical_injured": {
-    "precision": 0.6190476190476191,
-    "recall": 0.52,
-    "f1-score": 0.5652173913043478,
-    "support": 25,
-    "confused_with": {
-      "inform_medical_none": 5,
-      "inform_medical_critical": 2
+      "inform_water_10_30cm": 3,
+      "inform_trend_slowly": 1
     }
   },
   "request_evacuation_info": {
@@ -62,206 +15,78 @@
     "f1-score": 0.8666666666666667,
     "support": 15,
     "confused_with": {
-      "report_safe": 1,
-      "inform_fire_none": 1
+      "report_trapped": 1,
+      "report_safe": 1
     }
   },
-  "report_emergency": {
-    "precision": 0.7096774193548387,
-    "recall": 0.7333333333333333,
-    "f1-score": 0.7213114754098361,
-    "support": 30,
-    "confused_with": {
-      "inform_medical_critical": 2,
-      "inform_building_high": 1
-    }
-  },
-  "deny": {
-    "precision": 0.6842105263157895,
-    "recall": 0.5416666666666666,
-    "f1-score": 0.6046511627906976,
+  "inform_smoke_none": {
+    "precision": 0.8,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.7272727272727272,
     "support": 24,
     "confused_with": {
-      "affirm": 6,
-      "report_trapped": 1
+      "inform_temp_normal": 2,
+      "inform_smoke_slight": 1
     }
   },
-  "inform_trend_stable": {
-    "precision": 0.8571428571428571,
-    "recall": 0.4,
-    "f1-score": 0.5454545454545455,
-    "support": 15,
-    "confused_with": {
-      "inform_floor_basement": 2,
-      "deny": 2
-    }
-  },
-  "inform_temp_uncomfortable": {
+  "inform_duration_short": {
     "precision": 0.5833333333333334,
     "recall": 0.4666666666666667,
     "f1-score": 0.5185185185185186,
     "support": 15,
     "confused_with": {
-      "inform_temp_normal": 4,
-      "inform_temp_dangerous": 3
+      "inform_duration_medium": 7,
+      "report_outage": 1
     }
   },
-  "greet": {
-    "precision": 0.625,
-    "recall": 0.5,
-    "f1-score": 0.5555555555555556,
-    "support": 10,
-    "confused_with": {
-      "goodbye": 2,
-      "thank": 1
-    }
-  },
-  "report_outage": {
-    "precision": 0.84,
-    "recall": 0.84,
-    "f1-score": 0.8399999999999999,
-    "support": 25,
-    "confused_with": {
-      "request_warnings": 1,
-      "inform_trend_stable": 1
-    }
-  },
-  "out_of_scope": {
-    "precision": 0.8,
-    "recall": 0.4,
-    "f1-score": 0.5333333333333333,
-    "support": 10,
-    "confused_with": {
-      "request_general_info": 1,
-      "request_emergency_numbers": 1
-    }
-  },
-  "inform_temp_normal": {
-    "precision": 0.42857142857142855,
-    "recall": 0.6,
-    "f1-score": 0.5,
+  "inform_building_mid": {
+    "precision": 0.7857142857142857,
+    "recall": 0.7333333333333333,
+    "f1-score": 0.7586206896551724,
     "support": 15,
     "confused_with": {
-      "inform_temp_uncomfortable": 2,
-      "inform_smoke_slight": 1
+      "inform_building_ground": 2,
+      "inform_building_high": 2
     }
   },
-  "request_supply": {
-    "precision": 1.0,
-    "recall": 0.8666666666666667,
-    "f1-score": 0.9285714285714286,
+  "report_emergency": {
+    "precision": 0.7333333333333333,
+    "recall": 0.7333333333333333,
+    "f1-score": 0.7333333333333333,
+    "support": 30,
+    "confused_with": {
+      "inform_medical_critical": 2,
+      "report_safe": 2
+    }
+  },
+  "inform_hazard_none": {
+    "precision": 0.5714285714285714,
+    "recall": 0.5333333333333333,
+    "f1-score": 0.5517241379310344,
     "support": 15,
     "confused_with": {
-      "inform_medical_medications": 1,
-      "inform_temp_normal": 1
-    }
-  },
-  "inform_medical_none": {
-    "precision": 0.6,
-    "recall": 0.72,
-    "f1-score": 0.6545454545454547,
-    "support": 25,
-    "confused_with": {
-      "inform_medical_injured": 4,
-      "report_emergency": 2
+      "report_safe": 2,
+      "deny": 2
     }
   },
   "inform_building_high": {
-    "precision": 0.6153846153846154,
-    "recall": 0.5333333333333333,
-    "f1-score": 0.5714285714285715,
+    "precision": 0.7142857142857143,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.689655172413793,
     "support": 15,
     "confused_with": {
-      "inform_building_ground": 4,
+      "inform_building_ground": 3,
       "inform_building_mid": 2
     }
   },
-  "thank": {
-    "precision": 0.9166666666666666,
-    "recall": 0.9166666666666666,
-    "f1-score": 0.9166666666666666,
-    "support": 24,
-    "confused_with": {
-      "inform_temp_normal": 1,
-      "greet": 1
-    }
-  },
-  "inform_hazard_fire": {
-    "precision": 0.8125,
-    "recall": 0.8666666666666667,
-    "f1-score": 0.8387096774193549,
+  "inform_duration_long": {
+    "precision": 0.6428571428571429,
+    "recall": 0.6,
+    "f1-score": 0.6206896551724138,
     "support": 15,
     "confused_with": {
-      "report_wildfire": 1,
-      "inform_fire_nearby": 1
-    }
-  },
-  "inform_water_30_60cm": {
-    "precision": 0.4,
-    "recall": 0.4,
-    "f1-score": 0.4000000000000001,
-    "support": 15,
-    "confused_with": {
-      "inform_water_10_30cm": 6,
-      "inform_water_above_60cm": 1
-    }
-  },
-  "inform_water_below_10cm": {
-    "precision": 0.7777777777777778,
-    "recall": 0.4666666666666667,
-    "f1-score": 0.5833333333333334,
-    "support": 15,
-    "confused_with": {
-      "inform_water_10_30cm": 3,
-      "inform_floor_basement": 1
-    }
-  },
-  "inform_floor_upper": {
-    "precision": 0.7647058823529411,
-    "recall": 0.8666666666666667,
-    "f1-score": 0.8125,
-    "support": 15,
-    "confused_with": {
-      "inform_floor_ground": 1,
-      "report_trapped": 1
-    }
-  },
-  "request_forecast": {
-    "precision": 0.875,
-    "recall": 0.9333333333333333,
-    "f1-score": 0.9032258064516129,
-    "support": 15,
-    "confused_with": {
-      "inform_temp_normal": 1
-    }
-  },
-  "inform_medical_critical": {
-    "precision": 0.68,
-    "recall": 0.6538461538461539,
-    "f1-score": 0.6666666666666666,
-    "support": 26,
-    "confused_with": {
-      "report_wildfire": 2,
-      "inform_medical_injured": 2
-    }
-  },
-  "inform_trend_slowly": {
-    "precision": 0.5333333333333333,
-    "recall": 0.5333333333333333,
-    "f1-score": 0.5333333333333333,
-    "support": 15,
-    "confused_with": {
-      "report_flood": 1,
-      "goodbye": 1
-    }
-  },
-  "request_safe_menu": {
-    "precision": 0.8461538461538461,
-    "recall": 0.9166666666666666,
-    "f1-score": 0.8799999999999999,
-    "support": 12,
-    "confused_with": {
-      "request_general_info": 1
+      "inform_duration_medium": 4,
+      "inform_duration_short": 2
     }
   },
   "inform_fire_surrounding": {
@@ -273,293 +98,467 @@
       "inform_fire_nearby": 1
     }
   },
-  "inform_water_10_30cm": {
-    "precision": 0.4,
-    "recall": 0.5333333333333333,
-    "f1-score": 0.4571428571428572,
+  "inform_hazard_gas": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 15,
+    "confused_with": {}
+  },
+  "inform_trend_slowly": {
+    "precision": 0.6111111111111112,
+    "recall": 0.7333333333333333,
+    "f1-score": 0.6666666666666666,
     "support": 15,
     "confused_with": {
-      "inform_water_30_60cm": 5,
-      "inform_water_above_60cm": 1
+      "goodbye": 1,
+      "inform_building_ground": 1
     }
   },
-  "request_supply_points": {
-    "precision": 0.875,
-    "recall": 0.9333333333333333,
-    "f1-score": 0.9032258064516129,
-    "support": 15,
-    "confused_with": {
-      "report_flood": 1
-    }
-  },
-  "inform_building_ground": {
-    "precision": 0.5555555555555556,
+  "inform_temp_uncomfortable": {
+    "precision": 0.6666666666666666,
     "recall": 0.6666666666666666,
-    "f1-score": 0.606060606060606,
+    "f1-score": 0.6666666666666666,
     "support": 15,
     "confused_with": {
-      "inform_building_mid": 2,
-      "inform_medical_none": 1
+      "inform_temp_normal": 3,
+      "inform_temp_dangerous": 1
     }
   },
-  "inform_fire_none": {
-    "precision": 0.47058823529411764,
-    "recall": 0.5333333333333333,
-    "f1-score": 0.5,
+  "inform_floor_basement": {
+    "precision": 0.7647058823529411,
+    "recall": 0.8666666666666667,
+    "f1-score": 0.8125,
     "support": 15,
     "confused_with": {
-      "inform_fire_visible": 4,
-      "inform_temp_normal": 1
+      "inform_medical_injured": 1,
+      "inform_floor_ground": 1
     }
   },
-  "inform_smoke_none": {
-    "precision": 0.5862068965517241,
-    "recall": 0.7083333333333334,
-    "f1-score": 0.6415094339622641,
-    "support": 24,
+  "report_flood": {
+    "precision": 0.8333333333333334,
+    "recall": 0.8,
+    "f1-score": 0.816326530612245,
+    "support": 25,
     "confused_with": {
-      "inform_hazard_none": 2,
-      "inform_fire_visible": 1
-    }
-  },
-  "inform_duration_long": {
-    "precision": 0.8,
-    "recall": 0.5333333333333333,
-    "f1-score": 0.64,
-    "support": 15,
-    "confused_with": {
-      "inform_duration_medium": 4,
-      "inform_duration_short": 2
+      "goodbye": 1,
+      "inform_trend_fast": 1
     }
   },
   "change_location": {
     "precision": 1.0,
-    "recall": 0.9166666666666666,
-    "f1-score": 0.9565217391304348,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.9090909090909091,
     "support": 12,
     "confused_with": {
+      "request_supply_points": 1,
       "request_general_info": 1
     }
   },
-  "inform_floor_ground": {
-    "precision": 0.8571428571428571,
-    "recall": 0.8,
-    "f1-score": 0.8275862068965518,
+  "inform_temp_normal": {
+    "precision": 0.5882352941176471,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.625,
     "support": 15,
     "confused_with": {
-      "inform_floor_basement": 2,
-      "inform_floor_upper": 1
+      "inform_temp_uncomfortable": 2,
+      "inform_hazard_none": 2
     }
   },
-  "inform_fire_nearby": {
-    "precision": 0.5,
-    "recall": 0.5333333333333333,
-    "f1-score": 0.5161290322580646,
-    "support": 15,
-    "confused_with": {
-      "inform_fire_none": 2,
-      "inform_hazard_fire": 1
-    }
-  },
-  "inform_trend_fast": {
-    "precision": 0.8461538461538461,
-    "recall": 0.7333333333333333,
-    "f1-score": 0.7857142857142856,
-    "support": 15,
-    "confused_with": {
-      "inform_trend_slowly": 2,
-      "request_emergency_numbers": 1
-    }
-  },
-  "inform_hazard_electricity": {
-    "precision": 1.0,
-    "recall": 0.8666666666666667,
-    "f1-score": 0.9285714285714286,
-    "support": 15,
-    "confused_with": {
-      "report_outage": 2
-    }
-  },
-  "inform_duration_medium": {
-    "precision": 0.4444444444444444,
-    "recall": 0.5333333333333333,
-    "f1-score": 0.4848484848484848,
-    "support": 15,
-    "confused_with": {
-      "inform_duration_short": 4,
-      "inform_duration_long": 1
-    }
-  },
-  "inform_water_above_60cm": {
-    "precision": 0.6428571428571429,
-    "recall": 0.6,
-    "f1-score": 0.6206896551724138,
-    "support": 15,
-    "confused_with": {
-      "inform_water_30_60cm": 3,
-      "inform_duration_medium": 1
-    }
-  },
-  "request_operator": {
-    "precision": 1.0,
-    "recall": 0.9333333333333333,
-    "f1-score": 0.9655172413793104,
-    "support": 15,
-    "confused_with": {
-      "inform_medical_injured": 1
-    }
-  },
-  "report_trapped": {
-    "precision": 0.8235294117647058,
-    "recall": 0.9333333333333333,
-    "f1-score": 0.8749999999999999,
-    "support": 30,
-    "confused_with": {
-      "deny": 1,
-      "report_safe": 1
-    }
-  },
-  "inform_duration_short": {
-    "precision": 0.5625,
-    "recall": 0.6,
-    "f1-score": 0.5806451612903225,
-    "support": 15,
-    "confused_with": {
-      "inform_duration_medium": 5,
-      "report_outage": 1
-    }
-  },
-  "inform_fire_visible": {
-    "precision": 0.6428571428571429,
-    "recall": 0.6,
-    "f1-score": 0.6206896551724138,
-    "support": 15,
-    "confused_with": {
-      "inform_fire_none": 4,
-      "goodbye": 1
-    }
-  },
-  "inform_floor_basement": {
-    "precision": 0.6086956521739131,
-    "recall": 0.9333333333333333,
-    "f1-score": 0.7368421052631579,
-    "support": 15,
-    "confused_with": {
-      "request_supply_points": 1
-    }
-  },
-  "inform_medical_medications": {
-    "precision": 0.9259259259259259,
-    "recall": 1.0,
-    "f1-score": 0.9615384615384615,
-    "support": 25,
-    "confused_with": {}
-  },
-  "report_safe": {
-    "precision": 0.7931034482758621,
-    "recall": 0.92,
-    "f1-score": 0.851851851851852,
+  "report_wildfire": {
+    "precision": 0.9166666666666666,
+    "recall": 0.88,
+    "f1-score": 0.8979591836734694,
     "support": 25,
     "confused_with": {
-      "report_emergency": 1,
-      "inform_hazard_none": 1
+      "inform_hazard_fire": 1,
+      "inform_fire_nearby": 1
     }
   },
   "inform_smoke_slight": {
-    "precision": 0.6521739130434783,
-    "recall": 0.6818181818181818,
-    "f1-score": 0.6666666666666666,
+    "precision": 0.76,
+    "recall": 0.8636363636363636,
+    "f1-score": 0.8085106382978724,
     "support": 22,
     "confused_with": {
-      "inform_smoke_none": 3,
-      "inform_smoke_cant": 3
+      "inform_smoke_cant": 2,
+      "inform_trend_slowly": 1
+    }
+  },
+  "report_outage": {
+    "precision": 0.8461538461538461,
+    "recall": 0.88,
+    "f1-score": 0.8627450980392156,
+    "support": 25,
+    "confused_with": {
+      "inform_hazard_electricity": 1,
+      "report_trapped": 1
+    }
+  },
+  "report_trapped": {
+    "precision": 0.8,
+    "recall": 0.9333333333333333,
+    "f1-score": 0.8615384615384616,
+    "support": 30,
+    "confused_with": {
+      "deny": 1,
+      "request_evacuation_info": 1
     }
   },
   "goodbye": {
-    "precision": 0.7916666666666666,
-    "recall": 0.7916666666666666,
-    "f1-score": 0.7916666666666666,
+    "precision": 0.7407407407407407,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.7843137254901961,
     "support": 24,
     "confused_with": {
-      "affirm": 1,
-      "inform_duration_long": 1
+      "thank": 2,
+      "deny": 1
     }
   },
-  "inform_building_mid": {
+  "inform_fire_nearby": {
     "precision": 0.6923076923076923,
     "recall": 0.6,
     "f1-score": 0.6428571428571429,
     "support": 15,
     "confused_with": {
-      "inform_building_ground": 2,
-      "inform_building_high": 2
+      "report_wildfire": 2,
+      "inform_temp_dangerous": 1
     }
   },
-  "request_warnings": {
-    "precision": 0.8235294117647058,
-    "recall": 0.9333333333333333,
-    "f1-score": 0.8749999999999999,
-    "support": 15,
+  "thank": {
+    "precision": 0.7857142857142857,
+    "recall": 0.9166666666666666,
+    "f1-score": 0.8461538461538461,
+    "support": 24,
     "confused_with": {
-      "inform_trend_slowly": 1
-    }
-  },
-  "affirm": {
-    "precision": 0.7407407407407407,
-    "recall": 0.9090909090909091,
-    "f1-score": 0.8163265306122449,
-    "support": 22,
-    "confused_with": {
-      "deny": 2
+      "goodbye": 1,
+      "greet": 1
     }
   },
   "inform_smoke_cant": {
-    "precision": 0.7142857142857143,
-    "recall": 0.45454545454545453,
-    "f1-score": 0.5555555555555556,
+    "precision": 0.8421052631578947,
+    "recall": 0.7272727272727273,
+    "f1-score": 0.7804878048780488,
     "support": 22,
     "confused_with": {
-      "inform_smoke_none": 6,
-      "inform_smoke_slight": 5
+      "inform_smoke_slight": 4,
+      "inform_fire_visible": 1
     }
   },
-  "inform_hazard_none": {
-    "precision": 0.6153846153846154,
+  "affirm": {
+    "precision": 0.8260869565217391,
+    "recall": 0.8636363636363636,
+    "f1-score": 0.8444444444444444,
+    "support": 22,
+    "confused_with": {
+      "deny": 2,
+      "thank": 1
+    }
+  },
+  "inform_trend_stable": {
+    "precision": 1.0,
     "recall": 0.5333333333333333,
-    "f1-score": 0.5714285714285715,
+    "f1-score": 0.6956521739130436,
     "support": 15,
     "confused_with": {
-      "report_safe": 2,
-      "inform_medical_none": 2
+      "inform_trend_slowly": 2,
+      "inform_floor_basement": 1
     }
   },
-  "report_flood": {
-    "precision": 0.7619047619047619,
-    "recall": 0.64,
-    "f1-score": 0.6956521739130435,
+  "request_operator": {
+    "precision": 0.9285714285714286,
+    "recall": 0.8666666666666667,
+    "f1-score": 0.896551724137931,
+    "support": 15,
+    "confused_with": {
+      "inform_smoke_slight": 1,
+      "inform_medical_injured": 1
+    }
+  },
+  "greet": {
+    "precision": 0.5,
+    "recall": 0.4,
+    "f1-score": 0.4444444444444445,
+    "support": 10,
+    "confused_with": {
+      "deny": 2,
+      "goodbye": 2
+    }
+  },
+  "inform_floor_ground": {
+    "precision": 0.7857142857142857,
+    "recall": 0.7333333333333333,
+    "f1-score": 0.7586206896551724,
+    "support": 15,
+    "confused_with": {
+      "inform_floor_upper": 2,
+      "inform_building_ground": 1
+    }
+  },
+  "inform_fire_none": {
+    "precision": 0.8888888888888888,
+    "recall": 0.5333333333333333,
+    "f1-score": 0.6666666666666667,
+    "support": 15,
+    "confused_with": {
+      "inform_fire_visible": 4,
+      "inform_hazard_none": 1
+    }
+  },
+  "inform_floor_upper": {
+    "precision": 0.7222222222222222,
+    "recall": 0.8666666666666667,
+    "f1-score": 0.7878787878787877,
+    "support": 15,
+    "confused_with": {
+      "inform_floor_ground": 1,
+      "report_trapped": 1
+    }
+  },
+  "request_supply_points": {
+    "precision": 0.9375,
+    "recall": 1.0,
+    "f1-score": 0.967741935483871,
+    "support": 15,
+    "confused_with": {}
+  },
+  "out_of_scope": {
+    "precision": 0.6666666666666666,
+    "recall": 0.4,
+    "f1-score": 0.5,
+    "support": 10,
+    "confused_with": {
+      "request_safe_menu": 2,
+      "request_operator": 1
+    }
+  },
+  "inform_water_above_60cm": {
+    "precision": 0.6923076923076923,
+    "recall": 0.6,
+    "f1-score": 0.6428571428571429,
+    "support": 15,
+    "confused_with": {
+      "inform_medical_critical": 1,
+      "inform_floor_upper": 1
+    }
+  },
+  "inform_temp_dangerous": {
+    "precision": 0.6470588235294118,
+    "recall": 0.7333333333333333,
+    "f1-score": 0.6875,
+    "support": 15,
+    "confused_with": {
+      "inform_temp_normal": 1,
+      "inform_temp_uncomfortable": 1
+    }
+  },
+  "report_safe": {
+    "precision": 0.8214285714285714,
+    "recall": 0.92,
+    "f1-score": 0.8679245283018867,
     "support": 25,
     "confused_with": {
-      "inform_fire_nearby": 2,
-      "inform_hazard_gas": 1
+      "deny": 1,
+      "report_emergency": 1
     }
   },
-  "accuracy": 0.7226130653266332,
+  "inform_duration_medium": {
+    "precision": 0.4583333333333333,
+    "recall": 0.7333333333333333,
+    "f1-score": 0.5641025641025641,
+    "support": 15,
+    "confused_with": {
+      "inform_duration_long": 3,
+      "report_outage": 1
+    }
+  },
+  "request_supply": {
+    "precision": 0.9285714285714286,
+    "recall": 0.8666666666666667,
+    "f1-score": 0.896551724137931,
+    "support": 15,
+    "confused_with": {
+      "out_of_scope": 1,
+      "request_general_info": 1
+    }
+  },
+  "inform_medical_medications": {
+    "precision": 0.96,
+    "recall": 0.96,
+    "f1-score": 0.96,
+    "support": 25,
+    "confused_with": {
+      "request_supply": 1
+    }
+  },
+  "request_general_info": {
+    "precision": 0.8095238095238095,
+    "recall": 0.9444444444444444,
+    "f1-score": 0.8717948717948718,
+    "support": 18,
+    "confused_with": {
+      "report_emergency": 1
+    }
+  },
+  "request_safe_menu": {
+    "precision": 0.8461538461538461,
+    "recall": 0.9166666666666666,
+    "f1-score": 0.8799999999999999,
+    "support": 12,
+    "confused_with": {
+      "request_general_info": 1
+    }
+  },
+  "inform_trend_fast": {
+    "precision": 0.8333333333333334,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.7407407407407408,
+    "support": 15,
+    "confused_with": {
+      "inform_trend_slowly": 3,
+      "report_flood": 1
+    }
+  },
+  "request_forecast": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 15,
+    "confused_with": {}
+  },
+  "request_emergency_numbers": {
+    "precision": 1.0,
+    "recall": 0.8666666666666667,
+    "f1-score": 0.9285714285714286,
+    "support": 15,
+    "confused_with": {
+      "report_emergency": 1,
+      "out_of_scope": 1
+    }
+  },
+  "inform_hazard_fire": {
+    "precision": 0.7222222222222222,
+    "recall": 0.8666666666666667,
+    "f1-score": 0.7878787878787877,
+    "support": 15,
+    "confused_with": {
+      "inform_fire_visible": 1,
+      "inform_fire_nearby": 1
+    }
+  },
+  "inform_water_10_30cm": {
+    "precision": 0.47368421052631576,
+    "recall": 0.6,
+    "f1-score": 0.5294117647058824,
+    "support": 15,
+    "confused_with": {
+      "inform_water_30_60cm": 3,
+      "inform_medical_injured": 1
+    }
+  },
+  "inform_medical_injured": {
+    "precision": 0.6956521739130435,
+    "recall": 0.64,
+    "f1-score": 0.6666666666666666,
+    "support": 25,
+    "confused_with": {
+      "inform_medical_none": 4,
+      "request_warnings": 1
+    }
+  },
+  "inform_hazard_electricity": {
+    "precision": 0.9285714285714286,
+    "recall": 0.8666666666666667,
+    "f1-score": 0.896551724137931,
+    "support": 15,
+    "confused_with": {
+      "inform_duration_short": 1,
+      "report_outage": 1
+    }
+  },
+  "request_warnings": {
+    "precision": 0.9375,
+    "recall": 1.0,
+    "f1-score": 0.967741935483871,
+    "support": 15,
+    "confused_with": {}
+  },
+  "inform_medical_none": {
+    "precision": 0.76,
+    "recall": 0.76,
+    "f1-score": 0.76,
+    "support": 25,
+    "confused_with": {
+      "inform_medical_injured": 3,
+      "report_emergency": 1
+    }
+  },
+  "inform_building_ground": {
+    "precision": 0.5882352941176471,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.625,
+    "support": 15,
+    "confused_with": {
+      "inform_building_high": 2,
+      "inform_building_mid": 1
+    }
+  },
+  "inform_medical_critical": {
+    "precision": 0.7272727272727273,
+    "recall": 0.6153846153846154,
+    "f1-score": 0.6666666666666667,
+    "support": 26,
+    "confused_with": {
+      "report_emergency": 2,
+      "request_evacuation_info": 1
+    }
+  },
+  "inform_fire_visible": {
+    "precision": 0.65,
+    "recall": 0.8666666666666667,
+    "f1-score": 0.7428571428571429,
+    "support": 15,
+    "confused_with": {
+      "inform_hazard_fire": 2
+    }
+  },
+  "inform_water_30_60cm": {
+    "precision": 0.6,
+    "recall": 0.4,
+    "f1-score": 0.48,
+    "support": 15,
+    "confused_with": {
+      "inform_water_10_30cm": 6,
+      "inform_duration_medium": 1
+    }
+  },
+  "deny": {
+    "precision": 0.5925925925925926,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.627450980392157,
+    "support": 24,
+    "confused_with": {
+      "affirm": 4,
+      "thank": 2
+    }
+  },
+  "accuracy": 0.7668341708542713,
   "macro avg": {
-    "precision": 0.7294720830874482,
-    "recall": 0.712497433122433,
-    "f1-score": 0.713390477803329,
+    "precision": 0.7694435068090915,
+    "recall": 0.7551376401376402,
+    "f1-score": 0.7560091593510057,
     "support": 995
   },
   "weighted avg": {
-    "precision": 0.7319455515218334,
-    "recall": 0.7226130653266332,
-    "f1-score": 0.7205792558176428,
+    "precision": 0.773859741005582,
+    "recall": 0.7668341708542713,
+    "f1-score": 0.764871392539902,
     "support": 995
   },
   "micro avg": {
-    "precision": 0.7226130653266332,
-    "recall": 0.7226130653266332,
-    "f1-score": 0.7226130653266332,
+    "precision": 0.7668341708542713,
+    "recall": 0.7668341708542713,
+    "f1-score": 0.7668341708542713,
     "support": 995
   }
 }

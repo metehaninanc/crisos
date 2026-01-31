@@ -1,27 +1,21 @@
 {
-  "emergency_assessment_form": {
+  "action_detect_crisis_type": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 2
+    "support": 3
+  },
+  "action_escalate_to_operator": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
   },
   "action_set_user_status": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 6
-  },
-  "action_calculate_risk_score": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4
-  },
-  "action_listen": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 11
   },
   "utter_trapped_assessment_start": {
     "precision": 1.0,
@@ -41,19 +35,25 @@
     "f1-score": 1.0,
     "support": 4
   },
+  "action_calculate_risk_score": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4
+  },
+  "emergency_assessment_form": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2
+  },
+  "action_listen": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 11
+  },
   "utter_ask_user_status": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3
-  },
-  "action_escalate_to_operator": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3
-  },
-  "action_detect_crisis_type": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,

@@ -4,7 +4,7 @@
     "intent": "inform_duration_short",
     "intent_prediction": {
       "name": "inform_duration_medium",
-      "confidence": 0.6259984970092773
+      "confidence": 0.6247414350509644
     }
   },
   {
@@ -12,7 +12,7 @@
     "intent": "inform_duration_short",
     "intent_prediction": {
       "name": "inform_duration_medium",
-      "confidence": 0.7031855583190918
+      "confidence": 0.7409396767616272
     }
   },
   {
@@ -20,7 +20,7 @@
     "intent": "inform_duration_long",
     "intent_prediction": {
       "name": "inform_duration_medium",
-      "confidence": 0.6651343107223511
+      "confidence": 0.46509063243865967
     }
   }
 ]

@@ -1,1402 +1,26 @@
 [
   {
-    "text": "life threatening situation",
-    "intent": "report_emergency",
+    "text": "start chat",
+    "intent": "greet",
     "intent_prediction": {
-      "name": "inform_temp_dangerous",
-      "confidence": 0.4801771342754364
-    }
-  },
-  {
-    "text": "critical incident",
-    "intent": "report_emergency",
-    "intent_prediction": {
-      "name": "inform_medical_critical",
-      "confidence": 0.6415019035339355
-    }
-  },
-  {
-    "text": "door is jammed",
-    "intent": "report_trapped",
-    "intent_prediction": {
-      "name": "report_safe",
-      "confidence": 0.3502063751220703
+      "name": "deny",
+      "confidence": 0.4576215147972107
     }
   },
   {
     "text": "i am not at risk",
     "intent": "report_safe",
     "intent_prediction": {
-      "name": "inform_hazard_none",
-      "confidence": 0.6357744336128235
-    }
-  },
-  {
-    "text": "floods around the neighborhood",
-    "intent": "report_flood",
-    "intent_prediction": {
-      "name": "request_supply_points",
-      "confidence": 0.2258502095937729
-    }
-  },
-  {
-    "text": "no treatment needed",
-    "intent": "inform_medical_none",
-    "intent_prediction": {
-      "name": "inform_medical_injured",
-      "confidence": 0.40849539637565613
-    }
-  },
-  {
-    "text": "minor injury",
-    "intent": "inform_medical_injured",
-    "intent_prediction": {
-      "name": "inform_medical_none",
-      "confidence": 0.6088098883628845
-    }
-  },
-  {
-    "text": "laceration",
-    "intent": "inform_medical_injured",
-    "intent_prediction": {
-      "name": "inform_floor_basement",
-      "confidence": 0.1328398734331131
-    }
-  },
-  {
-    "text": "life threatening",
-    "intent": "inform_medical_critical",
-    "intent_prediction": {
-      "name": "inform_temp_dangerous",
-      "confidence": 0.9230647087097168
-    }
-  },
-  {
-    "text": "severe bleeding",
-    "intent": "inform_medical_critical",
-    "intent_prediction": {
-      "name": "inform_medical_injured",
-      "confidence": 0.8018752932548523
-    }
-  },
-  {
-    "text": "immediate life support needed",
-    "intent": "inform_medical_critical",
-    "intent_prediction": {
-      "name": "report_emergency",
-      "confidence": 0.7521688938140869
-    }
-  },
-  {
-    "text": "water is low",
-    "intent": "inform_water_below_10cm",
-    "intent_prediction": {
-      "name": "inform_water_10_30cm",
-      "confidence": 0.4162755608558655
-    }
-  },
-  {
-    "text": "a few cm deep",
-    "intent": "inform_water_below_10cm",
-    "intent_prediction": {
-      "name": "inform_water_10_30cm",
-      "confidence": 0.5330178737640381
-    }
-  },
-  {
-    "text": "mid body depth",
-    "intent": "inform_water_30_60cm",
-    "intent_prediction": {
-      "name": "inform_water_10_30cm",
-      "confidence": 0.6252121329307556
-    }
-  },
-  {
-    "text": "more than 60 cm",
-    "intent": "inform_water_above_60cm",
-    "intent_prediction": {
-      "name": "inform_water_30_60cm",
-      "confidence": 0.31972020864486694
-    }
-  },
-  {
-    "text": "inching up",
-    "intent": "inform_trend_slowly",
-    "intent_prediction": {
-      "name": "goodbye",
-      "confidence": 0.20109839737415314
-    }
-  },
-  {
-    "text": "rising quickly",
-    "intent": "inform_trend_fast",
-    "intent_prediction": {
-      "name": "inform_trend_slowly",
-      "confidence": 0.4231093227863312
-    }
-  },
-  {
-    "text": "level is shooting up",
-    "intent": "inform_trend_fast",
-    "intent_prediction": {
-      "name": "inform_floor_ground",
-      "confidence": 0.1802087426185608
-    }
-  },
-  {
-    "text": "building on fire",
-    "intent": "inform_hazard_fire",
-    "intent_prediction": {
-      "name": "report_wildfire",
-      "confidence": 0.1108299270272255
-    }
-  },
-  {
-    "text": "fire in the building",
-    "intent": "inform_hazard_fire",
-    "intent_prediction": {
-      "name": "inform_fire_nearby",
-      "confidence": 0.48617419600486755
-    }
-  },
-  {
-    "text": "no additional issues",
-    "intent": "inform_hazard_none",
-    "intent_prediction": {
-      "name": "inform_temp_normal",
-      "confidence": 0.303481787443161
-    }
-  },
-  {
-    "text": "not visible",
-    "intent": "inform_fire_none",
-    "intent_prediction": {
-      "name": "inform_fire_visible",
-      "confidence": 0.8495209217071533
-    }
-  },
-  {
-    "text": "fire is distant",
-    "intent": "inform_fire_none",
-    "intent_prediction": {
-      "name": "inform_fire_visible",
-      "confidence": 0.7203931212425232
-    }
-  },
-  {
-    "text": "no sign of fire",
-    "intent": "inform_fire_none",
-    "intent_prediction": {
-      "name": "goodbye",
-      "confidence": 0.6579760313034058
-    }
-  },
-  {
-    "text": "i see flames",
-    "intent": "inform_fire_visible",
-    "intent_prediction": {
-      "name": "inform_fire_none",
-      "confidence": 0.3160283863544464
-    }
-  },
-  {
-    "text": "slightly hard to breathe",
-    "intent": "inform_smoke_slight",
-    "intent_prediction": {
-      "name": "inform_smoke_cant",
-      "confidence": 0.8156738877296448
-    }
-  },
-  {
-    "text": "bit hard to breathe",
-    "intent": "inform_smoke_slight",
-    "intent_prediction": {
-      "name": "inform_smoke_cant",
-      "confidence": 0.9642874002456665
-    }
-  },
-  {
-    "text": "breathing is impossible",
-    "intent": "inform_smoke_cant",
-    "intent_prediction": {
-      "name": "inform_smoke_none",
-      "confidence": 0.8407580256462097
-    }
-  },
-  {
-    "text": "smoke makes breathing impossible",
-    "intent": "inform_smoke_cant",
-    "intent_prediction": {
-      "name": "inform_smoke_none",
-      "confidence": 0.6749178767204285
-    }
-  },
-  {
-    "text": "temperature is uncomfortable",
-    "intent": "inform_temp_uncomfortable",
-    "intent_prediction": {
-      "name": "inform_temp_normal",
-      "confidence": 0.5053367614746094
-    }
-  },
-  {
-    "text": "severe cold",
-    "intent": "inform_temp_dangerous",
-    "intent_prediction": {
-      "name": "inform_temp_uncomfortable",
-      "confidence": 0.5809184312820435
-    }
-  },
-  {
-    "text": "single story house",
-    "intent": "inform_building_ground",
-    "intent_prediction": {
-      "name": "inform_building_high",
-      "confidence": 0.5278595685958862
-    }
-  },
-  {
-    "text": "tower building",
-    "intent": "inform_building_high",
-    "intent_prediction": {
-      "name": "inform_building_ground",
-      "confidence": 0.4271675944328308
-    }
-  },
-  {
-    "text": "2 hours",
-    "intent": "inform_duration_short",
-    "intent_prediction": {
-      "name": "inform_duration_medium",
-      "confidence": 0.57517409324646
-    }
-  },
-  {
-    "text": "just a couple of hours",
-    "intent": "inform_duration_short",
-    "intent_prediction": {
-      "name": "inform_duration_medium",
-      "confidence": 0.473194420337677
-    }
-  },
-  {
-    "text": "half day",
-    "intent": "inform_duration_medium",
-    "intent_prediction": {
-      "name": "inform_duration_long",
-      "confidence": 0.5984026193618774
-    }
-  },
-  {
-    "text": "nope",
-    "intent": "deny",
-    "intent_prediction": {
-      "name": "greet",
-      "confidence": 0.14852406084537506
-    }
-  },
-  {
-    "text": "incorrect",
-    "intent": "deny",
-    "intent_prediction": {
-      "name": "affirm",
-      "confidence": 0.39823248982429504
-    }
-  },
-  {
-    "text": "catch you",
-    "intent": "goodbye",
-    "intent_prediction": {
-      "name": "request_forecast",
-      "confidence": 0.09863512217998505
-    }
-  },
-  {
-    "text": "can i speak to someone",
-    "intent": "request_operator",
-    "intent_prediction": {
-      "name": "inform_medical_injured",
-      "confidence": 0.29073959589004517
-    }
-  },
-  {
-    "text": "what is happening now",
-    "intent": "request_general_info",
-    "intent_prediction": {
-      "name": "report_emergency",
-      "confidence": 0.3810732662677765
-    }
-  },
-  {
-    "text": "what is the situation now",
-    "intent": "request_general_info",
-    "intent_prediction": {
-      "name": "report_emergency",
-      "confidence": 0.9146513938903809
-    }
-  },
-  {
-    "text": "future conditions",
-    "intent": "request_forecast",
-    "intent_prediction": {
-      "name": "inform_temp_normal",
-      "confidence": 0.8240241408348083
-    }
-  },
-  {
-    "text": "is it safe to stay",
-    "intent": "request_evacuation_info",
-    "intent_prediction": {
-      "name": "report_safe",
-      "confidence": 0.9217127561569214
-    }
-  },
-  {
-    "text": "need hygiene kit",
-    "intent": "request_supply",
-    "intent_prediction": {
-      "name": "inform_temp_normal",
-      "confidence": 0.13582487404346466
-    }
-  },
-  {
-    "text": "update location details",
-    "intent": "change_location",
-    "intent_prediction": {
-      "name": "request_general_info",
-      "confidence": 0.5411790609359741
-    }
-  },
-  {
-    "text": "anyone there",
-    "intent": "greet",
-    "intent_prediction": {
-      "name": "inform_medical_none",
-      "confidence": 0.2781033515930176
-    }
-  },
-  {
-    "text": "river overflow near me",
-    "intent": "report_flood",
-    "intent_prediction": {
-      "name": "inform_floor_basement",
-      "confidence": 0.16979409754276276
-    }
-  },
-  {
-    "text": "nearby river has overflowed",
-    "intent": "report_flood",
-    "intent_prediction": {
-      "name": "inform_fire_nearby",
-      "confidence": 0.27683374285697937
-    }
-  },
-  {
-    "text": "we are not injured",
-    "intent": "inform_medical_none",
-    "intent_prediction": {
-      "name": "inform_medical_injured",
-      "confidence": 0.9442362189292908
-    }
-  },
-  {
-    "text": "no serious injuries",
-    "intent": "inform_medical_none",
-    "intent_prediction": {
-      "name": "report_emergency",
-      "confidence": 0.5600926876068115
-    }
-  },
-  {
-    "text": "sprained ankle",
-    "intent": "inform_medical_injured",
-    "intent_prediction": {
-      "name": "inform_water_below_10cm",
-      "confidence": 0.9642688035964966
-    }
-  },
-  {
-    "text": "needs first aid",
-    "intent": "inform_medical_injured",
-    "intent_prediction": {
-      "name": "inform_medical_none",
-      "confidence": 0.4615088999271393
-    }
-  },
-  {
-    "text": "no pulse",
-    "intent": "inform_medical_critical",
-    "intent_prediction": {
       "name": "deny",
-      "confidence": 0.3809249997138977
-    }
-  },
-  {
-    "text": "needs cpr",
-    "intent": "inform_medical_critical",
-    "intent_prediction": {
-      "name": "greet",
-      "confidence": 0.13401852548122406
-    }
-  },
-  {
-    "text": "cannot breathe",
-    "intent": "inform_medical_critical",
-    "intent_prediction": {
-      "name": "inform_smoke_cant",
-      "confidence": 0.7136967778205872
-    }
-  },
-  {
-    "text": "about 15 cm",
-    "intent": "inform_water_10_30cm",
-    "intent_prediction": {
-      "name": "inform_water_30_60cm",
-      "confidence": 0.3944436311721802
-    }
-  },
-  {
-    "text": "11-30 cm deep",
-    "intent": "inform_water_10_30cm",
-    "intent_prediction": {
-      "name": "inform_water_30_60cm",
-      "confidence": 0.8986822962760925
-    }
-  },
-  {
-    "text": "roughly 45 cm",
-    "intent": "inform_water_30_60cm",
-    "intent_prediction": {
-      "name": "inform_water_below_10cm",
-      "confidence": 0.4506235420703888
-    }
-  },
-  {
-    "text": "water at belt level",
-    "intent": "inform_water_30_60cm",
-    "intent_prediction": {
-      "name": "inform_floor_basement",
-      "confidence": 0.26942703127861023
-    }
-  },
-  {
-    "text": "chest deep",
-    "intent": "inform_water_above_60cm",
-    "intent_prediction": {
-      "name": "inform_water_30_60cm",
-      "confidence": 0.5022842288017273
-    }
-  },
-  {
-    "text": "almost neck high",
-    "intent": "inform_water_above_60cm",
-    "intent_prediction": {
-      "name": "inform_duration_medium",
-      "confidence": 0.571284830570221
-    }
-  },
-  {
-    "text": "same level",
-    "intent": "inform_trend_stable",
-    "intent_prediction": {
-      "name": "inform_floor_basement",
-      "confidence": 0.4128027558326721
-    }
-  },
-  {
-    "text": "staying the same",
-    "intent": "inform_trend_stable",
-    "intent_prediction": {
-      "name": "request_evacuation_info",
-      "confidence": 0.6292286515235901
-    }
-  },
-  {
-    "text": "no movement in level",
-    "intent": "inform_trend_stable",
-    "intent_prediction": {
-      "name": "inform_floor_basement",
-      "confidence": 0.32555046677589417
-    }
-  },
-  {
-    "text": "rising a little",
-    "intent": "inform_trend_slowly",
-    "intent_prediction": {
-      "name": "inform_floor_upper",
-      "confidence": 0.18348205089569092
-    }
-  },
-  {
-    "text": "slow upward trend",
-    "intent": "inform_trend_slowly",
-    "intent_prediction": {
-      "name": "inform_trend_fast",
-      "confidence": 0.7479008436203003
-    }
-  },
-  {
-    "text": "upstairs",
-    "intent": "inform_floor_upper",
-    "intent_prediction": {
-      "name": "report_trapped",
-      "confidence": 0.23779185116291046
-    }
-  },
-  {
-    "text": "damaged power line",
-    "intent": "inform_hazard_electricity",
-    "intent_prediction": {
-      "name": "report_outage",
-      "confidence": 0.8863207697868347
-    }
-  },
-  {
-    "text": "none",
-    "intent": "inform_hazard_none",
-    "intent_prediction": {
-      "name": "inform_medical_none",
-      "confidence": 0.24364639818668365
-    }
-  },
-  {
-    "text": "nothing burning nearby",
-    "intent": "inform_fire_none",
-    "intent_prediction": {
-      "name": "inform_temp_normal",
-      "confidence": 0.15012314915657043
-    }
-  },
-  {
-    "text": "in distance",
-    "intent": "inform_fire_visible",
-    "intent_prediction": {
-      "name": "inform_fire_none",
-      "confidence": 0.15153339505195618
-    }
-  },
-  {
-    "text": "fire in the distance",
-    "intent": "inform_fire_visible",
-    "intent_prediction": {
-      "name": "inform_fire_none",
-      "confidence": 0.32891014218330383
-    }
-  },
-  {
-    "text": "flames in sight",
-    "intent": "inform_fire_visible",
-    "intent_prediction": {
-      "name": "inform_fire_none",
-      "confidence": 0.8387428522109985
-    }
-  },
-  {
-    "text": "fire at the door",
-    "intent": "inform_fire_nearby",
-    "intent_prediction": {
-      "name": "inform_fire_none",
-      "confidence": 0.19191798567771912
-    }
-  },
-  {
-    "text": "extremely close",
-    "intent": "inform_fire_nearby",
-    "intent_prediction": {
-      "name": "inform_temp_dangerous",
-      "confidence": 0.4458550214767456
-    }
-  },
-  {
-    "text": "no haze",
-    "intent": "inform_smoke_none",
-    "intent_prediction": {
-      "name": "inform_smoke_slight",
-      "confidence": 0.501469612121582
-    }
-  },
-  {
-    "text": "fresh air",
-    "intent": "inform_smoke_none",
-    "intent_prediction": {
-      "name": "inform_temp_dangerous",
-      "confidence": 0.37296369671821594
-    }
-  },
-  {
-    "text": "faint smoke",
-    "intent": "inform_smoke_slight",
-    "intent_prediction": {
-      "name": "inform_smoke_none",
-      "confidence": 0.6019242405891418
-    }
-  },
-  {
-    "text": "some smoke",
-    "intent": "inform_smoke_slight",
-    "intent_prediction": {
-      "name": "inform_smoke_none",
-      "confidence": 0.7576940655708313
-    }
-  },
-  {
-    "text": "smoke in the room",
-    "intent": "inform_smoke_slight",
-    "intent_prediction": {
-      "name": "inform_smoke_none",
-      "confidence": 0.7883245348930359
-    }
-  },
-  {
-    "text": "smoke is blocking air",
-    "intent": "inform_smoke_cant",
-    "intent_prediction": {
-      "name": "inform_smoke_none",
-      "confidence": 0.20260299742221832
-    }
-  },
-  {
-    "text": "severe smoke",
-    "intent": "inform_smoke_cant",
-    "intent_prediction": {
-      "name": "inform_temp_dangerous",
-      "confidence": 0.27777010202407837
-    }
-  },
-  {
-    "text": "smoke filled room",
-    "intent": "inform_smoke_cant",
-    "intent_prediction": {
-      "name": "inform_smoke_none",
-      "confidence": 0.9434597492218018
-    }
-  },
-  {
-    "text": "feels normal",
-    "intent": "inform_temp_normal",
-    "intent_prediction": {
-      "name": "inform_temp_uncomfortable",
-      "confidence": 0.6874176263809204
-    }
-  },
-  {
-    "text": "mild temperature",
-    "intent": "inform_temp_normal",
-    "intent_prediction": {
-      "name": "inform_smoke_slight",
-      "confidence": 0.2570137083530426
-    }
-  },
-  {
-    "text": "too warm",
-    "intent": "inform_temp_uncomfortable",
-    "intent_prediction": {
-      "name": "inform_temp_dangerous",
-      "confidence": 0.851460874080658
-    }
-  },
-  {
-    "text": "too cold",
-    "intent": "inform_temp_uncomfortable",
-    "intent_prediction": {
-      "name": "inform_temp_dangerous",
-      "confidence": 0.9622400999069214
-    }
-  },
-  {
-    "text": "risk of hypothermia",
-    "intent": "inform_temp_dangerous",
-    "intent_prediction": {
-      "name": "inform_hazard_none",
-      "confidence": 0.2399197518825531
-    }
-  },
-  {
-    "text": "two floors total",
-    "intent": "inform_building_ground",
-    "intent_prediction": {
-      "name": "inform_building_mid",
-      "confidence": 0.6842509508132935
-    }
-  },
-  {
-    "text": "ground plus one",
-    "intent": "inform_building_ground",
-    "intent_prediction": {
-      "name": "inform_medical_none",
-      "confidence": 0.6851362586021423
-    }
-  },
-  {
-    "text": "medium height building",
-    "intent": "inform_building_mid",
-    "intent_prediction": {
-      "name": "inform_hazard_fire",
-      "confidence": 0.1812150776386261
-    }
-  },
-  {
-    "text": "building has 3 to 5 floors",
-    "intent": "inform_building_mid",
-    "intent_prediction": {
-      "name": "inform_building_ground",
-      "confidence": 0.6066380739212036
-    }
-  },
-  {
-    "text": "building has 6 or more floors",
-    "intent": "inform_building_high",
-    "intent_prediction": {
-      "name": "inform_building_ground",
-      "confidence": 0.6158198714256287
-    }
-  },
-  {
-    "text": "5 hours",
-    "intent": "inform_duration_short",
-    "intent_prediction": {
-      "name": "inform_duration_medium",
-      "confidence": 0.6198828816413879
-    }
-  },
-  {
-    "text": "about 8 hours",
-    "intent": "inform_duration_medium",
-    "intent_prediction": {
-      "name": "inform_duration_short",
-      "confidence": 0.5342969298362732
-    }
-  },
-  {
-    "text": "about 19 hours",
-    "intent": "inform_duration_medium",
-    "intent_prediction": {
-      "name": "inform_duration_short",
-      "confidence": 0.5342969298362732
-    }
-  },
-  {
-    "text": "24 hours",
-    "intent": "inform_duration_long",
-    "intent_prediction": {
-      "name": "inform_duration_medium",
-      "confidence": 0.6198828816413879
-    }
-  },
-  {
-    "text": "30 hours",
-    "intent": "inform_duration_long",
-    "intent_prediction": {
-      "name": "inform_duration_medium",
-      "confidence": 0.6198828816413879
-    }
-  },
-  {
-    "text": "absolutely yes",
-    "intent": "affirm",
-    "intent_prediction": {
-      "name": "deny",
-      "confidence": 0.4936664402484894
-    }
-  },
-  {
-    "text": "negative",
-    "intent": "deny",
-    "intent_prediction": {
-      "name": "affirm",
-      "confidence": 0.3896119296550751
-    }
-  },
-  {
-    "text": "farewell",
-    "intent": "goodbye",
-    "intent_prediction": {
-      "name": "affirm",
-      "confidence": 0.19435922801494598
-    }
-  },
-  {
-    "text": "signing off",
-    "intent": "goodbye",
-    "intent_prediction": {
-      "name": "inform_fire_none",
-      "confidence": 0.7323998808860779
-    }
-  },
-  {
-    "text": "need status update",
-    "intent": "request_general_info",
-    "intent_prediction": {
-      "name": "request_warnings",
-      "confidence": 0.4862428903579712
-    }
-  },
-  {
-    "text": "who to call",
-    "intent": "request_emergency_numbers",
-    "intent_prediction": {
-      "name": "out_of_scope",
-      "confidence": 0.5228478908538818
-    }
-  },
-  {
-    "text": "book me a taxi",
-    "intent": "out_of_scope",
-    "intent_prediction": {
-      "name": "inform_temp_normal",
-      "confidence": 0.17213043570518494
-    }
-  },
-  {
-    "text": "order pizza",
-    "intent": "out_of_scope",
-    "intent_prediction": {
-      "name": "inform_building_ground",
-      "confidence": 0.28085798025131226
-    }
-  },
-  {
-    "text": "hey",
-    "intent": "greet",
-    "intent_prediction": {
-      "name": "thank",
-      "confidence": 0.5973674058914185
-    }
-  },
-  {
-    "text": "good morning",
-    "intent": "greet",
-    "intent_prediction": {
-      "name": "goodbye",
-      "confidence": 0.8758236169815063
-    }
-  },
-  {
-    "text": "immediate danger here",
-    "intent": "report_emergency",
-    "intent_prediction": {
-      "name": "report_safe",
-      "confidence": 0.9401634931564331
-    }
-  },
-  {
-    "text": "dangerous situation here",
-    "intent": "report_emergency",
-    "intent_prediction": {
-      "name": "inform_building_high",
-      "confidence": 0.2170194834470749
-    }
-  },
-  {
-    "text": "ground floor is flooded",
-    "intent": "report_flood",
-    "intent_prediction": {
-      "name": "inform_hazard_gas",
-      "confidence": 0.24318550527095795
-    }
-  },
-  {
-    "text": "flood warning in my area",
-    "intent": "report_flood",
-    "intent_prediction": {
-      "name": "request_warnings",
-      "confidence": 0.7274394631385803
-    }
-  },
-  {
-    "text": "fire line nearby",
-    "intent": "report_wildfire",
-    "intent_prediction": {
-      "name": "inform_fire_nearby",
-      "confidence": 0.4698368012905121
-    }
-  },
-  {
-    "text": "blackout",
-    "intent": "report_outage",
-    "intent_prediction": {
-      "name": "inform_trend_stable",
-      "confidence": 0.27571573853492737
-    }
-  },
-  {
-    "text": "outage in my area",
-    "intent": "report_outage",
-    "intent_prediction": {
-      "name": "request_warnings",
-      "confidence": 0.19450867176055908
-    }
-  },
-  {
-    "text": "outage in the neighborhood",
-    "intent": "report_outage",
-    "intent_prediction": {
-      "name": "report_flood",
-      "confidence": 0.9208590388298035
-    }
-  },
-  {
-    "text": "no one needs care",
-    "intent": "inform_medical_none",
-    "intent_prediction": {
-      "name": "inform_medical_injured",
-      "confidence": 0.7960202097892761
-    }
-  },
-  {
-    "text": "broken arm",
-    "intent": "inform_medical_injured",
-    "intent_prediction": {
-      "name": "inform_medical_critical",
-      "confidence": 0.23054009675979614
-    }
-  },
-  {
-    "text": "injured leg",
-    "intent": "inform_medical_injured",
-    "intent_prediction": {
-      "name": "inform_water_10_30cm",
-      "confidence": 0.6474570631980896
-    }
-  },
-  {
-    "text": "injury needs treatment",
-    "intent": "inform_medical_injured",
-    "intent_prediction": {
-      "name": "inform_medical_none",
-      "confidence": 0.9725661873817444
-    }
-  },
-  {
-    "text": "injured adult",
-    "intent": "inform_medical_injured",
-    "intent_prediction": {
-      "name": "inform_medical_none",
-      "confidence": 0.41901281476020813
-    }
-  },
-  {
-    "text": "cardiac arrest",
-    "intent": "inform_medical_critical",
-    "intent_prediction": {
-      "name": "report_wildfire",
-      "confidence": 0.1437566727399826
-    }
-  },
-  {
-    "text": "crushed chest",
-    "intent": "inform_medical_critical",
-    "intent_prediction": {
-      "name": "report_wildfire",
-      "confidence": 0.24939347803592682
-    }
-  },
-  {
-    "text": "around 5 cm",
-    "intent": "inform_water_below_10cm",
-    "intent_prediction": {
-      "name": "inform_water_30_60cm",
-      "confidence": 0.9188957214355469
-    }
-  },
-  {
-    "text": "about 8 cm",
-    "intent": "inform_water_below_10cm",
-    "intent_prediction": {
-      "name": "inform_water_10_30cm",
-      "confidence": 0.7313605546951294
-    }
-  },
-  {
-    "text": "around 20 cm",
-    "intent": "inform_water_10_30cm",
-    "intent_prediction": {
-      "name": "inform_water_30_60cm",
-      "confidence": 0.9188957214355469
-    }
-  },
-  {
-    "text": "mid shin depth",
-    "intent": "inform_water_10_30cm",
-    "intent_prediction": {
-      "name": "inform_water_30_60cm",
-      "confidence": 0.9171116948127747
-    }
-  },
-  {
-    "text": "31 to 60cm",
-    "intent": "inform_water_30_60cm",
-    "intent_prediction": {
-      "name": "inform_water_10_30cm",
-      "confidence": 0.9135512709617615
-    }
-  },
-  {
-    "text": "between 31 and 60 cm",
-    "intent": "inform_water_30_60cm",
-    "intent_prediction": {
-      "name": "inform_water_10_30cm",
-      "confidence": 0.8691805005073547
-    }
-  },
-  {
-    "text": "31-60 cm deep",
-    "intent": "inform_water_30_60cm",
-    "intent_prediction": {
-      "name": "inform_water_10_30cm",
-      "confidence": 0.9417957067489624
-    }
-  },
-  {
-    "text": "head height water",
-    "intent": "inform_water_above_60cm",
-    "intent_prediction": {
-      "name": "inform_water_10_30cm",
-      "confidence": 0.8384619355201721
-    }
-  },
-  {
-    "text": "not falling",
-    "intent": "inform_trend_stable",
-    "intent_prediction": {
-      "name": "deny",
-      "confidence": 0.5628161430358887
-    }
-  },
-  {
-    "text": "flat level",
-    "intent": "inform_trend_stable",
-    "intent_prediction": {
-      "name": "inform_floor_upper",
-      "confidence": 0.6419920325279236
-    }
-  },
-  {
-    "text": "gentle rise",
-    "intent": "inform_trend_slowly",
-    "intent_prediction": {
-      "name": "request_general_info",
-      "confidence": 0.26355040073394775
-    }
-  },
-  {
-    "text": "water level spiking",
-    "intent": "inform_trend_fast",
-    "intent_prediction": {
-      "name": "request_emergency_numbers",
-      "confidence": 0.23254422843456268
-    }
-  },
-  {
-    "text": "base level",
-    "intent": "inform_floor_ground",
-    "intent_prediction": {
-      "name": "inform_floor_basement",
-      "confidence": 0.41447362303733826
-    }
-  },
-  {
-    "text": "no extra dangers",
-    "intent": "inform_hazard_none",
-    "intent_prediction": {
-      "name": "report_safe",
-      "confidence": 0.9382355213165283
-    }
-  },
-  {
-    "text": "all clear",
-    "intent": "inform_hazard_none",
-    "intent_prediction": {
-      "name": "inform_smoke_none",
-      "confidence": 0.7889122366905212
-    }
-  },
-  {
-    "text": "no problems",
-    "intent": "inform_hazard_none",
-    "intent_prediction": {
-      "name": "inform_medical_none",
-      "confidence": 0.8109588623046875
-    }
-  },
-  {
-    "text": "no flames seen",
-    "intent": "inform_fire_none",
-    "intent_prediction": {
-      "name": "inform_fire_visible",
-      "confidence": 0.47792813181877136
-    }
-  },
-  {
-    "text": "not close to us",
-    "intent": "inform_fire_none",
-    "intent_prediction": {
-      "name": "inform_fire_nearby",
-      "confidence": 0.9051977396011353
-    }
-  },
-  {
-    "text": "fire not in sight",
-    "intent": "inform_fire_none",
-    "intent_prediction": {
-      "name": "inform_fire_visible",
-      "confidence": 0.46978431940078735
-    }
-  },
-  {
-    "text": "can see it",
-    "intent": "inform_fire_visible",
-    "intent_prediction": {
-      "name": "goodbye",
-      "confidence": 0.4518781900405884
-    }
-  },
-  {
-    "text": "right near us",
-    "intent": "inform_fire_nearby",
-    "intent_prediction": {
-      "name": "request_evacuation_info",
-      "confidence": 0.16018487513065338
-    }
-  },
-  {
-    "text": "right outside",
-    "intent": "inform_fire_nearby",
-    "intent_prediction": {
-      "name": "report_emergency",
-      "confidence": 0.2869037091732025
-    }
-  },
-  {
-    "text": "fire is closing in",
-    "intent": "inform_fire_surrounding",
-    "intent_prediction": {
-      "name": "inform_fire_nearby",
-      "confidence": 0.9379528760910034
-    }
-  },
-  {
-    "text": "no breathing problems",
-    "intent": "inform_smoke_none",
-    "intent_prediction": {
-      "name": "inform_medical_none",
-      "confidence": 0.41541820764541626
-    }
-  },
-  {
-    "text": "smoke is overwhelming",
-    "intent": "inform_smoke_cant",
-    "intent_prediction": {
-      "name": "inform_smoke_slight",
-      "confidence": 0.36235350370407104
-    }
-  },
-  {
-    "text": "hard to breathe at all",
-    "intent": "inform_smoke_cant",
-    "intent_prediction": {
-      "name": "inform_smoke_slight",
-      "confidence": 0.8805391788482666
-    }
-  },
-  {
-    "text": "breathing is very hard",
-    "intent": "inform_smoke_cant",
-    "intent_prediction": {
-      "name": "inform_smoke_slight",
-      "confidence": 0.9010143876075745
-    }
-  },
-  {
-    "text": "comfortable",
-    "intent": "inform_temp_normal",
-    "intent_prediction": {
-      "name": "inform_temp_uncomfortable",
-      "confidence": 0.9275205135345459
-    }
-  },
-  {
-    "text": "chilly inside",
-    "intent": "inform_temp_uncomfortable",
-    "intent_prediction": {
-      "name": "inform_medical_injured",
-      "confidence": 0.45542946457862854
-    }
-  },
-  {
-    "text": "freezing",
-    "intent": "inform_temp_dangerous",
-    "intent_prediction": {
-      "name": "inform_smoke_none",
-      "confidence": 0.16437488794326782
-    }
-  },
-  {
-    "text": "building has 1 or 2 floors",
-    "intent": "inform_building_ground",
-    "intent_prediction": {
-      "name": "inform_building_mid",
-      "confidence": 0.82451993227005
-    }
-  },
-  {
-    "text": "a 3-5 floor building",
-    "intent": "inform_building_mid",
-    "intent_prediction": {
-      "name": "inform_water_10_30cm",
-      "confidence": 0.4213294982910156
-    }
-  },
-  {
-    "text": "over 6 floors",
-    "intent": "inform_building_high",
-    "intent_prediction": {
-      "name": "inform_water_above_60cm",
-      "confidence": 0.42913714051246643
-    }
-  },
-  {
-    "text": "1 hour",
-    "intent": "inform_duration_short",
-    "intent_prediction": {
-      "name": "inform_duration_medium",
-      "confidence": 0.7329570055007935
-    }
-  },
-  {
-    "text": "almost a day",
-    "intent": "inform_duration_medium",
-    "intent_prediction": {
-      "name": "inform_water_above_60cm",
-      "confidence": 0.5499452948570251
-    }
-  },
-  {
-    "text": "more than 24 hours",
-    "intent": "inform_duration_long",
-    "intent_prediction": {
-      "name": "inform_duration_medium",
-      "confidence": 0.5418053269386292
-    }
-  },
-  {
-    "text": "long time",
-    "intent": "inform_duration_long",
-    "intent_prediction": {
-      "name": "inform_duration_short",
-      "confidence": 0.7530204057693481
-    }
-  },
-  {
-    "text": "more than two days",
-    "intent": "inform_duration_long",
-    "intent_prediction": {
-      "name": "inform_building_ground",
-      "confidence": 0.6429466009140015
-    }
-  },
-  {
-    "text": "that's wrong",
-    "intent": "deny",
-    "intent_prediction": {
-      "name": "affirm",
-      "confidence": 0.6167329549789429
-    }
-  },
-  {
-    "text": "absolutely not",
-    "intent": "deny",
-    "intent_prediction": {
-      "name": "affirm",
-      "confidence": 0.8888193964958191
-    }
-  },
-  {
-    "text": "get info",
-    "intent": "request_general_info",
-    "intent_prediction": {
-      "name": "request_safe_menu",
-      "confidence": 0.1742423176765442
-    }
-  },
-  {
-    "text": "leave the area",
-    "intent": "request_evacuation_info",
-    "intent_prediction": {
-      "name": "inform_fire_none",
-      "confidence": 0.4639875292778015
-    }
-  },
-  {
-    "text": "emergency hotline",
-    "intent": "request_emergency_numbers",
-    "intent_prediction": {
-      "name": "report_emergency",
-      "confidence": 0.5356231331825256
-    }
-  },
-  {
-    "text": "show me the news",
-    "intent": "out_of_scope",
-    "intent_prediction": {
-      "name": "request_safe_menu",
-      "confidence": 0.4320319592952728
-    }
-  },
-  {
-    "text": "good afternoon",
-    "intent": "greet",
-    "intent_prediction": {
-      "name": "goodbye",
-      "confidence": 0.924176812171936
-    }
-  },
-  {
-    "text": "start chat",
-    "intent": "greet",
-    "intent_prediction": {
-      "name": "report_trapped",
-      "confidence": 0.5366187691688538
-    }
-  },
-  {
-    "text": "sos",
-    "intent": "report_emergency",
-    "intent_prediction": {
-      "name": "report_trapped",
-      "confidence": 0.40948086977005005
-    }
-  },
-  {
-    "text": "disaster alert",
-    "intent": "report_emergency",
-    "intent_prediction": {
-      "name": "report_flood",
-      "confidence": 0.24914155900478363
-    }
-  },
-  {
-    "text": "water has reached the door",
-    "intent": "report_flood",
-    "intent_prediction": {
-      "name": "inform_fire_nearby",
-      "confidence": 0.3052290976047516
+      "confidence": 0.5004547834396362
     }
   },
   {
     "text": "house is taking in water",
     "intent": "report_flood",
     "intent_prediction": {
-      "name": "report_trapped",
-      "confidence": 0.24001893401145935
-    }
-  },
-  {
-    "text": "water is above the curb",
-    "intent": "report_flood",
-    "intent_prediction": {
-      "name": "inform_water_above_60cm",
-      "confidence": 0.7702782154083252
+      "name": "goodbye",
+      "confidence": 0.8818148970603943
     }
   },
   {
@@ -1404,95 +28,119 @@
     "intent": "report_wildfire",
     "intent_prediction": {
       "name": "inform_hazard_fire",
-      "confidence": 0.6585677266120911
+      "confidence": 0.6403441429138184
     }
   },
   {
-    "text": "lights are out",
+    "text": "blackout",
     "intent": "report_outage",
     "intent_prediction": {
-      "name": "report_trapped",
-      "confidence": 0.19954654574394226
+      "name": "report_emergency",
+      "confidence": 0.20790603756904602
     }
   },
   {
-    "text": "nobody needs a doctor",
+    "text": "no serious injuries",
     "intent": "inform_medical_none",
     "intent_prediction": {
-      "name": "inform_medical_medications",
-      "confidence": 0.6046997308731079
+      "name": "report_emergency",
+      "confidence": 0.6065568923950195
     }
   },
   {
-    "text": "wound needs care",
+    "text": "we have injuries",
     "intent": "inform_medical_injured",
     "intent_prediction": {
       "name": "inform_medical_none",
-      "confidence": 0.9378336668014526
+      "confidence": 0.7907781600952148
     }
   },
   {
-    "text": "hurt and bleeding",
+    "text": "bruised badly",
     "intent": "inform_medical_injured",
     "intent_prediction": {
-      "name": "inform_medical_critical",
-      "confidence": 0.7822552919387817
+      "name": "inform_medical_none",
+      "confidence": 0.12603126466274261
     }
   },
   {
-    "text": "below 10cm",
-    "intent": "inform_water_below_10cm",
+    "text": "injury needs treatment",
+    "intent": "inform_medical_injured",
     "intent_prediction": {
-      "name": "inform_floor_basement",
-      "confidence": 0.19406703114509583
+      "name": "inform_medical_none",
+      "confidence": 0.9287431836128235
+    }
+  },
+  {
+    "text": "cannot breathe",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "inform_smoke_cant",
+      "confidence": 0.8457258939743042
+    }
+  },
+  {
+    "text": "crushed chest",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "inform_water_above_60cm",
+      "confidence": 0.34262728691101074
+    }
+  },
+  {
+    "text": "immediate life support needed",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.9415616393089294
     }
   },
   {
     "text": "just a few centimeters",
     "intent": "inform_water_below_10cm",
     "intent_prediction": {
-      "name": "inform_fire_nearby",
-      "confidence": 0.2604363262653351
-    }
-  },
-  {
-    "text": "11 to 30cm",
-    "intent": "inform_water_10_30cm",
-    "intent_prediction": {
       "name": "inform_water_30_60cm",
-      "confidence": 0.9371585249900818
+      "confidence": 0.6464284658432007
     }
   },
   {
-    "text": "water below knees",
+    "text": "water is low",
+    "intent": "inform_water_below_10cm",
+    "intent_prediction": {
+      "name": "report_flood",
+      "confidence": 0.45128196477890015
+    }
+  },
+  {
+    "text": "around 20 cm",
     "intent": "inform_water_10_30cm",
     "intent_prediction": {
-      "name": "inform_floor_basement",
-      "confidence": 0.21025486290454865
+      "name": "inform_water_below_10cm",
+      "confidence": 0.5197548270225525
     }
   },
   {
-    "text": "around 40 cm",
+    "text": "between 31 and 60 cm",
     "intent": "inform_water_30_60cm",
     "intent_prediction": {
       "name": "inform_water_10_30cm",
-      "confidence": 0.7050467133522034
+      "confidence": 0.8756845593452454
     }
   },
   {
-    "text": "about 50 cm",
+    "text": "water at belt level",
     "intent": "inform_water_30_60cm",
     "intent_prediction": {
-      "name": "inform_water_10_30cm",
-      "confidence": 0.8670209646224976
+      "name": "inform_water_below_10cm",
+      "confidence": 0.17631489038467407
     }
   },
   {
-    "text": "over 60 cm",
+    "text": "head height water",
     "intent": "inform_water_above_60cm",
     "intent_prediction": {
-      "name": "inform_water_30_60cm",
-      "confidence": 0.42209312319755554
+      "name": "inform_water_10_30cm",
+      "confidence": 0.6777161359786987
     }
   },
   {
@@ -1500,39 +148,23 @@
     "intent": "inform_water_above_60cm",
     "intent_prediction": {
       "name": "report_flood",
-      "confidence": 0.9875094294548035
+      "confidence": 0.9237838983535767
     }
   },
   {
-    "text": "stable",
+    "text": "flat level",
     "intent": "inform_trend_stable",
     "intent_prediction": {
-      "name": "inform_temp_normal",
-      "confidence": 0.33786141872406006
+      "name": "inform_floor_upper",
+      "confidence": 0.4467080533504486
     }
   },
   {
-    "text": "level is constant",
-    "intent": "inform_trend_stable",
-    "intent_prediction": {
-      "name": "inform_fire_none",
-      "confidence": 0.23814140260219574
-    }
-  },
-  {
-    "text": "water creeping up",
+    "text": "gentle rise",
     "intent": "inform_trend_slowly",
     "intent_prediction": {
-      "name": "report_flood",
-      "confidence": 0.6584484577178955
-    }
-  },
-  {
-    "text": "slight rise",
-    "intent": "inform_trend_slowly",
-    "intent_prediction": {
-      "name": "inform_smoke_slight",
-      "confidence": 0.6374245882034302
+      "name": "inform_building_ground",
+      "confidence": 0.11325199902057648
     }
   },
   {
@@ -1540,431 +172,39 @@
     "intent": "inform_trend_fast",
     "intent_prediction": {
       "name": "inform_trend_slowly",
-      "confidence": 0.7502419948577881
+      "confidence": 0.372877836227417
     }
   },
   {
-    "text": "lobby level",
-    "intent": "inform_floor_ground",
+    "text": "water level spiking",
+    "intent": "inform_trend_fast",
     "intent_prediction": {
-      "name": "inform_floor_basement",
-      "confidence": 0.28739890456199646
+      "name": "report_flood",
+      "confidence": 0.37520283460617065
     }
   },
   {
-    "text": "elevated floor",
-    "intent": "inform_floor_upper",
-    "intent_prediction": {
-      "name": "inform_floor_ground",
-      "confidence": 0.24312759935855865
-    }
-  },
-  {
-    "text": "electricity risk",
-    "intent": "inform_hazard_electricity",
-    "intent_prediction": {
-      "name": "report_outage",
-      "confidence": 0.693789541721344
-    }
-  },
-  {
-    "text": "no risks",
+    "text": "no problems",
     "intent": "inform_hazard_none",
     "intent_prediction": {
-      "name": "report_safe",
-      "confidence": 0.4588717520236969
-    }
-  },
-  {
-    "text": "visible smoke and fire",
-    "intent": "inform_fire_visible",
-    "intent_prediction": {
-      "name": "inform_medical_critical",
-      "confidence": 0.16650263965129852
-    }
-  },
-  {
-    "text": "fire nearby",
-    "intent": "inform_fire_nearby",
-    "intent_prediction": {
-      "name": "report_wildfire",
-      "confidence": 0.36305803060531616
-    }
-  },
-  {
-    "text": "fire next to us",
-    "intent": "inform_fire_nearby",
-    "intent_prediction": {
-      "name": "inform_fire_none",
-      "confidence": 0.5386272072792053
-    }
-  },
-  {
-    "text": "clear skies",
-    "intent": "inform_smoke_none",
-    "intent_prediction": {
-      "name": "inform_hazard_none",
-      "confidence": 0.34497132897377014
-    }
-  },
-  {
-    "text": "breathing a bit hard",
-    "intent": "inform_smoke_slight",
-    "intent_prediction": {
-      "name": "inform_smoke_cant",
-      "confidence": 0.466951847076416
-    }
-  },
-  {
-    "text": "no air to breathe",
-    "intent": "inform_smoke_cant",
-    "intent_prediction": {
-      "name": "inform_smoke_none",
-      "confidence": 0.8665100336074829
-    }
-  },
-  {
-    "text": "air is unbreathable",
-    "intent": "inform_smoke_cant",
-    "intent_prediction": {
-      "name": "inform_smoke_none",
-      "confidence": 0.651348888874054
-    }
-  },
-  {
-    "text": "nothing extreme",
-    "intent": "inform_temp_normal",
-    "intent_prediction": {
-      "name": "inform_hazard_none",
-      "confidence": 0.8899473547935486
-    }
-  },
-  {
-    "text": "not comfortable",
-    "intent": "inform_temp_uncomfortable",
-    "intent_prediction": {
-      "name": "inform_temp_normal",
-      "confidence": 0.7135602831840515
-    }
-  },
-  {
-    "text": "not feeling comfortable",
-    "intent": "inform_temp_uncomfortable",
-    "intent_prediction": {
-      "name": "inform_temp_normal",
-      "confidence": 0.9304824471473694
-    }
-  },
-  {
-    "text": "life threatening cold",
-    "intent": "inform_temp_dangerous",
-    "intent_prediction": {
-      "name": "inform_medical_critical",
-      "confidence": 0.5697811245918274
-    }
-  },
-  {
-    "text": "too cold to stay",
-    "intent": "inform_temp_dangerous",
-    "intent_prediction": {
-      "name": "inform_temp_uncomfortable",
-      "confidence": 0.771599531173706
-    }
-  },
-  {
-    "text": "short building",
-    "intent": "inform_building_ground",
-    "intent_prediction": {
-      "name": "inform_duration_short",
-      "confidence": 0.4662802815437317
-    }
-  },
-  {
-    "text": "mid rise building",
-    "intent": "inform_building_mid",
-    "intent_prediction": {
-      "name": "inform_building_high",
-      "confidence": 0.7558692097663879
-    }
-  },
-  {
-    "text": "eight story building",
-    "intent": "inform_building_high",
-    "intent_prediction": {
-      "name": "inform_building_mid",
-      "confidence": 0.4288160800933838
-    }
-  },
-  {
-    "text": "tall building with many floors",
-    "intent": "inform_building_high",
-    "intent_prediction": {
-      "name": "inform_building_ground",
-      "confidence": 0.49725285172462463
-    }
-  },
-  {
-    "text": "9 hours",
-    "intent": "inform_duration_medium",
-    "intent_prediction": {
-      "name": "inform_duration_short",
-      "confidence": 0.4533623158931732
-    }
-  },
-  {
-    "text": "16 hours",
-    "intent": "inform_duration_medium",
-    "intent_prediction": {
-      "name": "inform_duration_short",
-      "confidence": 0.4533623158931732
-    }
-  },
-  {
-    "text": "overnight outage",
-    "intent": "inform_duration_medium",
-    "intent_prediction": {
-      "name": "report_outage",
-      "confidence": 0.33545875549316406
-    }
-  },
-  {
-    "text": "many hours",
-    "intent": "inform_duration_long",
-    "intent_prediction": {
-      "name": "inform_duration_short",
-      "confidence": 0.7466055750846863
-    }
-  },
-  {
-    "text": "no thank you",
-    "intent": "deny",
-    "intent_prediction": {
-      "name": "thank",
-      "confidence": 0.36406826972961426
-    }
-  },
-  {
-    "text": "please no",
-    "intent": "deny",
-    "intent_prediction": {
-      "name": "affirm",
-      "confidence": 0.20538388192653656
-    }
-  },
-  {
-    "text": "no way",
-    "intent": "deny",
-    "intent_prediction": {
-      "name": "report_trapped",
-      "confidence": 0.9841970801353455
-    }
-  },
-  {
-    "text": "grateful",
-    "intent": "thank",
-    "intent_prediction": {
-      "name": "inform_temp_normal",
-      "confidence": 0.17140069603919983
-    }
-  },
-  {
-    "text": "take care",
-    "intent": "goodbye",
-    "intent_prediction": {
-      "name": "inform_medical_none",
-      "confidence": 0.6838504076004028
-    }
-  },
-  {
-    "text": "alerts for my area",
-    "intent": "request_warnings",
-    "intent_prediction": {
-      "name": "inform_trend_slowly",
-      "confidence": 0.21645531058311462
-    }
-  },
-  {
-    "text": "need accommodation",
-    "intent": "request_supply",
-    "intent_prediction": {
-      "name": "inform_medical_medications",
-      "confidence": 0.19970405101776123
-    }
-  },
-  {
-    "text": "who are you",
-    "intent": "out_of_scope",
-    "intent_prediction": {
-      "name": "request_emergency_numbers",
-      "confidence": 0.12682171165943146
-    }
-  },
-  {
-    "text": "critical situation now",
-    "intent": "report_emergency",
-    "intent_prediction": {
-      "name": "inform_medical_critical",
-      "confidence": 0.6271706223487854
-    }
-  },
-  {
-    "text": "we are in serious danger",
-    "intent": "report_emergency",
-    "intent_prediction": {
-      "name": "inform_medical_none",
-      "confidence": 0.4359184503555298
-    }
-  },
-  {
-    "text": "no way out",
-    "intent": "report_trapped",
-    "intent_prediction": {
       "name": "deny",
-      "confidence": 0.8054221868515015
+      "confidence": 0.659813404083252
     }
   },
   {
-    "text": "no immediate danger",
-    "intent": "report_safe",
-    "intent_prediction": {
-      "name": "report_emergency",
-      "confidence": 0.8947274684906006
-    }
-  },
-  {
-    "text": "water level rising fast",
-    "intent": "report_flood",
-    "intent_prediction": {
-      "name": "inform_trend_fast",
-      "confidence": 0.8680304288864136
-    }
-  },
-  {
-    "text": "brush fire nearby",
-    "intent": "report_wildfire",
+    "text": "not close to us",
+    "intent": "inform_fire_none",
     "intent_prediction": {
       "name": "inform_fire_nearby",
-      "confidence": 0.31625041365623474
+      "confidence": 0.887024462223053
     }
   },
   {
-    "text": "no medical assistance required",
-    "intent": "inform_medical_none",
+    "text": "nothing burning nearby",
+    "intent": "inform_fire_none",
     "intent_prediction": {
-      "name": "report_emergency",
-      "confidence": 0.5519007444381714
-    }
-  },
-  {
-    "text": "no wounds",
-    "intent": "inform_medical_none",
-    "intent_prediction": {
-      "name": "inform_medical_injured",
-      "confidence": 0.3907603621482849
-    }
-  },
-  {
-    "text": "bruised badly",
-    "intent": "inform_medical_injured",
-    "intent_prediction": {
-      "name": "report_safe",
-      "confidence": 0.08334257453680038
-    }
-  },
-  {
-    "text": "has a deep cut",
-    "intent": "inform_medical_injured",
-    "intent_prediction": {
-      "name": "inform_floor_upper",
-      "confidence": 0.11991491913795471
-    }
-  },
-  {
-    "text": "unconscious and not breathing",
-    "intent": "inform_medical_critical",
-    "intent_prediction": {
-      "name": "inform_medical_injured",
-      "confidence": 0.21938923001289368
-    }
-  },
-  {
-    "text": "barely covering shoes",
-    "intent": "inform_water_below_10cm",
-    "intent_prediction": {
-      "name": "inform_building_high",
-      "confidence": 0.28446686267852783
-    }
-  },
-  {
-    "text": "only a little water",
-    "intent": "inform_water_below_10cm",
-    "intent_prediction": {
-      "name": "inform_trend_slowly",
-      "confidence": 0.9023145437240601
-    }
-  },
-  {
-    "text": "water at calf height",
-    "intent": "inform_water_10_30cm",
-    "intent_prediction": {
-      "name": "inform_water_above_60cm",
-      "confidence": 0.5858927369117737
-    }
-  },
-  {
-    "text": "waist high",
-    "intent": "inform_water_30_60cm",
-    "intent_prediction": {
-      "name": "inform_water_above_60cm",
-      "confidence": 0.7685544490814209
-    }
-  },
-  {
-    "text": "not rising",
-    "intent": "inform_trend_stable",
-    "intent_prediction": {
-      "name": "deny",
-      "confidence": 0.24797548353672028
-    }
-  },
-  {
-    "text": "unchanged",
-    "intent": "inform_trend_stable",
-    "intent_prediction": {
-      "name": "inform_trend_slowly",
-      "confidence": 0.1470688432455063
-    }
-  },
-  {
-    "text": "rising bit by bit",
-    "intent": "inform_trend_slowly",
-    "intent_prediction": {
-      "name": "inform_temp_uncomfortable",
-      "confidence": 0.701947808265686
-    }
-  },
-  {
-    "text": "sublevel",
-    "intent": "inform_floor_basement",
-    "intent_prediction": {
-      "name": "request_supply_points",
-      "confidence": 0.33309391140937805
-    }
-  },
-  {
-    "text": "bottom floor",
-    "intent": "inform_floor_ground",
-    "intent_prediction": {
-      "name": "inform_floor_upper",
-      "confidence": 0.4725818634033203
-    }
-  },
-  {
-    "text": "nothing dangerous",
-    "intent": "inform_hazard_none",
-    "intent_prediction": {
-      "name": "inform_temp_dangerous",
-      "confidence": 0.8511327505111694
+      "name": "inform_hazard_none",
+      "confidence": 0.2994782626628876
     }
   },
   {
@@ -1972,183 +212,119 @@
     "intent": "inform_fire_nearby",
     "intent_prediction": {
       "name": "inform_hazard_fire",
-      "confidence": 0.31510472297668457
+      "confidence": 0.7493487596511841
     }
   },
   {
-    "text": "no visible smoke",
+    "text": "no fumes",
     "intent": "inform_smoke_none",
     "intent_prediction": {
-      "name": "inform_fire_visible",
-      "confidence": 0.803996205329895
+      "name": "deny",
+      "confidence": 0.509286105632782
     }
   },
   {
-    "text": "clear air",
-    "intent": "inform_smoke_none",
-    "intent_prediction": {
-      "name": "inform_hazard_none",
-      "confidence": 0.3241918385028839
-    }
-  },
-  {
-    "text": "breathing fine",
-    "intent": "inform_smoke_none",
-    "intent_prediction": {
-      "name": "inform_medical_critical",
-      "confidence": 0.7132337093353271
-    }
-  },
-  {
-    "text": "a little smoke",
+    "text": "smoke in the air",
     "intent": "inform_smoke_slight",
     "intent_prediction": {
-      "name": "inform_trend_slowly",
-      "confidence": 0.42806804180145264
+      "name": "inform_smoke_cant",
+      "confidence": 0.4510749876499176
     }
   },
   {
-    "text": "thick smoke everywhere",
+    "text": "smoke filled room",
     "intent": "inform_smoke_cant",
     "intent_prediction": {
       "name": "inform_smoke_slight",
-      "confidence": 0.4686155915260315
+      "confidence": 0.5883150696754456
     }
   },
   {
-    "text": "smoke is thick",
-    "intent": "inform_smoke_cant",
-    "intent_prediction": {
-      "name": "inform_smoke_slight",
-      "confidence": 0.8485121726989746
-    }
-  },
-  {
-    "text": "fine conditions",
+    "text": "nothing extreme",
     "intent": "inform_temp_normal",
     "intent_prediction": {
-      "name": "request_forecast",
-      "confidence": 0.46155112981796265
+      "name": "inform_hazard_none",
+      "confidence": 0.9347808957099915
     }
   },
   {
-    "text": "no heat or cold issues",
-    "intent": "inform_temp_normal",
-    "intent_prediction": {
-      "name": "inform_temp_dangerous",
-      "confidence": 0.666532576084137
-    }
-  },
-  {
-    "text": "getting colder",
-    "intent": "inform_temp_uncomfortable",
-    "intent_prediction": {
-      "name": "inform_temp_dangerous",
-      "confidence": 0.30394551157951355
-    }
-  },
-  {
-    "text": "temperature is unpleasant",
+    "text": "temperature is uncomfortable",
     "intent": "inform_temp_uncomfortable",
     "intent_prediction": {
       "name": "inform_temp_normal",
-      "confidence": 0.8930996060371399
+      "confidence": 0.8310045599937439
     }
   },
   {
-    "text": "unsafe temperature",
-    "intent": "inform_temp_dangerous",
-    "intent_prediction": {
-      "name": "inform_temp_normal",
-      "confidence": 0.6447503566741943
-    }
-  },
-  {
-    "text": "four story building",
-    "intent": "inform_building_mid",
-    "intent_prediction": {
-      "name": "inform_building_ground",
-      "confidence": 0.48909103870391846
-    }
-  },
-  {
-    "text": "four storey building",
+    "text": "mid height block",
     "intent": "inform_building_mid",
     "intent_prediction": {
       "name": "inform_building_high",
-      "confidence": 0.4960829019546509
+      "confidence": 0.28341740369796753
     }
   },
   {
-    "text": "10 story building",
+    "text": "tower building",
     "intent": "inform_building_high",
     "intent_prediction": {
       "name": "inform_building_ground",
-      "confidence": 0.44895386695861816
+      "confidence": 0.30622896552085876
     }
   },
   {
-    "text": "nine story building",
-    "intent": "inform_building_high",
-    "intent_prediction": {
-      "name": "inform_building_mid",
-      "confidence": 0.376642107963562
-    }
-  },
-  {
-    "text": "a short outage",
-    "intent": "inform_duration_short",
-    "intent_prediction": {
-      "name": "report_outage",
-      "confidence": 0.4419565796852112
-    }
-  },
-  {
-    "text": "about five hours",
+    "text": "4 hours",
     "intent": "inform_duration_short",
     "intent_prediction": {
       "name": "inform_duration_medium",
-      "confidence": 0.7889000177383423
+      "confidence": 0.7509032487869263
     }
   },
   {
-    "text": "36 hours",
+    "text": "5 hours",
+    "intent": "inform_duration_short",
+    "intent_prediction": {
+      "name": "inform_duration_medium",
+      "confidence": 0.7509032487869263
+    }
+  },
+  {
+    "text": "more than 24 hours",
     "intent": "inform_duration_long",
     "intent_prediction": {
       "name": "inform_duration_medium",
-      "confidence": 0.5000065565109253
+      "confidence": 0.4541260004043579
     }
   },
   {
-    "text": "please do",
-    "intent": "affirm",
+    "text": "24 hours",
+    "intent": "inform_duration_long",
     "intent_prediction": {
-      "name": "deny",
-      "confidence": 0.9610362648963928
+      "name": "inform_duration_medium",
+      "confidence": 0.7509032487869263
     }
   },
   {
-    "text": "stop",
-    "intent": "deny",
-    "intent_prediction": {
-      "name": "inform_medical_critical",
-      "confidence": 0.6771112680435181
-    }
-  },
-  {
-    "text": "not correct",
+    "text": "please no",
     "intent": "deny",
     "intent_prediction": {
       "name": "affirm",
-      "confidence": 0.9519258141517639
+      "confidence": 0.566269040107727
+    }
+  },
+  {
+    "text": "incorrect",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.14908072352409363
     }
   },
   {
     "text": "decline",
     "intent": "deny",
     "intent_prediction": {
-      "name": "inform_trend_slowly",
-      "confidence": 0.38644498586654663
+      "name": "inform_trend_fast",
+      "confidence": 0.09566634148359299
     }
   },
   {
@@ -2156,15 +332,415 @@
     "intent": "thank",
     "intent_prediction": {
       "name": "greet",
-      "confidence": 0.5198665261268616
+      "confidence": 0.3293728828430176
     }
   },
   {
-    "text": "good day",
-    "intent": "goodbye",
+    "text": "talk to a person",
+    "intent": "request_operator",
+    "intent_prediction": {
+      "name": "inform_smoke_slight",
+      "confidence": 0.13594555854797363
+    }
+  },
+  {
+    "text": "emergency hotline",
+    "intent": "request_emergency_numbers",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.283876895904541
+    }
+  },
+  {
+    "text": "need accommodation",
+    "intent": "request_supply",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.19908981025218964
+    }
+  },
+  {
+    "text": "book me a taxi",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "request_operator",
+      "confidence": 0.09563963860273361
+    }
+  },
+  {
+    "text": "open a game",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "inform_duration_short",
+      "confidence": 0.23638993501663208
+    }
+  },
+  {
+    "text": "hey",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.32048535346984863
+    }
+  },
+  {
+    "text": "life threatening situation",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.3862272799015045
+    }
+  },
+  {
+    "text": "dangerous situation here",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_temp_dangerous",
+      "confidence": 0.2559151351451874
+    }
+  },
+  {
+    "text": "no way out",
+    "intent": "report_trapped",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.9042268991470337
+    }
+  },
+  {
+    "text": "no immediate danger",
+    "intent": "report_safe",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.9848819375038147
+    }
+  },
+  {
+    "text": "water level rising fast",
+    "intent": "report_flood",
+    "intent_prediction": {
+      "name": "inform_trend_fast",
+      "confidence": 0.9257156252861023
+    }
+  },
+  {
+    "text": "no treatment needed",
+    "intent": "inform_medical_none",
+    "intent_prediction": {
+      "name": "inform_medical_injured",
+      "confidence": 0.4852604568004608
+    }
+  },
+  {
+    "text": "no wounds",
+    "intent": "inform_medical_none",
+    "intent_prediction": {
+      "name": "inform_medical_injured",
+      "confidence": 0.6606407761573792
+    }
+  },
+  {
+    "text": "all clear medically",
+    "intent": "inform_medical_none",
+    "intent_prediction": {
+      "name": "inform_smoke_none",
+      "confidence": 0.3928726017475128
+    }
+  },
+  {
+    "text": "sprained ankle",
+    "intent": "inform_medical_injured",
+    "intent_prediction": {
+      "name": "inform_water_below_10cm",
+      "confidence": 0.8919060230255127
+    }
+  },
+  {
+    "text": "needs first aid",
+    "intent": "inform_medical_injured",
+    "intent_prediction": {
+      "name": "request_warnings",
+      "confidence": 0.1379551738500595
+    }
+  },
+  {
+    "text": "breathing stopped",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "inform_smoke_none",
+      "confidence": 0.4611247479915619
+    }
+  },
+  {
+    "text": "below 10cm",
+    "intent": "inform_water_below_10cm",
+    "intent_prediction": {
+      "name": "inform_water_10_30cm",
+      "confidence": 0.8548416495323181
+    }
+  },
+  {
+    "text": "barely covering shoes",
+    "intent": "inform_water_below_10cm",
     "intent_prediction": {
       "name": "inform_duration_long",
-      "confidence": 0.3198423981666565
+      "confidence": 0.3434021472930908
+    }
+  },
+  {
+    "text": "lower leg deep",
+    "intent": "inform_water_10_30cm",
+    "intent_prediction": {
+      "name": "inform_medical_injured",
+      "confidence": 0.28964555263519287
+    }
+  },
+  {
+    "text": "half a meter deep",
+    "intent": "inform_water_30_60cm",
+    "intent_prediction": {
+      "name": "inform_water_above_60cm",
+      "confidence": 0.7771863341331482
+    }
+  },
+  {
+    "text": "about half a meter",
+    "intent": "inform_water_30_60cm",
+    "intent_prediction": {
+      "name": "inform_duration_medium",
+      "confidence": 0.22175517678260803
+    }
+  },
+  {
+    "text": "stable",
+    "intent": "inform_trend_stable",
+    "intent_prediction": {
+      "name": "inform_temp_normal",
+      "confidence": 0.39169684052467346
+    }
+  },
+  {
+    "text": "level is constant",
+    "intent": "inform_trend_stable",
+    "intent_prediction": {
+      "name": "inform_temp_uncomfortable",
+      "confidence": 0.13446694612503052
+    }
+  },
+  {
+    "text": "inching up",
+    "intent": "inform_trend_slowly",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.1908646821975708
+    }
+  },
+  {
+    "text": "rising bit by bit",
+    "intent": "inform_trend_slowly",
+    "intent_prediction": {
+      "name": "inform_temp_uncomfortable",
+      "confidence": 0.2860332131385803
+    }
+  },
+  {
+    "text": "level is shooting up",
+    "intent": "inform_trend_fast",
+    "intent_prediction": {
+      "name": "inform_floor_upper",
+      "confidence": 0.10362701117992401
+    }
+  },
+  {
+    "text": "sublevel",
+    "intent": "inform_floor_basement",
+    "intent_prediction": {
+      "name": "inform_medical_injured",
+      "confidence": 0.2298198640346527
+    }
+  },
+  {
+    "text": "main floor",
+    "intent": "inform_floor_ground",
+    "intent_prediction": {
+      "name": "inform_floor_upper",
+      "confidence": 0.336072713136673
+    }
+  },
+  {
+    "text": "lobby level",
+    "intent": "inform_floor_ground",
+    "intent_prediction": {
+      "name": "inform_building_ground",
+      "confidence": 0.09822169691324234
+    }
+  },
+  {
+    "text": "fire in the hallway",
+    "intent": "inform_hazard_fire",
+    "intent_prediction": {
+      "name": "inform_fire_visible",
+      "confidence": 0.26034465432167053
+    }
+  },
+  {
+    "text": "no extra dangers",
+    "intent": "inform_hazard_none",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.9091172218322754
+    }
+  },
+  {
+    "text": "all clear",
+    "intent": "inform_hazard_none",
+    "intent_prediction": {
+      "name": "inform_smoke_none",
+      "confidence": 0.7719295024871826
+    }
+  },
+  {
+    "text": "no risks",
+    "intent": "inform_hazard_none",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.21224988996982574
+    }
+  },
+  {
+    "text": "nearby",
+    "intent": "inform_fire_nearby",
+    "intent_prediction": {
+      "name": "report_wildfire",
+      "confidence": 0.3245502710342407
+    }
+  },
+  {
+    "text": "fire nearby",
+    "intent": "inform_fire_nearby",
+    "intent_prediction": {
+      "name": "report_wildfire",
+      "confidence": 0.8028427362442017
+    }
+  },
+  {
+    "text": "no visible smoke",
+    "intent": "inform_smoke_none",
+    "intent_prediction": {
+      "name": "inform_fire_visible",
+      "confidence": 0.7805373072624207
+    }
+  },
+  {
+    "text": "some smoke",
+    "intent": "inform_smoke_slight",
+    "intent_prediction": {
+      "name": "inform_smoke_cant",
+      "confidence": 0.3215242922306061
+    }
+  },
+  {
+    "text": "no air to breathe",
+    "intent": "inform_smoke_cant",
+    "intent_prediction": {
+      "name": "inform_smoke_none",
+      "confidence": 0.9442155361175537
+    }
+  },
+  {
+    "text": "too cold",
+    "intent": "inform_temp_uncomfortable",
+    "intent_prediction": {
+      "name": "inform_temp_dangerous",
+      "confidence": 0.5038753747940063
+    }
+  },
+  {
+    "text": "unsafe temperature",
+    "intent": "inform_temp_dangerous",
+    "intent_prediction": {
+      "name": "inform_temp_normal",
+      "confidence": 0.7536928057670593
+    }
+  },
+  {
+    "text": "ground plus one",
+    "intent": "inform_building_ground",
+    "intent_prediction": {
+      "name": "inform_floor_ground",
+      "confidence": 0.1608026772737503
+    }
+  },
+  {
+    "text": "building has 1 or 2 floors",
+    "intent": "inform_building_ground",
+    "intent_prediction": {
+      "name": "inform_building_mid",
+      "confidence": 0.5034704208374023
+    }
+  },
+  {
+    "text": "low rise block",
+    "intent": "inform_building_ground",
+    "intent_prediction": {
+      "name": "inform_building_high",
+      "confidence": 0.3551774322986603
+    }
+  },
+  {
+    "text": "tall building with many floors",
+    "intent": "inform_building_high",
+    "intent_prediction": {
+      "name": "inform_building_ground",
+      "confidence": 0.5964421629905701
+    }
+  },
+  {
+    "text": "10 hours",
+    "intent": "inform_duration_medium",
+    "intent_prediction": {
+      "name": "inform_duration_long",
+      "confidence": 0.4111378788948059
+    }
+  },
+  {
+    "text": "almost a day",
+    "intent": "inform_duration_medium",
+    "intent_prediction": {
+      "name": "inform_duration_long",
+      "confidence": 0.47893375158309937
+    }
+  },
+  {
+    "text": "half day",
+    "intent": "inform_duration_medium",
+    "intent_prediction": {
+      "name": "inform_duration_long",
+      "confidence": 0.861979067325592
+    }
+  },
+  {
+    "text": "many hours",
+    "intent": "inform_duration_long",
+    "intent_prediction": {
+      "name": "inform_duration_short",
+      "confidence": 0.47724229097366333
+    }
+  },
+  {
+    "text": "absolutely not",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.7422648668289185
+    }
+  },
+  {
+    "text": "see you again",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.715090811252594
     }
   },
   {
@@ -2172,15 +748,1087 @@
     "intent": "request_general_info",
     "intent_prediction": {
       "name": "report_emergency",
-      "confidence": 0.9209336638450623
+      "confidence": 0.29757067561149597
     }
   },
   {
-    "text": "shelter locations",
-    "intent": "request_supply_points",
+    "text": "is it safe to stay",
+    "intent": "request_evacuation_info",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.8683763742446899
+    }
+  },
+  {
+    "text": "who to call",
+    "intent": "request_emergency_numbers",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.2336122840642929
+    }
+  },
+  {
+    "text": "show me the news",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "request_safe_menu",
+      "confidence": 0.10873537510633469
+    }
+  },
+  {
+    "text": "good morning",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.46964213252067566
+    }
+  },
+  {
+    "text": "immediate danger here",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.9143690466880798
+    }
+  },
+  {
+    "text": "emergency support now",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_none",
+      "confidence": 0.4108268916606903
+    }
+  },
+  {
+    "text": "water is above the curb",
+    "intent": "report_flood",
+    "intent_prediction": {
+      "name": "inform_water_above_60cm",
+      "confidence": 0.40074342489242554
+    }
+  },
+  {
+    "text": "brush fire nearby",
+    "intent": "report_wildfire",
+    "intent_prediction": {
+      "name": "inform_fire_nearby",
+      "confidence": 0.5063382387161255
+    }
+  },
+  {
+    "text": "need insulin",
+    "intent": "inform_medical_medications",
+    "intent_prediction": {
+      "name": "request_supply",
+      "confidence": 0.11773274838924408
+    }
+  },
+  {
+    "text": "needs cpr",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "request_evacuation_info",
+      "confidence": 0.13706183433532715
+    }
+  },
+  {
+    "text": "only a little water",
+    "intent": "inform_water_below_10cm",
+    "intent_prediction": {
+      "name": "inform_trend_slowly",
+      "confidence": 0.8123080730438232
+    }
+  },
+  {
+    "text": "31-60 cm deep",
+    "intent": "inform_water_30_60cm",
+    "intent_prediction": {
+      "name": "inform_water_10_30cm",
+      "confidence": 0.6591840982437134
+    }
+  },
+  {
+    "text": "water is very high",
+    "intent": "inform_water_above_60cm",
+    "intent_prediction": {
+      "name": "inform_water_below_10cm",
+      "confidence": 0.506737232208252
+    }
+  },
+  {
+    "text": "not falling",
+    "intent": "inform_trend_stable",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.39851847290992737
+    }
+  },
+  {
+    "text": "base level",
+    "intent": "inform_floor_ground",
+    "intent_prediction": {
+      "name": "inform_floor_basement",
+      "confidence": 0.5637286305427551
+    }
+  },
+  {
+    "text": "upstairs",
+    "intent": "inform_floor_upper",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.4799053966999054
+    }
+  },
+  {
+    "text": "top floor",
+    "intent": "inform_floor_upper",
+    "intent_prediction": {
+      "name": "inform_floor_ground",
+      "confidence": 0.17092184722423553
+    }
+  },
+  {
+    "text": "none",
+    "intent": "inform_hazard_none",
+    "intent_prediction": {
+      "name": "inform_medical_none",
+      "confidence": 0.24778875708580017
+    }
+  },
+  {
+    "text": "nothing dangerous",
+    "intent": "inform_hazard_none",
+    "intent_prediction": {
+      "name": "inform_temp_dangerous",
+      "confidence": 0.4453832507133484
+    }
+  },
+  {
+    "text": "no flames seen",
+    "intent": "inform_fire_none",
+    "intent_prediction": {
+      "name": "inform_fire_visible",
+      "confidence": 0.7762629389762878
+    }
+  },
+  {
+    "text": "fire not in sight",
+    "intent": "inform_fire_none",
+    "intent_prediction": {
+      "name": "inform_fire_visible",
+      "confidence": 0.6700397729873657
+    }
+  },
+  {
+    "text": "fire next to us",
+    "intent": "inform_fire_nearby",
+    "intent_prediction": {
+      "name": "inform_fire_none",
+      "confidence": 0.2787224054336548
+    }
+  },
+  {
+    "text": "fire is closing in",
+    "intent": "inform_fire_surrounding",
+    "intent_prediction": {
+      "name": "inform_fire_nearby",
+      "confidence": 0.9189043641090393
+    }
+  },
+  {
+    "text": "no smoke in the room",
+    "intent": "inform_smoke_none",
+    "intent_prediction": {
+      "name": "inform_smoke_slight",
+      "confidence": 0.6387813091278076
+    }
+  },
+  {
+    "text": "fresh air",
+    "intent": "inform_smoke_none",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.1300179660320282
+    }
+  },
+  {
+    "text": "air is fine",
+    "intent": "inform_smoke_none",
+    "intent_prediction": {
+      "name": "inform_temp_normal",
+      "confidence": 0.4201851487159729
+    }
+  },
+  {
+    "text": "a little smoke",
+    "intent": "inform_smoke_slight",
+    "intent_prediction": {
+      "name": "inform_trend_slowly",
+      "confidence": 0.4269120395183563
+    }
+  },
+  {
+    "text": "severe smoke",
+    "intent": "inform_smoke_cant",
+    "intent_prediction": {
+      "name": "inform_smoke_slight",
+      "confidence": 0.5520777106285095
+    }
+  },
+  {
+    "text": "smoke is thick",
+    "intent": "inform_smoke_cant",
+    "intent_prediction": {
+      "name": "inform_smoke_slight",
+      "confidence": 0.6468287110328674
+    }
+  },
+  {
+    "text": "feels normal",
+    "intent": "inform_temp_normal",
+    "intent_prediction": {
+      "name": "inform_temp_uncomfortable",
+      "confidence": 0.4022546410560608
+    }
+  },
+  {
+    "text": "freezing",
+    "intent": "inform_temp_dangerous",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.15191078186035156
+    }
+  },
+  {
+    "text": "single story house",
+    "intent": "inform_building_ground",
+    "intent_prediction": {
+      "name": "inform_building_high",
+      "confidence": 0.20348012447357178
+    }
+  },
+  {
+    "text": "building has 3 to 5 floors",
+    "intent": "inform_building_mid",
+    "intent_prediction": {
+      "name": "inform_building_ground",
+      "confidence": 0.49050500988960266
+    }
+  },
+  {
+    "text": "building has 6 or more floors",
+    "intent": "inform_building_high",
+    "intent_prediction": {
+      "name": "inform_building_ground",
+      "confidence": 0.9376765489578247
+    }
+  },
+  {
+    "text": "only a few hours",
+    "intent": "inform_duration_short",
+    "intent_prediction": {
+      "name": "inform_duration_medium",
+      "confidence": 0.30395352840423584
+    }
+  },
+  {
+    "text": "a short outage",
+    "intent": "inform_duration_short",
+    "intent_prediction": {
+      "name": "report_outage",
+      "confidence": 0.7443918585777283
+    }
+  },
+  {
+    "text": "overnight outage",
+    "intent": "inform_duration_medium",
+    "intent_prediction": {
+      "name": "report_outage",
+      "confidence": 0.6501759886741638
+    }
+  },
+  {
+    "text": "36 hours",
+    "intent": "inform_duration_long",
+    "intent_prediction": {
+      "name": "inform_duration_medium",
+      "confidence": 0.45932987332344055
+    }
+  },
+  {
+    "text": "please do",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.9046100974082947
+    }
+  },
+  {
+    "text": "not correct",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9712635278701782
+    }
+  },
+  {
+    "text": "can i speak to someone",
+    "intent": "request_operator",
+    "intent_prediction": {
+      "name": "inform_medical_injured",
+      "confidence": 0.6485738754272461
+    }
+  },
+  {
+    "text": "update my address",
+    "intent": "change_location",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.49546921253204346
+    }
+  },
+  {
+    "text": "good afternoon",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.8508703112602234
+    }
+  },
+  {
+    "text": "good evening",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.7905299067497253
+    }
+  },
+  {
+    "text": "we are in serious danger",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.8310555219650269
+    }
+  },
+  {
+    "text": "sos",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.14214815199375153
+    }
+  },
+  {
+    "text": "cannot leave the room",
+    "intent": "report_trapped",
+    "intent_prediction": {
+      "name": "request_evacuation_info",
+      "confidence": 0.7600073218345642
+    }
+  },
+  {
+    "text": "basement is flooding",
+    "intent": "report_flood",
+    "intent_prediction": {
+      "name": "inform_floor_basement",
+      "confidence": 0.38164564967155457
+    }
+  },
+  {
+    "text": "water has reached the door",
+    "intent": "report_flood",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.2648463547229767
+    }
+  },
+  {
+    "text": "bushfire nearby",
+    "intent": "report_wildfire",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.5156368613243103
+    }
+  },
+  {
+    "text": "lights are out",
+    "intent": "report_outage",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.7775653004646301
+    }
+  },
+  {
+    "text": "nobody needs a doctor",
+    "intent": "inform_medical_none",
+    "intent_prediction": {
+      "name": "inform_medical_medications",
+      "confidence": 0.6900548338890076
+    }
+  },
+  {
+    "text": "has a deep cut",
+    "intent": "inform_medical_injured",
+    "intent_prediction": {
+      "name": "report_outage",
+      "confidence": 0.24420873820781708
+    }
+  },
+  {
+    "text": "life threatening",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.424647718667984
+    }
+  },
+  {
+    "text": "cardiac arrest",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "inform_floor_basement",
+      "confidence": 0.07767290621995926
+    }
+  },
+  {
+    "text": "severe burns",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "inform_temp_dangerous",
+      "confidence": 0.3539876639842987
+    }
+  },
+  {
+    "text": "about 8 cm",
+    "intent": "inform_water_below_10cm",
+    "intent_prediction": {
+      "name": "inform_water_10_30cm",
+      "confidence": 0.9271103739738464
+    }
+  },
+  {
+    "text": "11-30 cm deep",
+    "intent": "inform_water_10_30cm",
+    "intent_prediction": {
+      "name": "inform_water_30_60cm",
+      "confidence": 0.5979253649711609
+    }
+  },
+  {
+    "text": "about 50 cm",
+    "intent": "inform_water_30_60cm",
+    "intent_prediction": {
+      "name": "inform_water_10_30cm",
+      "confidence": 0.9271103739738464
+    }
+  },
+  {
+    "text": "mid body depth",
+    "intent": "inform_water_30_60cm",
+    "intent_prediction": {
+      "name": "inform_water_10_30cm",
+      "confidence": 0.6275738477706909
+    }
+  },
+  {
+    "text": "chest deep",
+    "intent": "inform_water_above_60cm",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.5714508295059204
+    }
+  },
+  {
+    "text": "water above 1 meter",
+    "intent": "inform_water_above_60cm",
+    "intent_prediction": {
+      "name": "inform_floor_upper",
+      "confidence": 0.1838308721780777
+    }
+  },
+  {
+    "text": "not rising",
+    "intent": "inform_trend_stable",
+    "intent_prediction": {
+      "name": "inform_trend_slowly",
+      "confidence": 0.3945348560810089
+    }
+  },
+  {
+    "text": "sharp rise",
+    "intent": "inform_trend_fast",
+    "intent_prediction": {
+      "name": "inform_trend_slowly",
+      "confidence": 0.31604406237602234
+    }
+  },
+  {
+    "text": "below street level",
+    "intent": "inform_floor_basement",
+    "intent_prediction": {
+      "name": "inform_floor_ground",
+      "confidence": 0.36447176337242126
+    }
+  },
+  {
+    "text": "electrical short",
+    "intent": "inform_hazard_electricity",
+    "intent_prediction": {
+      "name": "inform_duration_short",
+      "confidence": 0.31862640380859375
+    }
+  },
+  {
+    "text": "damaged power line",
+    "intent": "inform_hazard_electricity",
+    "intent_prediction": {
+      "name": "report_outage",
+      "confidence": 0.3604210913181305
+    }
+  },
+  {
+    "text": "nothing else",
+    "intent": "inform_hazard_none",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.9297784566879272
+    }
+  },
+  {
+    "text": "not visible",
+    "intent": "inform_fire_none",
+    "intent_prediction": {
+      "name": "inform_fire_visible",
+      "confidence": 0.7090336084365845
+    }
+  },
+  {
+    "text": "fire at the door",
+    "intent": "inform_fire_nearby",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.5870600342750549
+    }
+  },
+  {
+    "text": "breathing fine",
+    "intent": "inform_smoke_none",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.3793506324291229
+    }
+  },
+  {
+    "text": "no breathing problems",
+    "intent": "inform_smoke_none",
+    "intent_prediction": {
+      "name": "inform_hazard_none",
+      "confidence": 0.6095232963562012
+    }
+  },
+  {
+    "text": "not comfortable",
+    "intent": "inform_temp_uncomfortable",
+    "intent_prediction": {
+      "name": "inform_temp_normal",
+      "confidence": 0.6522254943847656
+    }
+  },
+  {
+    "text": "chilly inside",
+    "intent": "inform_temp_uncomfortable",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.14997994899749756
+    }
+  },
+  {
+    "text": "temperature is unpleasant",
+    "intent": "inform_temp_uncomfortable",
+    "intent_prediction": {
+      "name": "inform_temp_normal",
+      "confidence": 0.6148755550384521
+    }
+  },
+  {
+    "text": "too cold to stay",
+    "intent": "inform_temp_dangerous",
+    "intent_prediction": {
+      "name": "inform_temp_uncomfortable",
+      "confidence": 0.3994322121143341
+    }
+  },
+  {
+    "text": "short building",
+    "intent": "inform_building_ground",
+    "intent_prediction": {
+      "name": "inform_duration_short",
+      "confidence": 0.6979395151138306
+    }
+  },
+  {
+    "text": "mid rise building",
+    "intent": "inform_building_mid",
+    "intent_prediction": {
+      "name": "inform_building_high",
+      "confidence": 0.4479670226573944
+    }
+  },
+  {
+    "text": "a 3-5 floor building",
+    "intent": "inform_building_mid",
+    "intent_prediction": {
+      "name": "inform_building_ground",
+      "confidence": 0.43143361806869507
+    }
+  },
+  {
+    "text": "10 story building",
+    "intent": "inform_building_high",
+    "intent_prediction": {
+      "name": "inform_building_mid",
+      "confidence": 0.5163413286209106
+    }
+  },
+  {
+    "text": "1 hour",
+    "intent": "inform_duration_short",
+    "intent_prediction": {
+      "name": "inform_duration_medium",
+      "confidence": 0.5189871191978455
+    }
+  },
+  {
+    "text": "2 hours",
+    "intent": "inform_duration_short",
+    "intent_prediction": {
+      "name": "inform_duration_medium",
+      "confidence": 0.5189871191978455
+    }
+  },
+  {
+    "text": "long time",
+    "intent": "inform_duration_long",
+    "intent_prediction": {
+      "name": "inform_duration_short",
+      "confidence": 0.6995210647583008
+    }
+  },
+  {
+    "text": "affirmative",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.06378626823425293
+    }
+  },
+  {
+    "text": "nope",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.39704880118370056
+    }
+  },
+  {
+    "text": "negative",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.07359698414802551
+    }
+  },
+  {
+    "text": "farewell",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.12472368776798248
+    }
+  },
+  {
+    "text": "need hygiene kit",
+    "intent": "request_supply",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.1893576979637146
+    }
+  },
+  {
+    "text": "who are you",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.42611855268478394
+    }
+  },
+  {
+    "text": "update location details",
+    "intent": "change_location",
+    "intent_prediction": {
+      "name": "request_supply_points",
+      "confidence": 0.2142302244901657
+    }
+  },
+  {
+    "text": "anyone there",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.3248756527900696
+    }
+  },
+  {
+    "text": "major incident unfolding",
+    "intent": "report_emergency",
     "intent_prediction": {
       "name": "report_flood",
-      "confidence": 0.2773500084877014
+      "confidence": 0.18977034091949463
+    }
+  },
+  {
+    "text": "critical incident",
+    "intent": "report_emergency",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.956391453742981
+    }
+  },
+  {
+    "text": "no electric supply",
+    "intent": "report_outage",
+    "intent_prediction": {
+      "name": "inform_hazard_electricity",
+      "confidence": 0.6458550095558167
+    }
+  },
+  {
+    "text": "no one needs care",
+    "intent": "inform_medical_none",
+    "intent_prediction": {
+      "name": "inform_medical_injured",
+      "confidence": 0.3828122615814209
+    }
+  },
+  {
+    "text": "injured person here",
+    "intent": "inform_medical_injured",
+    "intent_prediction": {
+      "name": "inform_medical_none",
+      "confidence": 0.3937431573867798
+    }
+  },
+  {
+    "text": "broken arm",
+    "intent": "inform_medical_injured",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.49902409315109253
+    }
+  },
+  {
+    "text": "laceration",
+    "intent": "inform_medical_injured",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.12009964883327484
+    }
+  },
+  {
+    "text": "no pulse",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "inform_hazard_none",
+      "confidence": 0.19362007081508636
+    }
+  },
+  {
+    "text": "massive bleeding",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "inform_medical_injured",
+      "confidence": 0.5114670991897583
+    }
+  },
+  {
+    "text": "around 5 cm",
+    "intent": "inform_water_below_10cm",
+    "intent_prediction": {
+      "name": "inform_water_10_30cm",
+      "confidence": 0.9397008419036865
+    }
+  },
+  {
+    "text": "between 11 and 30 cm",
+    "intent": "inform_water_10_30cm",
+    "intent_prediction": {
+      "name": "inform_water_30_60cm",
+      "confidence": 0.92449951171875
+    }
+  },
+  {
+    "text": "water at calf height",
+    "intent": "inform_water_10_30cm",
+    "intent_prediction": {
+      "name": "inform_water_above_60cm",
+      "confidence": 0.3274584412574768
+    }
+  },
+  {
+    "text": "mid shin depth",
+    "intent": "inform_water_10_30cm",
+    "intent_prediction": {
+      "name": "inform_water_30_60cm",
+      "confidence": 0.8203157782554626
+    }
+  },
+  {
+    "text": "around 40 cm",
+    "intent": "inform_water_30_60cm",
+    "intent_prediction": {
+      "name": "inform_water_10_30cm",
+      "confidence": 0.9397008419036865
+    }
+  },
+  {
+    "text": "roughly 45 cm",
+    "intent": "inform_water_30_60cm",
+    "intent_prediction": {
+      "name": "inform_water_10_30cm",
+      "confidence": 0.7072020769119263
+    }
+  },
+  {
+    "text": "almost neck high",
+    "intent": "inform_water_above_60cm",
+    "intent_prediction": {
+      "name": "inform_duration_medium",
+      "confidence": 0.6470572352409363
+    }
+  },
+  {
+    "text": "no change",
+    "intent": "inform_trend_stable",
+    "intent_prediction": {
+      "name": "inform_trend_slowly",
+      "confidence": 0.28845253586769104
+    }
+  },
+  {
+    "text": "no movement in level",
+    "intent": "inform_trend_stable",
+    "intent_prediction": {
+      "name": "inform_floor_basement",
+      "confidence": 0.378522664308548
+    }
+  },
+  {
+    "text": "water creeping up",
+    "intent": "inform_trend_slowly",
+    "intent_prediction": {
+      "name": "inform_water_below_10cm",
+      "confidence": 0.24964335560798645
+    }
+  },
+  {
+    "text": "sudden rise",
+    "intent": "inform_trend_fast",
+    "intent_prediction": {
+      "name": "inform_trend_slowly",
+      "confidence": 0.41323354840278625
+    }
+  },
+  {
+    "text": "bottom floor",
+    "intent": "inform_floor_ground",
+    "intent_prediction": {
+      "name": "inform_floor_upper",
+      "confidence": 0.6169379949569702
+    }
+  },
+  {
+    "text": "fire",
+    "intent": "inform_hazard_fire",
+    "intent_prediction": {
+      "name": "inform_fire_nearby",
+      "confidence": 0.6070501208305359
+    }
+  },
+  {
+    "text": "cant see fire",
+    "intent": "inform_fire_none",
+    "intent_prediction": {
+      "name": "inform_hazard_fire",
+      "confidence": 0.2024354636669159
+    }
+  },
+  {
+    "text": "fire is distant",
+    "intent": "inform_fire_none",
+    "intent_prediction": {
+      "name": "inform_fire_visible",
+      "confidence": 0.719383180141449
+    }
+  },
+  {
+    "text": "i see flames",
+    "intent": "inform_fire_visible",
+    "intent_prediction": {
+      "name": "inform_hazard_fire",
+      "confidence": 0.395886093378067
+    }
+  },
+  {
+    "text": "flames in sight",
+    "intent": "inform_fire_visible",
+    "intent_prediction": {
+      "name": "inform_hazard_fire",
+      "confidence": 0.37488242983818054
+    }
+  },
+  {
+    "text": "extremely close",
+    "intent": "inform_fire_nearby",
+    "intent_prediction": {
+      "name": "inform_temp_dangerous",
+      "confidence": 0.7277311086654663
+    }
+  },
+  {
+    "text": "breathing is normal",
+    "intent": "inform_smoke_none",
+    "intent_prediction": {
+      "name": "inform_temp_normal",
+      "confidence": 0.3665578067302704
+    }
+  },
+  {
+    "text": "hard to breathe at all",
+    "intent": "inform_smoke_cant",
+    "intent_prediction": {
+      "name": "inform_smoke_slight",
+      "confidence": 0.2594897747039795
+    }
+  },
+  {
+    "text": "visibility low from smoke",
+    "intent": "inform_smoke_cant",
+    "intent_prediction": {
+      "name": "inform_fire_visible",
+      "confidence": 0.08990942686796188
+    }
+  },
+  {
+    "text": "comfortable",
+    "intent": "inform_temp_normal",
+    "intent_prediction": {
+      "name": "inform_temp_uncomfortable",
+      "confidence": 0.7721951603889465
+    }
+  },
+  {
+    "text": "fine conditions",
+    "intent": "inform_temp_normal",
+    "intent_prediction": {
+      "name": "inform_hazard_none",
+      "confidence": 0.15064115822315216
+    }
+  },
+  {
+    "text": "no heat or cold issues",
+    "intent": "inform_temp_normal",
+    "intent_prediction": {
+      "name": "inform_temp_dangerous",
+      "confidence": 0.501461386680603
+    }
+  },
+  {
+    "text": "risk of hypothermia",
+    "intent": "inform_temp_dangerous",
+    "intent_prediction": {
+      "name": "inform_hazard_none",
+      "confidence": 0.2410251349210739
+    }
+  },
+  {
+    "text": "more than five floors",
+    "intent": "inform_building_high",
+    "intent_prediction": {
+      "name": "inform_building_mid",
+      "confidence": 0.586919367313385
+    }
+  },
+  {
+    "text": "3 hours",
+    "intent": "inform_duration_short",
+    "intent_prediction": {
+      "name": "inform_duration_medium",
+      "confidence": 0.7236543297767639
+    }
+  },
+  {
+    "text": "about five hours",
+    "intent": "inform_duration_short",
+    "intent_prediction": {
+      "name": "inform_duration_medium",
+      "confidence": 0.6160287261009216
+    }
+  },
+  {
+    "text": "30 hours",
+    "intent": "inform_duration_long",
+    "intent_prediction": {
+      "name": "inform_duration_medium",
+      "confidence": 0.7236543297767639
+    }
+  },
+  {
+    "text": "please continue",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.27811506390571594
+    }
+  },
+  {
+    "text": "no thank you",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.6217081546783447
+    }
+  },
+  {
+    "text": "grateful",
+    "intent": "thank",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.1292557269334793
+    }
+  },
+  {
+    "text": "take care",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.2057439684867859
+    }
+  },
+  {
+    "text": "good day",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "inform_duration_long",
+      "confidence": 0.6438533067703247
+    }
+  },
+  {
+    "text": "leave the area",
+    "intent": "request_evacuation_info",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.21717315912246704
     }
   },
   {
@@ -2188,7 +1836,7 @@
     "intent": "request_safe_menu",
     "intent_prediction": {
       "name": "request_general_info",
-      "confidence": 0.5082612633705139
+      "confidence": 0.5396108627319336
     }
   },
   {
@@ -2196,15 +1844,15 @@
     "intent": "out_of_scope",
     "intent_prediction": {
       "name": "request_general_info",
-      "confidence": 0.6430210471153259
+      "confidence": 0.7484968900680542
     }
   },
   {
-    "text": "open a game",
+    "text": "order pizza",
     "intent": "out_of_scope",
     "intent_prediction": {
-      "name": "inform_smoke_none",
-      "confidence": 0.22113366425037384
+      "name": "request_safe_menu",
+      "confidence": 0.09860071539878845
     }
   }
 ]

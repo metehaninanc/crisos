@@ -288,31 +288,35 @@ def _rag_dspy_answer(question: str) -> Optional[str]:
 
     dspy_module = _try_import_dspy()
     if dspy_module is not None and _configure_dspy() is not None:
-        class RagAnswer(dspy_module.Signature):
-            """Answer using the provided context."""
+        try:
+            class RagAnswer(dspy_module.Signature):
+                """Answer using the provided context."""
 
-            question: str
-            context: str
-            answer: str
+                question: str
+                context: str
+                answer: str
 
-        class RagModule(dspy_module.Module):
-            # Sets up the DSPy predictor for this module.
-            def __init__(self):
-                super().__init__()
-                self.generate = dspy_module.Predict(RagAnswer)
+            class RagModule(dspy_module.Module):
+                # Sets up the DSPy predictor for this module.
+                def __init__(self):
+                    super().__init__()
+                    self.generate = dspy_module.Predict(RagAnswer)
 
-            # Runs the predictor and returns its output.
-            def forward(self, question: str, context: str):
-                return self.generate(question=question, context=context)
+                # Runs the predictor and returns its output.
+                def forward(self, question: str, context: str):
+                    return self.generate(question=question, context=context)
 
-        module = RagModule()
-        question_text = (
-            f"{question}\nFormat: {RAG_ANSWER_FORMAT}"
-            if format_hint
-            else question
-        )
-        result = module(question=question_text, context=context_text)
-        answer = str(result.answer).strip() if result and getattr(result, "answer", None) else ""
+            module = RagModule()
+            question_text = (
+                f"{question}\nFormat: {RAG_ANSWER_FORMAT}"
+                if format_hint
+                else question
+            )
+            result = module(question=question_text, context=context_text)
+            answer = str(result.answer).strip() if result and getattr(result, "answer", None) else ""
+        except Exception as exc:
+            print(f"[RAG] DSPy failed, falling back to OpenAI: {exc}")
+            answer = lm(prompt)
     else:
         answer = lm(prompt)
 
