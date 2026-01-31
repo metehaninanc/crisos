@@ -1,26 +1,778 @@
 [
   {
-    "text": "2 hours.",
-    "intent": "inform_duration_short",
+    "text": "Hi, I have an emergency question.",
+    "intent": "greet",
     "intent_prediction": {
-      "name": "inform_duration_medium",
-      "confidence": 0.6247414350509644
+      "name": "report_emergency",
+      "confidence": 0.27634215354919434
     }
   },
   {
-    "text": "please 5 hours.",
-    "intent": "inform_duration_short",
+    "text": "Someone’s life may be at risk here.",
+    "intent": "report_emergency",
     "intent_prediction": {
-      "name": "inform_duration_medium",
-      "confidence": 0.7409396767616272
+      "name": "inform_medical_critical",
+      "confidence": 0.8749710321426392
     }
   },
   {
-    "text": "please 24 hours",
+    "text": "I'm unable to evacuate.",
+    "intent": "report_trapped",
+    "intent_prediction": {
+      "name": "request_evacuation_info",
+      "confidence": 0.9676105976104736
+    }
+  },
+  {
+    "text": "I'm in a secure place right now.",
+    "intent": "report_safe",
+    "intent_prediction": {
+      "name": "inform_trend_slowly",
+      "confidence": 0.1818104386329651
+    }
+  },
+  {
+    "text": "I'm fine, no emergency right now.",
+    "intent": "report_safe",
+    "intent_prediction": {
+      "name": "inform_medical_none",
+      "confidence": 0.571791410446167
+    }
+  },
+  {
+    "text": "One person is hurt, not life-threatening.",
+    "intent": "inform_medical_injured",
+    "intent_prediction": {
+      "name": "inform_medical_critical",
+      "confidence": 0.2848981022834778
+    }
+  },
+  {
+    "text": "Possible heart attack symptoms here.",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "inform_smoke_cant",
+      "confidence": 0.35950207710266113
+    }
+  },
+  {
+    "text": "A person collapsed and needs an ambulance.",
+    "intent": "inform_medical_critical",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.23510754108428955
+    }
+  },
+  {
+    "text": "There's a thin layer of water on the floor.",
+    "intent": "inform_water_below_10cm",
+    "intent_prediction": {
+      "name": "report_flood",
+      "confidence": 0.24136807024478912
+    }
+  },
+  {
+    "text": "Water is just covering the ground slightly.",
+    "intent": "inform_water_below_10cm",
+    "intent_prediction": {
+      "name": "inform_smoke_slight",
+      "confidence": 0.3113340735435486
+    }
+  },
+  {
+    "text": "Just a little water pooled on the ground.",
+    "intent": "inform_water_below_10cm",
+    "intent_prediction": {
+      "name": "inform_trend_slowly",
+      "confidence": 0.15555714070796967
+    }
+  },
+  {
+    "text": "Water reaches around my ankles now.",
+    "intent": "inform_water_10_30cm",
+    "intent_prediction": {
+      "name": "inform_water_30_60cm",
+      "confidence": 0.47101670503616333
+    }
+  },
+  {
+    "text": "It's around 15–25 cm of water.",
+    "intent": "inform_water_10_30cm",
+    "intent_prediction": {
+      "name": "inform_water_30_60cm",
+      "confidence": 0.8119910955429077
+    }
+  },
+  {
+    "text": "Water is covering my shoes and lower legs.",
+    "intent": "inform_water_10_30cm",
+    "intent_prediction": {
+      "name": "inform_water_below_10cm",
+      "confidence": 0.753043532371521
+    }
+  },
+  {
+    "text": "About ankle-to-shin level water.",
+    "intent": "inform_water_10_30cm",
+    "intent_prediction": {
+      "name": "inform_water_below_10cm",
+      "confidence": 0.4521898329257965
+    }
+  },
+  {
+    "text": "Water is up to my knees.",
+    "intent": "inform_water_30_60cm",
+    "intent_prediction": {
+      "name": "inform_water_10_30cm",
+      "confidence": 0.8048446774482727
+    }
+  },
+  {
+    "text": "It's around knee height water level.",
+    "intent": "inform_water_30_60cm",
+    "intent_prediction": {
+      "name": "inform_water_10_30cm",
+      "confidence": 0.7564435005187988
+    }
+  },
+  {
+    "text": "Water is between knee and thigh level.",
+    "intent": "inform_water_30_60cm",
+    "intent_prediction": {
+      "name": "inform_water_10_30cm",
+      "confidence": 0.9380694031715393
+    }
+  },
+  {
+    "text": "Water is around my waist.",
+    "intent": "inform_water_above_60cm",
+    "intent_prediction": {
+      "name": "inform_water_30_60cm",
+      "confidence": 0.8869209885597229
+    }
+  },
+  {
+    "text": "Water is up to my torso.",
+    "intent": "inform_water_above_60cm",
+    "intent_prediction": {
+      "name": "inform_water_30_60cm",
+      "confidence": 0.7733309268951416
+    }
+  },
+  {
+    "text": "Water level is extremely high here.",
+    "intent": "inform_water_above_60cm",
+    "intent_prediction": {
+      "name": "inform_floor_upper",
+      "confidence": 0.3746621012687683
+    }
+  },
+  {
+    "text": "The situation seems stable right now.",
+    "intent": "inform_trend_stable",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.17982491850852966
+    }
+  },
+  {
+    "text": "Smoke is increasing bit by bit.",
+    "intent": "inform_trend_slowly",
+    "intent_prediction": {
+      "name": "inform_smoke_slight",
+      "confidence": 0.42721977829933167
+    }
+  },
+  {
+    "text": "It’s worsening, but not quickly.",
+    "intent": "inform_trend_slowly",
+    "intent_prediction": {
+      "name": "inform_trend_fast",
+      "confidence": 0.6961467862129211
+    }
+  },
+  {
+    "text": "The fire is spreading very fast.",
+    "intent": "inform_trend_fast",
+    "intent_prediction": {
+      "name": "inform_hazard_fire",
+      "confidence": 0.45386868715286255
+    }
+  },
+  {
+    "text": "Ground level, not upstairs.",
+    "intent": "inform_floor_ground",
+    "intent_prediction": {
+      "name": "inform_floor_upper",
+      "confidence": 0.9278041124343872
+    }
+  },
+  {
+    "text": "I'm several floors up.",
+    "intent": "inform_floor_upper",
+    "intent_prediction": {
+      "name": "inform_building_high",
+      "confidence": 0.2828929126262665
+    }
+  },
+  {
+    "text": "I see flames inside the room.",
+    "intent": "inform_hazard_fire",
+    "intent_prediction": {
+      "name": "inform_fire_visible",
+      "confidence": 0.6100098490715027
+    }
+  },
+  {
+    "text": "Fire is present here.",
+    "intent": "inform_hazard_fire",
+    "intent_prediction": {
+      "name": "inform_fire_nearby",
+      "confidence": 0.28692591190338135
+    }
+  },
+  {
+    "text": "No obvious dangers like gas or electricity.",
+    "intent": "inform_hazard_none",
+    "intent_prediction": {
+      "name": "inform_hazard_gas",
+      "confidence": 0.40686824917793274
+    }
+  },
+  {
+    "text": "Seems safe, no hazards detected.",
+    "intent": "inform_hazard_none",
+    "intent_prediction": {
+      "name": "report_safe",
+      "confidence": 0.5693989992141724
+    }
+  },
+  {
+    "text": "I don't see fire, gas, or electrical risks.",
+    "intent": "inform_hazard_none",
+    "intent_prediction": {
+      "name": "inform_hazard_gas",
+      "confidence": 0.5446093678474426
+    }
+  },
+  {
+    "text": "No flames visible from here.",
+    "intent": "inform_fire_none",
+    "intent_prediction": {
+      "name": "inform_fire_visible",
+      "confidence": 0.7632595300674438
+    }
+  },
+  {
+    "text": "The flames seem nearby.",
+    "intent": "inform_fire_nearby",
+    "intent_prediction": {
+      "name": "inform_fire_none",
+      "confidence": 0.884758710861206
+    }
+  },
+  {
+    "text": "It’s near us, not far.",
+    "intent": "inform_fire_nearby",
+    "intent_prediction": {
+      "name": "inform_fire_none",
+      "confidence": 0.8807693123817444
+    }
+  },
+  {
+    "text": "Fire is in the immediate area.",
+    "intent": "inform_fire_nearby",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.33402755856513977
+    }
+  },
+  {
+    "text": "Flames are coming from different directions.",
+    "intent": "inform_fire_surrounding",
+    "intent_prediction": {
+      "name": "change_location",
+      "confidence": 0.3212319314479828
+    }
+  },
+  {
+    "text": "It feels fine, not too hot or cold.",
+    "intent": "inform_temp_normal",
+    "intent_prediction": {
+      "name": "inform_temp_uncomfortable",
+      "confidence": 0.9317795038223267
+    }
+  },
+  {
+    "text": "This is a small house, not tall.",
+    "intent": "inform_building_ground",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.11741149425506592
+    }
+  },
+  {
+    "text": "It's basically ground-floor level housing.",
+    "intent": "inform_building_ground",
+    "intent_prediction": {
+      "name": "inform_floor_ground",
+      "confidence": 0.5715144276618958
+    }
+  },
+  {
+    "text": "This is an apartment block with several floors.",
+    "intent": "inform_building_mid",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.30934542417526245
+    }
+  },
+  {
+    "text": "Not a high-rise, but more than a house.",
+    "intent": "inform_building_mid",
+    "intent_prediction": {
+      "name": "inform_building_high",
+      "confidence": 0.21277794241905212
+    }
+  },
+  {
+    "text": "It started a few minutes ago.",
+    "intent": "inform_duration_short",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.1915336400270462
+    }
+  },
+  {
+    "text": "This began just recently.",
+    "intent": "inform_duration_short",
+    "intent_prediction": {
+      "name": "inform_trend_slowly",
+      "confidence": 0.07963753491640091
+    }
+  },
+  {
+    "text": "It happened within the last 10 minutes.",
+    "intent": "inform_duration_short",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.21339602768421173
+    }
+  },
+  {
+    "text": "Just started moments ago.",
+    "intent": "inform_duration_short",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.5102909803390503
+    }
+  },
+  {
+    "text": "This has been happening since earlier today.",
+    "intent": "inform_duration_medium",
+    "intent_prediction": {
+      "name": "report_outage",
+      "confidence": 0.7441214323043823
+    }
+  },
+  {
+    "text": "Ongoing for a couple of hours.",
+    "intent": "inform_duration_medium",
+    "intent_prediction": {
+      "name": "inform_duration_short",
+      "confidence": 0.9204689264297485
+    }
+  },
+  {
+    "text": "Started roughly 1–3 hours ago.",
+    "intent": "inform_duration_medium",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.32849282026290894
+    }
+  },
+  {
+    "text": "It’s been a while, not just now.",
+    "intent": "inform_duration_medium",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.34745150804519653
+    }
+  },
+  {
+    "text": "Has lasted for several hours.",
+    "intent": "inform_duration_medium",
+    "intent_prediction": {
+      "name": "inform_duration_long",
+      "confidence": 0.3065190017223358
+    }
+  },
+  {
+    "text": "This has been happening all day.",
     "intent": "inform_duration_long",
     "intent_prediction": {
-      "name": "inform_duration_medium",
-      "confidence": 0.46509063243865967
+      "name": "inform_trend_stable",
+      "confidence": 0.15605151653289795
+    }
+  },
+  {
+    "text": "Ongoing since yesterday.",
+    "intent": "inform_duration_long",
+    "intent_prediction": {
+      "name": "change_location",
+      "confidence": 0.10933712124824524
+    }
+  },
+  {
+    "text": "Has continued through the night.",
+    "intent": "inform_duration_long",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.6791055798530579
+    }
+  },
+  {
+    "text": "Go on, please.",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.14753195643424988
+    }
+  },
+  {
+    "text": "Alright, do it.",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.16160669922828674
+    }
+  },
+  {
+    "text": "Please don't proceed.",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.9277319312095642
+    }
+  },
+  {
+    "text": "I'd rather not.",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "inform_medical_none",
+      "confidence": 0.17393609881401062
+    }
+  },
+  {
+    "text": "Hold on—don't do that.",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.8122039437294006
+    }
+  },
+  {
+    "text": "Alright, I’m leaving the chat now.",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.6473811268806458
+    }
+  },
+  {
+    "text": "Ending this conversation now.",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "request_safe_menu",
+      "confidence": 0.1107902079820633
+    }
+  },
+  {
+    "text": "I’ll disconnect now.",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.11440175026655197
+    }
+  },
+  {
+    "text": "Is there a live agent available?",
+    "intent": "request_operator",
+    "intent_prediction": {
+      "name": "request_supply_points",
+      "confidence": 0.12433989346027374
+    }
+  },
+  {
+    "text": "Can you explain what I should do in this situation?",
+    "intent": "request_general_info",
+    "intent_prediction": {
+      "name": "request_evacuation_info",
+      "confidence": 0.3828529715538025
+    }
+  },
+  {
+    "text": "Any official advice I should follow?",
+    "intent": "request_general_info",
+    "intent_prediction": {
+      "name": "request_evacuation_info",
+      "confidence": 0.6803709268569946
+    }
+  },
+  {
+    "text": "How should I prepare right now?",
+    "intent": "request_general_info",
+    "intent_prediction": {
+      "name": "request_evacuation_info",
+      "confidence": 0.580895185470581
+    }
+  },
+  {
+    "text": "What should people do in my case?",
+    "intent": "request_general_info",
+    "intent_prediction": {
+      "name": "request_evacuation_info",
+      "confidence": 0.32076627016067505
+    }
+  },
+  {
+    "text": "Any current emergency alerts I should know?",
+    "intent": "request_warnings",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.43676748871803284
+    }
+  },
+  {
+    "text": "Do we have a severe weather warning?",
+    "intent": "request_warnings",
+    "intent_prediction": {
+      "name": "request_forecast",
+      "confidence": 0.6315557956695557
+    }
+  },
+  {
+    "text": "Is more rain expected soon?",
+    "intent": "request_forecast",
+    "intent_prediction": {
+      "name": "request_safe_menu",
+      "confidence": 0.17813348770141602
+    }
+  },
+  {
+    "text": "Will the situation worsen later today?",
+    "intent": "request_forecast",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.311977356672287
+    }
+  },
+  {
+    "text": "What’s the predicted development of the storm?",
+    "intent": "request_forecast",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.5185810327529907
+    }
+  },
+  {
+    "text": "Is the wind expected to increase?",
+    "intent": "request_forecast",
+    "intent_prediction": {
+      "name": "inform_trend_slowly",
+      "confidence": 0.5201075077056885
+    }
+  },
+  {
+    "text": "Any outlook for the next day?",
+    "intent": "request_forecast",
+    "intent_prediction": {
+      "name": "inform_smoke_slight",
+      "confidence": 0.2005583494901657
+    }
+  },
+  {
+    "text": "Can you share the expected conditions?",
+    "intent": "request_forecast",
+    "intent_prediction": {
+      "name": "inform_trend_stable",
+      "confidence": 0.17581038177013397
+    }
+  },
+  {
+    "text": "Find me the closest supply pickup location.",
+    "intent": "request_supply_points",
+    "intent_prediction": {
+      "name": "inform_fire_nearby",
+      "confidence": 0.3305559754371643
+    }
+  },
+  {
+    "text": "Are there any aid stations nearby?",
+    "intent": "request_supply_points",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.14690177142620087
+    }
+  },
+  {
+    "text": "Where is the closest food and water station?",
+    "intent": "request_supply_points",
+    "intent_prediction": {
+      "name": "inform_fire_nearby",
+      "confidence": 0.4369547367095947
+    }
+  },
+  {
+    "text": "Which place distributes essentials nearby?",
+    "intent": "request_supply_points",
+    "intent_prediction": {
+      "name": "inform_fire_none",
+      "confidence": 0.3473767638206482
+    }
+  },
+  {
+    "text": "How can I reach emergency services by phone?",
+    "intent": "request_emergency_numbers",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.7065003514289856
+    }
+  },
+  {
+    "text": "What's the number for fire brigade?",
+    "intent": "request_emergency_numbers",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.49206337332725525
+    }
+  },
+  {
+    "text": "Which number should I dial for urgent help?",
+    "intent": "request_emergency_numbers",
+    "intent_prediction": {
+      "name": "report_emergency",
+      "confidence": 0.5108040571212769
+    }
+  },
+  {
+    "text": "Where can I get drinking water?",
+    "intent": "request_supply",
+    "intent_prediction": {
+      "name": "request_supply_points",
+      "confidence": 0.90113365650177
+    }
+  },
+  {
+    "text": "How can I find supplies nearby?",
+    "intent": "request_supply",
+    "intent_prediction": {
+      "name": "request_supply_points",
+      "confidence": 0.42280134558677673
+    }
+  },
+  {
+    "text": "Where can I obtain basic necessities?",
+    "intent": "request_supply",
+    "intent_prediction": {
+      "name": "request_supply_points",
+      "confidence": 0.7069311738014221
+    }
+  },
+  {
+    "text": "Do you know where to get bottled water?",
+    "intent": "request_supply",
+    "intent_prediction": {
+      "name": "request_supply_points",
+      "confidence": 0.7641274333000183
+    }
+  },
+  {
+    "text": "Show me what you can help with.",
+    "intent": "request_safe_menu",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.20067568123340607
+    }
+  },
+  {
+    "text": "List the available commands.",
+    "intent": "request_safe_menu",
+    "intent_prediction": {
+      "name": "inform_fire_visible",
+      "confidence": 0.09318049997091293
+    }
+  },
+  {
+    "text": "What can I do next?",
+    "intent": "request_safe_menu",
+    "intent_prediction": {
+      "name": "inform_fire_visible",
+      "confidence": 0.20319963991641998
+    }
+  },
+  {
+    "text": "Can you recommend a movie to watch?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "request_safe_menu",
+      "confidence": 0.18922501802444458
+    }
+  },
+  {
+    "text": "Help me write a love poem.",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.444088876247406
+    }
+  },
+  {
+    "text": "What's the best way to learn guitar?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.26035213470458984
+    }
+  },
+  {
+    "text": "Can you check my crypto portfolio?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "report_trapped",
+      "confidence": 0.5773952603340149
+    }
+  },
+  {
+    "text": "Translate this sentence to Spanish.",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "request_operator",
+      "confidence": 0.33125191926956177
+    }
+  },
+  {
+    "text": "My current position has changed.",
+    "intent": "change_location",
+    "intent_prediction": {
+      "name": "inform_trend_stable",
+      "confidence": 0.38522908091545105
+    }
+  },
+  {
+    "text": "I'm in another area now, please update it.",
+    "intent": "change_location",
+    "intent_prediction": {
+      "name": "request_general_info",
+      "confidence": 0.28816458582878113
+    }
+  },
+  {
+    "text": "I need to update where I am.",
+    "intent": "change_location",
+    "intent_prediction": {
+      "name": "request_evacuation_info",
+      "confidence": 0.21102061867713928
     }
   }
 ]

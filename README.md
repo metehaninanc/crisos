@@ -74,9 +74,11 @@ CRISOS connects to the following services:
 - OpenAI Chat Completions (RAG answer generation)
 - OpenAI Whisper (speech to text)
 
-## Results summary (current NLU test)
+## Results summary (NLU intent report)
 
-| Model | Accuracy | Weighted F1 | Macro F1 |
-| --- | --- | --- | --- |
-| BERT | 0.9968 | 0.9967 | 0.9938 |
-| DIET | 0.9903 | 0.9902 | 0.9839 |
+| Run | Accuracy | Macro F1 | Weighted F1 | Support |
+| --- | --- | --- | --- | --- |
+| BERT (test) | 0.7526 | 0.7347 | 0.7388 | 380 |
+| BERT (cross) | 0.7930 | 0.7826 | 0.7925 | 995 |
+| DIET (test) | 0.7447 | 0.7404 | 0.7378 | 380 |
+| DIET (cross) | 0.7668 | 0.7560 | 0.7649 | 995 |

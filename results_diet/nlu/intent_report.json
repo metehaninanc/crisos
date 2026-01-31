@@ -1,417 +1,515 @@
 {
-  "inform_medical_injured": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_trend_fast": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "report_safe": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "deny": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_water_above_60cm": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_floor_ground": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
   "thank": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "request_emergency_numbers": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_temp_normal": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "request_supply_points": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_hazard_none": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_smoke_cant": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "request_safe_menu": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "change_location": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_trend_slowly": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
+    "support": 8,
     "confused_with": {}
   },
   "inform_hazard_electricity": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 4,
+    "support": 6,
     "confused_with": {}
   },
-  "inform_duration_long": {
+  "goodbye": {
     "precision": 1.0,
-    "recall": 0.75,
-    "f1-score": 0.8571428571428571,
-    "support": 4,
+    "recall": 0.625,
+    "f1-score": 0.7692307692307693,
+    "support": 8,
     "confused_with": {
-      "inform_duration_medium": 1
+      "deny": 1,
+      "request_safe_menu": 1
+    }
+  },
+  "request_supply": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1-score": 0.6666666666666666,
+    "support": 8,
+    "confused_with": {
+      "request_supply_points": 4
+    }
+  },
+  "inform_building_mid": {
+    "precision": 1.0,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.8,
+    "support": 6,
+    "confused_with": {
+      "inform_building_high": 1,
+      "report_trapped": 1
+    }
+  },
+  "inform_trend_fast": {
+    "precision": 0.8333333333333334,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.8333333333333334,
+    "support": 6,
+    "confused_with": {
+      "inform_hazard_fire": 1
+    }
+  },
+  "inform_hazard_fire": {
+    "precision": 0.8,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.7272727272727272,
+    "support": 6,
+    "confused_with": {
+      "inform_fire_visible": 1,
+      "inform_fire_nearby": 1
+    }
+  },
+  "report_safe": {
+    "precision": 0.8571428571428571,
+    "recall": 0.75,
+    "f1-score": 0.7999999999999999,
+    "support": 8,
+    "confused_with": {
+      "inform_medical_none": 1,
+      "inform_trend_slowly": 1
+    }
+  },
+  "inform_fire_surrounding": {
+    "precision": 1.0,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.9090909090909091,
+    "support": 6,
+    "confused_with": {
+      "change_location": 1
+    }
+  },
+  "out_of_scope": {
+    "precision": 0.6,
+    "recall": 0.375,
+    "f1-score": 0.4615384615384615,
+    "support": 8,
+    "confused_with": {
+      "report_trapped": 2,
+      "request_safe_menu": 1
+    }
+  },
+  "inform_duration_medium": {
+    "precision": 1.0,
+    "recall": 0.16666666666666666,
+    "f1-score": 0.2857142857142857,
+    "support": 6,
+    "confused_with": {
+      "deny": 1,
+      "greet": 1
+    }
+  },
+  "report_flood": {
+    "precision": 0.8888888888888888,
+    "recall": 1.0,
+    "f1-score": 0.9411764705882353,
+    "support": 8,
+    "confused_with": {}
+  },
+  "inform_water_below_10cm": {
+    "precision": 0.6,
+    "recall": 0.5,
+    "f1-score": 0.5454545454545454,
+    "support": 6,
+    "confused_with": {
+      "inform_smoke_slight": 1,
+      "inform_trend_slowly": 1
+    }
+  },
+  "greet": {
+    "precision": 0.6363636363636364,
+    "recall": 0.875,
+    "f1-score": 0.7368421052631579,
+    "support": 8,
+    "confused_with": {
+      "report_emergency": 1
+    }
+  },
+  "affirm": {
+    "precision": 0.6666666666666666,
+    "recall": 0.75,
+    "f1-score": 0.7058823529411765,
+    "support": 8,
+    "confused_with": {
+      "deny": 1,
+      "out_of_scope": 1
+    }
+  },
+  "report_trapped": {
+    "precision": 0.6363636363636364,
+    "recall": 0.875,
+    "f1-score": 0.7368421052631579,
+    "support": 8,
+    "confused_with": {
+      "request_evacuation_info": 1
     }
   },
   "request_evacuation_info": {
+    "precision": 0.5714285714285714,
+    "recall": 1.0,
+    "f1-score": 0.7272727272727273,
+    "support": 8,
+    "confused_with": {}
+  },
+  "inform_water_30_60cm": {
+    "precision": 0.42857142857142855,
+    "recall": 0.5,
+    "f1-score": 0.4615384615384615,
+    "support": 6,
+    "confused_with": {
+      "inform_water_10_30cm": 3
+    }
+  },
+  "request_supply_points": {
+    "precision": 0.4444444444444444,
+    "recall": 0.5,
+    "f1-score": 0.47058823529411764,
+    "support": 8,
+    "confused_with": {
+      "inform_fire_nearby": 2,
+      "request_general_info": 1
+    }
+  },
+  "report_wildfire": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 4,
+    "support": 8,
     "confused_with": {}
+  },
+  "inform_smoke_cant": {
+    "precision": 0.8571428571428571,
+    "recall": 1.0,
+    "f1-score": 0.923076923076923,
+    "support": 6,
+    "confused_with": {}
+  },
+  "inform_hazard_none": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1-score": 0.6666666666666666,
+    "support": 6,
+    "confused_with": {
+      "inform_hazard_gas": 2,
+      "report_safe": 1
+    }
+  },
+  "request_safe_menu": {
+    "precision": 0.625,
+    "recall": 0.625,
+    "f1-score": 0.625,
+    "support": 8,
+    "confused_with": {
+      "inform_fire_visible": 2,
+      "out_of_scope": 1
+    }
+  },
+  "inform_building_ground": {
+    "precision": 1.0,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.8,
+    "support": 6,
+    "confused_with": {
+      "deny": 1,
+      "inform_floor_ground": 1
+    }
+  },
+  "inform_floor_upper": {
+    "precision": 0.7142857142857143,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.7692307692307692,
+    "support": 6,
+    "confused_with": {
+      "inform_building_high": 1
+    }
+  },
+  "inform_fire_nearby": {
+    "precision": 0.5,
+    "recall": 0.5,
+    "f1-score": 0.5,
+    "support": 6,
+    "confused_with": {
+      "inform_fire_none": 2,
+      "report_emergency": 1
+    }
+  },
+  "inform_temp_uncomfortable": {
+    "precision": 0.8571428571428571,
+    "recall": 1.0,
+    "f1-score": 0.923076923076923,
+    "support": 6,
+    "confused_with": {}
+  },
+  "inform_water_10_30cm": {
+    "precision": 0.4,
+    "recall": 0.3333333333333333,
+    "f1-score": 0.3636363636363636,
+    "support": 6,
+    "confused_with": {
+      "inform_water_30_60cm": 2,
+      "inform_water_below_10cm": 2
+    }
+  },
+  "report_outage": {
+    "precision": 0.8888888888888888,
+    "recall": 1.0,
+    "f1-score": 0.9411764705882353,
+    "support": 8,
+    "confused_with": {}
+  },
+  "request_general_info": {
+    "precision": 0.3333333333333333,
+    "recall": 0.5,
+    "f1-score": 0.4,
+    "support": 8,
+    "confused_with": {
+      "request_evacuation_info": 4
+    }
+  },
+  "request_forecast": {
+    "precision": 0.6666666666666666,
+    "recall": 0.25,
+    "f1-score": 0.36363636363636365,
+    "support": 8,
+    "confused_with": {
+      "report_emergency": 1,
+      "request_safe_menu": 1
+    }
+  },
+  "inform_fire_visible": {
+    "precision": 0.6,
+    "recall": 1.0,
+    "f1-score": 0.7499999999999999,
+    "support": 6,
+    "confused_with": {}
+  },
+  "request_emergency_numbers": {
+    "precision": 1.0,
+    "recall": 0.625,
+    "f1-score": 0.7692307692307693,
+    "support": 8,
+    "confused_with": {
+      "report_emergency": 2,
+      "request_general_info": 1
+    }
+  },
+  "inform_floor_ground": {
+    "precision": 0.8333333333333334,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.8333333333333334,
+    "support": 6,
+    "confused_with": {
+      "inform_floor_upper": 1
+    }
+  },
+  "report_emergency": {
+    "precision": 0.5833333333333334,
+    "recall": 0.875,
+    "f1-score": 0.7000000000000001,
+    "support": 8,
+    "confused_with": {
+      "inform_medical_critical": 1
+    }
+  },
+  "inform_hazard_gas": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1-score": 0.8571428571428571,
+    "support": 6,
+    "confused_with": {}
+  },
+  "inform_building_high": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1-score": 0.8571428571428571,
+    "support": 6,
+    "confused_with": {}
+  },
+  "inform_trend_slowly": {
+    "precision": 0.5,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.5714285714285715,
+    "support": 6,
+    "confused_with": {
+      "inform_smoke_slight": 1,
+      "inform_trend_fast": 1
+    }
+  },
+  "inform_duration_long": {
+    "precision": 0.75,
+    "recall": 0.5,
+    "f1-score": 0.6,
+    "support": 6,
+    "confused_with": {
+      "affirm": 1,
+      "change_location": 1
+    }
+  },
+  "inform_water_above_60cm": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1-score": 0.6666666666666666,
+    "support": 6,
+    "confused_with": {
+      "inform_water_30_60cm": 2,
+      "inform_floor_upper": 1
+    }
+  },
+  "inform_trend_stable": {
+    "precision": 0.625,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.7142857142857143,
+    "support": 6,
+    "confused_with": {
+      "request_general_info": 1
+    }
+  },
+  "change_location": {
+    "precision": 0.7142857142857143,
+    "recall": 0.625,
+    "f1-score": 0.6666666666666666,
+    "support": 8,
+    "confused_with": {
+      "request_general_info": 1,
+      "request_evacuation_info": 1
+    }
+  },
+  "request_warnings": {
+    "precision": 1.0,
+    "recall": 0.75,
+    "f1-score": 0.8571428571428571,
+    "support": 8,
+    "confused_with": {
+      "request_general_info": 1,
+      "request_forecast": 1
+    }
   },
   "inform_medical_medications": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_fire_visible": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "greet": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_medical_critical": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_fire_none": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
+    "support": 6,
     "confused_with": {}
   },
   "inform_temp_dangerous": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 4,
+    "support": 6,
     "confused_with": {}
   },
-  "inform_floor_basement": {
+  "inform_medical_injured": {
     "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_duration_medium": {
-    "precision": 0.5714285714285714,
-    "recall": 1.0,
-    "f1-score": 0.7272727272727273,
-    "support": 4,
-    "confused_with": {}
-  },
-  "report_trapped": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "report_flood": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_trend_stable": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
+    "recall": 0.8333333333333334,
+    "f1-score": 0.9090909090909091,
+    "support": 6,
+    "confused_with": {
+      "inform_medical_critical": 1
+    }
   },
   "request_operator": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
+    "precision": 0.875,
+    "recall": 0.875,
+    "f1-score": 0.875,
+    "support": 8,
+    "confused_with": {
+      "request_supply_points": 1
+    }
   },
-  "request_supply": {
+  "inform_temp_normal": {
     "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
+    "recall": 0.8333333333333334,
+    "f1-score": 0.9090909090909091,
+    "support": 6,
+    "confused_with": {
+      "inform_temp_uncomfortable": 1
+    }
   },
-  "inform_fire_nearby": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
+  "inform_fire_none": {
+    "precision": 0.625,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.7142857142857143,
+    "support": 6,
+    "confused_with": {
+      "inform_fire_visible": 1
+    }
   },
-  "inform_water_30_60cm": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_smoke_slight": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "request_warnings": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_building_ground": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_temp_uncomfortable": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_water_below_10cm": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
+  "inform_duration_short": {
+    "precision": 0.6666666666666666,
+    "recall": 0.3333333333333333,
+    "f1-score": 0.4444444444444444,
+    "support": 6,
+    "confused_with": {
+      "request_general_info": 2,
+      "greet": 1
+    }
   },
   "inform_smoke_none": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "report_wildfire": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "affirm": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "goodbye": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_hazard_gas": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
+    "support": 6,
     "confused_with": {}
   },
   "inform_medical_none": {
-    "precision": 1.0,
+    "precision": 0.75,
     "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
+    "f1-score": 0.8571428571428571,
+    "support": 6,
     "confused_with": {}
   },
-  "inform_water_10_30cm": {
-    "precision": 1.0,
+  "inform_smoke_slight": {
+    "precision": 0.6666666666666666,
     "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
+    "f1-score": 0.8,
+    "support": 6,
     "confused_with": {}
   },
-  "inform_fire_surrounding": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_building_mid": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "out_of_scope": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "request_forecast": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_floor_upper": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_building_high": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_duration_short": {
-    "precision": 1.0,
-    "recall": 0.5,
+  "inform_medical_critical": {
+    "precision": 0.6666666666666666,
+    "recall": 0.6666666666666666,
     "f1-score": 0.6666666666666666,
-    "support": 4,
+    "support": 6,
     "confused_with": {
-      "inform_duration_medium": 2
+      "report_trapped": 1,
+      "inform_smoke_cant": 1
     }
   },
-  "report_emergency": {
+  "deny": {
+    "precision": 0.5555555555555556,
+    "recall": 0.625,
+    "f1-score": 0.5882352941176471,
+    "support": 8,
+    "confused_with": {
+      "affirm": 2,
+      "inform_medical_none": 1
+    }
+  },
+  "inform_floor_basement": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 4,
+    "support": 6,
     "confused_with": {}
   },
-  "report_outage": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "inform_hazard_fire": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "request_general_info": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "accuracy": 0.9866071428571429,
+  "accuracy": 0.7447368421052631,
   "macro avg": {
-    "precision": 0.9923469387755102,
-    "recall": 0.9866071428571429,
-    "f1-score": 0.9866264687693259,
-    "support": 224
+    "precision": 0.7806637806637807,
+    "recall": 0.7470238095238094,
+    "f1-score": 0.7403739593616859,
+    "support": 380
   },
   "weighted avg": {
-    "precision": 0.9923469387755102,
-    "recall": 0.9866071428571429,
-    "f1-score": 0.9866264687693259,
-    "support": 224
+    "precision": 0.7773414597098808,
+    "recall": 0.7447368421052631,
+    "f1-score": 0.7378155446747593,
+    "support": 380
   },
   "micro avg": {
-    "precision": 0.9866071428571429,
-    "recall": 0.9866071428571429,
-    "f1-score": 0.9866071428571429,
-    "support": 224
+    "precision": 0.7447368421052631,
+    "recall": 0.7447368421052631,
+    "f1-score": 0.7447368421052631,
+    "support": 380
   }
 }
