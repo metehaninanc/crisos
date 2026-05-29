@@ -25,6 +25,11 @@ if str(ROOT_DIR) not in sys.path:
 
 from db.connection import get_connection
 from db import init_db as db_init
+from utils.interaction_logger import (
+    append_interaction_log,
+    detect_fallback_triggered,
+    detect_handover_triggered,
+)
 
 RASA_URL = os.getenv("RASA_URL", "http://localhost:5005/webhooks/rest/webhook")
 FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")
@@ -290,6 +295,10 @@ class ChatRequest(BaseModel):
     message: str
     locale: Optional[str] = None
     location: Optional[LocationPayload] = None
+    true_intent: Optional[str] = None
+    user_id: Optional[str] = None
+    session_id: Optional[str] = None
+    channel: Optional[str] = None
 
 
 class HandoffMessageRequest(BaseModel):
@@ -431,6 +440,27 @@ def _model_to_dict(model):
     return model.dict()
 
 
+# Calls Rasa parse endpoint and returns predicted intent name and confidence.
+def _get_predicted_intent_and_confidence(text: str) -> tuple[Optional[str], Optional[float]]:
+    parse_url = RASA_URL.replace("/webhooks/rest/webhook", "/model/parse")
+    try:
+        response = requests.post(parse_url, json={"text": text}, timeout=15)
+        response.raise_for_status()
+        payload = response.json()
+    except (requests.RequestException, ValueError):
+        return None, None
+    intent = payload.get("intent") if isinstance(payload, dict) else None
+    if not isinstance(intent, dict):
+        return None, None
+    name = intent.get("name")
+    confidence = intent.get("confidence")
+    if not isinstance(name, str):
+        name = None
+    if not isinstance(confidence, (int, float)):
+        confidence = None
+    return name, confidence
+
+
 # Reads table metadata and returns columns and primary key.
 def _fetch_table_meta(cur, table: str):
     cur.execute(
@@ -479,6 +509,14 @@ def health():
 @app.post("/api/message")
 def send_message(payload: ChatRequest):
     request_start = time.perf_counter()
+    fallback_confidence_threshold = float(os.getenv("FALLBACK_CONFIDENCE_THRESHOLD", "0.40"))
+    original_user_message = payload.message
+    translated_messages = []
+    predicted_intent = None
+    confidence_score = None
+    fallback_triggered = False
+    handover_triggered = False
+    error_text = ""
     metadata = {}
     locale = _normalize_locale(payload.locale)
     if payload.locale:
@@ -497,6 +535,9 @@ def send_message(payload: ChatRequest):
         translate_in_time = time.perf_counter() - t0
 
     try:
+        parse_text = message_text
+        predicted_intent, confidence_score = _get_predicted_intent_and_confidence(parse_text)
+
         t1 = time.perf_counter()
         response = requests.post(
             RASA_URL,
@@ -510,6 +551,24 @@ def send_message(payload: ChatRequest):
         response.raise_for_status()
         rasa_time = time.perf_counter() - t1
     except requests.RequestException as exc:
+        error_text = str(exc)
+        total_time = time.perf_counter() - request_start
+        append_interaction_log(
+            conversation_id=payload.sender_id,
+            user_id=payload.user_id,
+            session_id=payload.session_id or payload.sender_id,
+            channel=payload.channel or "web",
+            user_message=original_user_message,
+            true_intent=payload.true_intent,
+            predicted_intent=predicted_intent,
+            confidence_score=confidence_score,
+            bot_messages=[],
+            fallback_triggered=fallback_triggered,
+            handover_triggered=handover_triggered,
+            response_time_seconds=total_time,
+            sentiment_score="",
+            error=error_text,
+        )
         raise HTTPException(status_code=502, detail=str(exc)) from exc
 
     messages = response.json()
@@ -521,6 +580,29 @@ def send_message(payload: ChatRequest):
         "[Timing] total={:.3f}s translate_in={:.3f}s rasa={:.3f}s translate_out={:.3f}s locale={}".format(
             total_time, translate_in_time, rasa_time, translate_out_time, locale
         )
+    )
+    fallback_triggered = detect_fallback_triggered(
+        predicted_intent=predicted_intent,
+        confidence_score=confidence_score,
+        bot_messages=translated_messages,
+        fallback_confidence_threshold=fallback_confidence_threshold,
+    )
+    handover_triggered = detect_handover_triggered(translated_messages)
+    append_interaction_log(
+        conversation_id=payload.sender_id,
+        user_id=payload.user_id,
+        session_id=payload.session_id or payload.sender_id,
+        channel=payload.channel or "web",
+        user_message=original_user_message,
+        true_intent=payload.true_intent,
+        predicted_intent=predicted_intent,
+        confidence_score=confidence_score,
+        bot_messages=translated_messages,
+        fallback_triggered=fallback_triggered,
+        handover_triggered=handover_triggered,
+        response_time_seconds=total_time,
+        sentiment_score="",
+        error=error_text,
     )
     return {"messages": translated_messages}
 

@@ -1,0 +1,25 @@
+scenario_id,user_id,session_id,turn_id,user_message,true_intent,expected_task,channel
+S001,U001,SES001,1,There is a fire in my apartment and smoke everywhere,report_emergency,action,web
+S001,U001,SES001,2,I cannot breathe well and need help now,report_emergency,action,web
+S001,U001,SES001,3,My child is inside the room what should I do,report_emergency,action,web
+S001,U001,SES001,4,Please send emergency team to my location,report_emergency,handover,web
+S002,U002,SES002,1,We are trapped on second floor due to flood,report_trapped,action,web
+S002,U002,SES002,2,Water level is rising quickly in the hallway,report_trapped,action,web
+S002,U002,SES002,3,No boat can reach us currently,report_trapped,action,web
+S002,U002,SES002,4,Need evacuation route urgently,request_operator,handover,web
+S003,U003,SES003,1,I am safe but need nearest shelter location,report_safe,info,web
+S003,U003,SES003,2,Any open safe points in Berlin tonight,request_supply_points,info,web
+S003,U003,SES003,3,Can you list emergency contact numbers here,request_emergency_numbers,info,web
+S003,U003,SES003,4,Also where can I charge my phone,request_supply_points,info,web
+S004,U004,SES004,1,My grandmother has chest pain during blackout,report_emergency,action,web
+S004,U004,SES004,2,Is there an ambulance number for my city,request_emergency_numbers,info,web
+S004,U004,SES004,3,She uses oxygen support and power is out,report_emergency,action,web
+S004,U004,SES004,4,Connect me to an operator please,request_operator,handover,web
+S005,U005,SES005,1,Where can I find drinking water near me,request_supply_points,info,web
+S005,U005,SES005,2,Need baby food and hygiene kit locations,request_supply_points,info,web
+S005,U005,SES005,3,Any food distribution points open now,request_supply_points,info,web
+S005,U005,SES005,4,Could you repeat the addresses in simple form,request_supply_points,info,web
+S006,U006,SES006,1,What is the severe weather warning in Hamburg,request_warnings,info,web
+S006,U006,SES006,2,Is there extreme storm alert right now,request_warnings,info,web
+S006,U006,SES006,3,Will rain intensity increase in next hours,request_warnings,info,web
+S006,U006,SES006,4,Do I need to evacuate based on warning,request_evacuation_info,action,web
