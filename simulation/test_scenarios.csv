@@ -1,25 +1,101 @@
 scenario_id,user_id,session_id,turn_id,user_message,true_intent,expected_task,channel
-S001,U001,SES001,1,There is a fire in my apartment and smoke everywhere,report_emergency,action,web
-S001,U001,SES001,2,I cannot breathe well and need help now,report_emergency,action,web
-S001,U001,SES001,3,My child is inside the room what should I do,report_emergency,action,web
-S001,U001,SES001,4,Please send emergency team to my location,report_emergency,handover,web
-S002,U002,SES002,1,We are trapped on second floor due to flood,report_trapped,action,web
-S002,U002,SES002,2,Water level is rising quickly in the hallway,report_trapped,action,web
-S002,U002,SES002,3,No boat can reach us currently,report_trapped,action,web
-S002,U002,SES002,4,Need evacuation route urgently,request_operator,handover,web
-S003,U003,SES003,1,I am safe but need nearest shelter location,report_safe,info,web
-S003,U003,SES003,2,Any open safe points in Berlin tonight,request_supply_points,info,web
-S003,U003,SES003,3,Can you list emergency contact numbers here,request_emergency_numbers,info,web
-S003,U003,SES003,4,Also where can I charge my phone,request_supply_points,info,web
-S004,U004,SES004,1,My grandmother has chest pain during blackout,report_emergency,action,web
-S004,U004,SES004,2,Is there an ambulance number for my city,request_emergency_numbers,info,web
-S004,U004,SES004,3,She uses oxygen support and power is out,report_emergency,action,web
-S004,U004,SES004,4,Connect me to an operator please,request_operator,handover,web
-S005,U005,SES005,1,Where can I find drinking water near me,request_supply_points,info,web
-S005,U005,SES005,2,Need baby food and hygiene kit locations,request_supply_points,info,web
-S005,U005,SES005,3,Any food distribution points open now,request_supply_points,info,web
-S005,U005,SES005,4,Could you repeat the addresses in simple form,request_supply_points,info,web
-S006,U006,SES006,1,What is the severe weather warning in Hamburg,request_warnings,info,web
-S006,U006,SES006,2,Is there extreme storm alert right now,request_warnings,info,web
-S006,U006,SES006,3,Will rain intensity increase in next hours,request_warnings,info,web
-S006,U006,SES006,4,Do I need to evacuate based on warning,request_evacuation_info,action,web
+S001,U001,SESS001,1,There is flooding in my street and water is entering the house,report_flood,detect_crisis_type,web
+S001,U001,SESS001,2,We are trapped in the basement and cannot get out,report_trapped,start_trapped_assessment,web
+S001,U001,SESS001,3,Berlin Kreuzberg near Oranienstrasse,change_location,capture_location,web
+S001,U001,SESS001,4,One person is injured and bleeding,inform_medical_injured,capture_medical_need,web
+S001,U001,SESS001,5,There are three of us here,affirm,capture_person_count,web
+S001,U001,SESS001,6,Water is above my knees more than sixty centimetres,inform_water_above_60cm,capture_water_level,web
+S001,U001,SESS001,7,It is rising very fast,inform_trend_fast,capture_water_trend,web
+S001,U001,SESS001,8,We are in the basement,inform_floor_basement,capture_floor_info,web
+S001,U001,SESS001,9,There are electrical sparks near the water,inform_hazard_electricity,capture_hazard_type,web
+S001,U001,SESS001,10,Please connect me with a human operator,request_operator,handover_to_operator,web
+S002,U002,SESS002,1,A flood warning just appeared for my area,report_flood,detect_crisis_type,mobile
+S002,U002,SESS002,2,I am safe for now,report_safe,start_safe_info,mobile
+S002,U002,SESS002,3,Hamburg Altona,change_location,capture_location,mobile
+S002,U002,SESS002,4,Show me official warnings near me,request_warnings,provide_warnings,mobile
+S002,U002,SESS002,5,Where should I evacuate if the water keeps rising,request_evacuation_info,provide_evacuation_info,mobile
+S002,U002,SESS002,6,Thanks that helps,thank,close_positive,mobile
+S002,U002,SESS002,7,Goodbye,goodbye,end_conversation,mobile
+S003,U003,SESS003,1,I can see a wildfire near my neighbourhood,report_wildfire,detect_crisis_type,web
+S003,U003,SESS003,2,I am stuck inside the building,report_trapped,start_trapped_assessment,web
+S003,U003,SESS003,3,Munich Schwabing,change_location,capture_location,web
+S003,U003,SESS003,4,No medical help needed right now,inform_medical_none,capture_medical_need,web
+S003,U003,SESS003,5,The fire is close but not at the building,inform_fire_nearby,capture_fire_distance,web
+S003,U003,SESS003,6,There is some smoke and breathing is slightly difficult,inform_smoke_slight,capture_smoke_status,web
+S003,U003,SESS003,7,A car can still reach the entrance,affirm,capture_vehicle_access,web
+S004,U004,SESS004,1,Smoke is everywhere and the fire is surrounding our house,report_wildfire,detect_crisis_type,mobile
+S004,U004,SESS004,2,We cannot leave safely,report_trapped,start_trapped_assessment,mobile
+S004,U004,SESS004,3,Potsdam near the forest road,change_location,capture_location,mobile
+S004,U004,SESS004,4,My child is having trouble breathing,inform_medical_critical,capture_medical_need,mobile
+S004,U004,SESS004,5,The fire is surrounding the building,inform_fire_surrounding,capture_fire_distance,mobile
+S004,U004,SESS004,6,I cannot breathe because of smoke,inform_smoke_cant,capture_smoke_status,mobile
+S004,U004,SESS004,7,"No, the road is blocked",deny,capture_vehicle_access,mobile
+S004,U004,SESS004,8,Send emergency responders now,report_emergency,escalate_high_risk,mobile
+S005,U005,SESS005,1,Power is out in the whole building,report_outage,detect_crisis_type,web
+S005,U005,SESS005,2,I am not in danger but need advice,report_safe,start_safe_info,web
+S005,U005,SESS005,3,Cologne Ehrenfeld,change_location,capture_location,web
+S005,U005,SESS005,4,Do you know the forecast for tonight,request_forecast,provide_forecast,web
+S005,U005,SESS005,5,Where can I get batteries and water,request_supply,start_supply_request,web
+S005,U005,SESS005,6,Show nearby supply points,request_supply_points,provide_supply_points,web
+S006,U006,SESS006,1,The electricity has been gone for two days,report_outage,detect_crisis_type,mobile
+S006,U006,SESS006,2,We are trapped on the upper floor because the lift is not working,report_trapped,start_trapped_assessment,mobile
+S006,U006,SESS006,3,Frankfurt city centre,change_location,capture_location,mobile
+S006,U006,SESS006,4,I need medication kept cold,inform_medical_medications,capture_medical_need,mobile
+S006,U006,SESS006,5,We are on the seventh floor,inform_building_high,capture_building_floor,mobile
+S006,U006,SESS006,6,The flat is getting dangerously cold,inform_temp_dangerous,capture_temperature_risk,mobile
+S006,U006,SESS006,7,It has lasted more than a day,inform_duration_long,capture_duration,mobile
+S006,U006,SESS006,8,Please transfer me to an operator,request_operator,handover_to_operator,mobile
+S007,U007,SESS007,1,Emergency help needed right now,report_emergency,start_emergency_assessment,web
+S007,U007,SESS007,2,Leipzig central station,change_location,capture_location,web
+S007,U007,SESS007,3,Someone is unconscious,inform_medical_critical,capture_medical_need,web
+S007,U007,SESS007,4,Four people are affected,affirm,capture_person_count,web
+S007,U007,SESS007,5,What emergency number should I call,request_emergency_numbers,provide_emergency_numbers,web
+S008,U008,SESS008,1,Hello there,greet,greet_user,web
+S008,U008,SESS008,2,I am okay and safe,report_safe,start_safe_info,web
+S008,U008,SESS008,3,Dresden Neustadt,change_location,capture_location,web
+S008,U008,SESS008,4,Show me the safe menu again,request_safe_menu,show_safe_menu,web
+S008,U008,SESS008,5,I need general emergency preparation info,request_general_info,provide_general_info,web
+S009,U009,SESS009,1,I need food and drinking water,request_supply,start_supply_request,mobile
+S009,U009,SESS009,2,Stuttgart west,change_location,capture_location,mobile
+S009,U009,SESS009,3,Water and basic food supplies,request_supply,capture_supply_type,mobile
+S009,U009,SESS009,4,Where are the supply points near me,request_supply_points,provide_supply_points,mobile
+S009,U009,SESS009,5,Thank you,thank,close_positive,mobile
+S010,U010,SESS010,1,Can you recommend a pizza restaurant nearby,out_of_scope,fallback_or_rag_no_answer,web
+S010,U010,SESS010,2,What should I put in an emergency go bag,out_of_scope,fallback_then_rag_answer,web
+S010,U010,SESS010,3,"That is not helping, I already told you I need help",report_emergency,detect_frustration_and_emergency,web
+S010,U010,SESS010,4,Why are you asking again this is useless,out_of_scope,fallback_frustration,web
+S010,U010,SESS010,5,Connect me with a real person,request_operator,handover_to_operator,web
+S011,U011,SESS011,1,Water everywhere and I cannot move,report_flood,detect_crisis_type,mobile
+S011,U011,SESS011,2,The door will not open,report_trapped,start_trapped_assessment,mobile
+S011,U011,SESS011,3,Bremen old town,change_location,capture_location,mobile
+S011,U011,SESS011,4,No injuries just scared,inform_medical_none,capture_medical_need,mobile
+S011,U011,SESS011,5,Water is around thirty to sixty centimetres,inform_water_30_60cm,capture_water_level,mobile
+S011,U011,SESS011,6,It is slowly rising,inform_trend_slowly,capture_water_trend,mobile
+S011,U011,SESS011,7,I am on the ground floor,inform_floor_ground,capture_floor_info,mobile
+S011,U011,SESS011,8,No gas or electric hazard,inform_hazard_none,capture_hazard_type,mobile
+S012,U012,SESS012,1,Hi can you check warnings near me,greet,greet_user,web
+S012,U012,SESS012,2,Check disaster warnings for Hanover,request_warnings,provide_warnings,web
+S012,U012,SESS012,3,What is the weather forecast there,request_forecast,provide_forecast,web
+S012,U012,SESS012,4,Change my location to Hanover Linden,change_location,change_location,web
+S012,U012,SESS012,5,Show warnings again,request_warnings,provide_warnings,web
+S013,U013,SESS013,1,Urgent situation at home,report_emergency,start_emergency_assessment,mobile
+S013,U013,SESS013,2,Nuremberg south,change_location,capture_location,mobile
+S013,U013,SESS013,3,I only need my insulin and heart medication,inform_medical_medications,capture_medical_need,mobile
+S013,U013,SESS013,4,There are two people here,affirm,capture_person_count,mobile
+S013,U013,SESS013,5,I need a supply point for medicine,request_supply_points,provide_supply_points,mobile
+S014,U014,SESS014,1,Flood water is in the basement,report_flood,detect_crisis_type,web
+S014,U014,SESS014,2,I am trapped downstairs,report_trapped,start_trapped_assessment,web
+S014,U014,SESS014,3,Essen city centre,change_location,capture_location,web
+S014,U014,SESS014,4,Water is only below ten centimetres,inform_water_below_10cm,capture_water_level,web
+S014,U014,SESS014,5,The water level is stable now,inform_trend_stable,capture_water_trend,web
+S014,U014,SESS014,6,I am on an upper floor,inform_floor_upper,capture_floor_info,web
+S014,U014,SESS014,7,I smell gas,inform_hazard_gas,capture_hazard_type,web
+S014,U014,SESS014,8,Need immediate assistance required,report_emergency,escalate_high_risk,web
+S015,U015,SESS015,1,There is a fire far away on the hill,report_wildfire,detect_crisis_type,mobile
+S015,U015,SESS015,2,I am safe at home,report_safe,start_safe_info,mobile
+S015,U015,SESS015,3,Augsburg east,change_location,capture_location,mobile
+S015,U015,SESS015,4,No visible fire near my building,inform_fire_none,capture_fire_distance,mobile
+S015,U015,SESS015,5,There is no smoke here,inform_smoke_none,capture_smoke_status,mobile
+S015,U015,SESS015,6,Please give evacuation info just in case,request_evacuation_info,provide_evacuation_info,mobile
+S016,U016,SESS016,1,Outage in my area and phones are dying,report_outage,detect_crisis_type,web
+S016,U016,SESS016,2,Dortmund north,change_location,capture_location,web
